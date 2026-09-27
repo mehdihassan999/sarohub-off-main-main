@@ -1,0 +1,6 @@
+{
+  "name": "SAROHUB | Where Ideas Become Technology",
+  "description": "SAROHUB — Software & Research Organization. We research, design, build, and launch software solutions, SaaS platforms, and digital ventures globally.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

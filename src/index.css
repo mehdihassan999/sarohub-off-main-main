@@ -1,0 +1,504 @@
+@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "Anonymous Pro", ui-monospace, SFMono-Regular, monospace;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* NexStudio custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #000000;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #333333;
+}
+
+/* NexStudio infinite scroll marquee */
+@keyframes infinite-scroll {
+  0% { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.animate-infinite-scroll {
+  animation: infinite-scroll 25s linear infinite;
+}
+
+.animate-infinite-scroll:hover {
+  animation-play-state: paused;
+}
+
+/* Modern clean card styles */
+.glass {
+  background: #ffffff !important;
+  border: 1px solid #e5e7eb !important;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.04) !important;
+}
+
+.glass-accent {
+  background: #f9fafb !important;
+  border: 1px solid #000000 !important;
+}
+
+/* Form element premium styling */
+input, textarea, select {
+  background: #ffffff !important;
+  border: 1px solid #e5e7eb !important;
+  color: #000000 !important;
+  border-radius: 0.5rem !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: #000000 !important;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1) !important;
+  outline: none !important;
+}
+
+/* Grid backgrounds & custom animations */
+.grid-bg {
+  background-image: radial-gradient(#e5e7eb 1.2px, transparent 1.2px);
+  background-size: 24px 24px;
+}
+
+.premium-card-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.premium-card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.08) !important;
+  border-color: #000000 !important;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* ==========================================
+   NEXSTUDIO THEME CONFIGURATION
+   ========================================== */
+
+:root {
+  --bg-app: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f9fafb;
+  --text-main: #000000;
+  --text-body: #374151;
+  --text-muted: #6b7280;
+  --border-app: #e5e7eb;
+  --border-focus: #000000;
+  --input-bg: #ffffff;
+  --input-border: #e5e7eb;
+  --input-text: #000000;
+  --shadow-color: rgba(0, 0, 0, 0.05);
+  --grid-dot-color: #e5e7eb;
+}
+
+.theme-stripe {
+  --bg-app: #f6f9fc;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f8fafc;
+  --text-main: #0a2540;
+  --text-body: #425466;
+  --text-muted: #697386;
+  --border-app: rgba(10, 37, 64, 0.08);
+  --border-focus: #635bff;
+  --input-bg: #ffffff;
+  --input-border: rgba(10, 37, 64, 0.16);
+  --input-text: #0a2540;
+  --shadow-color: rgba(10, 37, 64, 0.04);
+  --grid-dot-color: #e3e8ee;
+}
+
+.theme-obsidian {
+  --bg-app: #020205;
+  --bg-card: #090911;
+  --bg-card-hover: #0f0f1c;
+  --text-main: #ffffff;
+  --text-body: #94a3b8;
+  --text-muted: #526075;
+  --border-app: rgba(255, 255, 255, 0.06);
+  --border-focus: #3b82f6;
+  --input-bg: #05050a;
+  --input-border: rgba(255, 255, 255, 0.1);
+  --input-text: #ffffff;
+  --shadow-color: rgba(0, 0, 0, 0.8);
+  --grid-dot-color: rgba(255, 255, 255, 0.025);
+}
+
+.theme-nordic {
+  --bg-app: #0a0d10;
+  --bg-card: #13191e;
+  --bg-card-hover: #1b232a;
+  --text-main: #f2f6f3;
+  --text-body: #a1b3a6;
+  --text-muted: #708476;
+  --border-app: rgba(16, 185, 129, 0.1);
+  --border-focus: #10b981;
+  --input-bg: #11171c;
+  --input-border: rgba(16, 185, 129, 0.15);
+  --input-text: #f2f6f3;
+  --shadow-color: rgba(0, 0, 0, 0.4);
+  --grid-dot-color: rgba(16, 185, 129, 0.05);
+}
+
+.theme-alabaster {
+  --bg-app: #faf8f5;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f5f1eb;
+  --text-main: #1c1917;
+  --text-body: #44403c;
+  --text-muted: #78716c;
+  --border-app: rgba(120, 113, 108, 0.15);
+  --border-focus: #c2410c;
+  --input-bg: #ffffff;
+  --input-border: rgba(120, 113, 108, 0.25);
+  --input-text: #1c1917;
+  --shadow-color: rgba(120, 110, 90, 0.05);
+  --grid-dot-color: #e7e2da;
+}
+
+/* Theme enforcement layers to force styling on all components */
+.theme-stripe, .theme-obsidian, .theme-nordic, .theme-alabaster {
+  background-color: var(--bg-app) !important;
+  color: var(--text-body) !important;
+}
+
+/* Ensure background color of card elements gets mapped correctly */
+.theme-stripe .bg-white, .theme-obsidian .bg-white, .theme-nordic .bg-white, .theme-alabaster .bg-white,
+.theme-stripe .bg-\[\#FBFBFB\], .theme-obsidian .bg-\[\#FBFBFB\], .theme-nordic .bg-\[\#FBFBFB\], .theme-alabaster .bg-\[\#FBFBFB\],
+.theme-stripe .bg-\[\#fbfbfb\], .theme-obsidian .bg-\[\#fbfbfb\], .theme-nordic .bg-\[\#fbfbfb\], .theme-alabaster .bg-\[\#fbfbfb\] {
+  background-color: var(--bg-card) !important;
+}
+
+.theme-stripe .bg-slate-50, .theme-obsidian .bg-slate-50, .theme-nordic .bg-slate-50, .theme-alabaster .bg-slate-50,
+.theme-stripe .bg-slate-100, .theme-obsidian .bg-slate-100, .theme-nordic .bg-slate-100, .theme-alabaster .bg-slate-100,
+.theme-stripe .bg-slate-100\/50, .theme-obsidian .bg-slate-100\/50, .theme-nordic .bg-slate-100\/50, .theme-alabaster .bg-slate-100\/50,
+.theme-stripe .bg-gray-50, .theme-obsidian .bg-gray-50, .theme-nordic .bg-gray-50, .theme-alabaster .bg-gray-50 {
+  background-color: var(--bg-app) !important;
+}
+
+/* Overriding typography utility classes for perfect contrast */
+.theme-stripe .text-black, .theme-obsidian .text-black, .theme-nordic .text-black, .theme-alabaster .text-black,
+.theme-stripe .text-slate-900, .theme-obsidian .text-slate-900, .theme-nordic .text-slate-900, .theme-alabaster .text-slate-900,
+.theme-stripe .text-slate-800, .theme-obsidian .text-slate-800, .theme-nordic .text-slate-800, .theme-alabaster .text-slate-800,
+.theme-stripe .text-slate-950, .theme-obsidian .text-slate-950, .theme-nordic .text-slate-950, .theme-alabaster .text-slate-950,
+.theme-stripe .text-gray-900, .theme-obsidian .text-gray-900, .theme-nordic .text-gray-900, .theme-alabaster .text-gray-900,
+.theme-stripe .text-gray-800, .theme-obsidian .text-gray-800, .theme-nordic .text-gray-800, .theme-alabaster .text-gray-800,
+.theme-stripe .text-slate-900\/90, .theme-obsidian .text-slate-900\/90, .theme-nordic .text-slate-900\/90, .theme-alabaster .text-slate-900\/90 {
+  color: var(--text-main) !important;
+}
+
+.theme-stripe .text-slate-600, .theme-obsidian .text-slate-600, .theme-nordic .text-slate-600, .theme-alabaster .text-slate-600,
+.theme-stripe .text-slate-700, .theme-obsidian .text-slate-700, .theme-nordic .text-slate-700, .theme-alabaster .text-slate-700,
+.theme-stripe .text-slate-500, .theme-obsidian .text-slate-500, .theme-nordic .text-slate-500, .theme-alabaster .text-slate-500,
+.theme-stripe .text-gray-600, .theme-obsidian .text-gray-600, .theme-nordic .text-gray-600, .theme-alabaster .text-gray-600,
+.theme-stripe .text-gray-700, .theme-obsidian .text-gray-700, .theme-nordic .text-gray-700, .theme-alabaster .text-gray-700 {
+  color: var(--text-body) !important;
+}
+
+.theme-stripe .text-slate-400, .theme-obsidian .text-slate-400, .theme-nordic .text-slate-400, .theme-alabaster .text-slate-400,
+.theme-stripe .text-gray-400, .theme-obsidian .text-gray-400, .theme-nordic .text-gray-400, .theme-alabaster .text-gray-400,
+.theme-stripe .text-gray-500, .theme-obsidian .text-gray-500, .theme-nordic .text-gray-500, .theme-alabaster .text-gray-500,
+.theme-stripe .text-slate-500\/80, .theme-obsidian .text-slate-500\/80, .theme-nordic .text-slate-500\/80, .theme-alabaster .text-slate-500\/80 {
+  color: var(--text-muted) !important;
+}
+
+/* Force borders to match current styling rules */
+.theme-stripe .border-slate-200, .theme-obsidian .border-slate-200, .theme-nordic .border-slate-200, .theme-alabaster .border-slate-200,
+.theme-stripe .border-slate-200\/80, .theme-obsidian .border-slate-200\/80, .theme-nordic .border-slate-200\/80, .theme-alabaster .border-slate-200\/80,
+.theme-stripe .border-slate-100, .theme-obsidian .border-slate-100, .theme-nordic .border-slate-100, .theme-alabaster .border-slate-100,
+.theme-stripe .border-gray-100, .theme-obsidian .border-gray-100, .theme-nordic .border-gray-100, .theme-alabaster .border-gray-100,
+.theme-stripe .border-gray-200, .theme-obsidian .border-gray-200, .theme-nordic .border-gray-200, .theme-alabaster .border-gray-200 {
+  border-color: var(--border-app) !important;
+}
+
+/* Form layouts inside themed sections */
+.theme-stripe form, .theme-obsidian form, .theme-nordic form, .theme-alabaster form {
+  background-color: var(--bg-card) !important;
+  border-color: var(--border-app) !important;
+}
+
+/* Light Modal Override — prevents dark theme CSS from leaking into white popups/modals */
+.light-modal,
+.light-modal * {
+  --text-main: #0f172a !important;
+  --text-body: #475569 !important;
+  --text-muted: #94a3b8 !important;
+  --bg-card: #ffffff !important;
+  --bg-app: #f8fafc !important;
+  --border-app: #e2e8f0 !important;
+}
+
+/* Keep detail overlays aligned with whichever site theme is active. */
+.site-modal {
+  background-color: var(--bg-card);
+  color: var(--text-body);
+  border: 1px solid var(--border-app);
+}
+
+.site-modal .bg-white { background-color: var(--bg-card) !important; }
+.site-modal .bg-slate-50 { background-color: var(--bg-app) !important; }
+.site-modal .bg-slate-50\/50,
+.site-modal .bg-blue-50\/70,
+.site-modal .bg-slate-100 { background-color: var(--bg-card-hover) !important; }
+.site-modal .text-slate-900,
+.site-modal .text-slate-800 { color: var(--text-main) !important; }
+.site-modal .text-slate-700,
+.site-modal .text-slate-600 { color: var(--text-body) !important; }
+.site-modal .text-slate-500,
+.site-modal .text-slate-400 { color: var(--text-muted) !important; }
+.site-modal .text-blue-700,
+.site-modal .text-blue-600 { color: var(--border-focus) !important; }
+.site-modal .border-slate-100,
+.site-modal .border-slate-200 { border-color: var(--border-app) !important; }
+.light-modal.bg-white,
+.light-modal .bg-white {
+  background-color: #ffffff !important;
+}
+.light-modal .bg-slate-50,
+.light-modal .bg-slate-100 {
+  background-color: #f8fafc !important;
+}
+.light-modal .text-slate-900,
+.light-modal .text-slate-800,
+.light-modal .text-slate-950 {
+  color: #0f172a !important;
+}
+.light-modal .text-slate-700,
+.light-modal .text-slate-600 {
+  color: #475569 !important;
+}
+.light-modal .text-slate-500,
+.light-modal .text-slate-400 {
+  color: #94a3b8 !important;
+}
+.light-modal .border-slate-200,
+.light-modal .border-slate-100 {
+  border-color: #e2e8f0 !important;
+}
+.light-modal form {
+  background-color: transparent !important;
+  border-color: #e2e8f0 !important;
+}
+
+/* Navbar / Header styles override */
+header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 50 !important;
+}
+
+.theme-stripe header, .theme-alabaster header {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  border-color: var(--border-app) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+}
+.theme-obsidian header, .theme-nordic header {
+  background-color: rgba(9, 14, 26, 0.85) !important;
+  border-color: var(--border-app) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+}
+
+.theme-obsidian header span, .theme-nordic header span {
+  color: var(--text-main) !important;
+}
+.theme-obsidian header nav a, .theme-nordic header nav a {
+  color: var(--text-body) !important;
+}
+.theme-obsidian header nav a:hover, .theme-nordic header nav a:hover {
+  color: var(--text-main) !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Footer layout */
+.theme-stripe footer {
+  background-color: #0a2540 !important;
+  color: #f6f9fc !important;
+}
+.theme-obsidian footer {
+  background-color: #020204 !important;
+  border-color: var(--border-app) !important;
+}
+.theme-nordic footer {
+  background-color: #06080a !important;
+  border-color: var(--border-app) !important;
+}
+.theme-alabaster footer {
+  background-color: #f5f1eb !important;
+  border-color: var(--border-app) !important;
+}
+
+/* Card components */
+.theme-stripe .premium-card-hover, .theme-obsidian .premium-card-hover, .theme-nordic .premium-card-hover, .theme-alabaster .premium-card-hover {
+  background-color: var(--bg-card) !important;
+  border-color: var(--border-app) !important;
+}
+.theme-stripe .premium-card-hover:hover, .theme-nordic .premium-card-hover:hover, .theme-alabaster .premium-card-hover:hover {
+  background-color: var(--bg-card-hover) !important;
+  border-color: var(--border-focus) !important;
+}
+.theme-obsidian .premium-card-hover:hover {
+  background-color: var(--bg-card-hover) !important;
+  border-color: rgba(59, 130, 246, 0.4) !important;
+  box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.25), 0 0 15px -3px rgba(6, 182, 212, 0.15) !important;
+}
+
+/* ==========================================
+   ADMIN PANEL STYLING OVERHAUL (HIGH CONTRAST CYBER-SLATE DASHBOARD)
+   ========================================== */
+.admin-panel-root {
+  background-color: #0b1120 !important; /* Absolute dark slate */
+  border-color: #1e293b !important;
+  color: #f8fafc !important;
+  border-radius: 1.5rem !important;
+  padding: 2rem !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Override glass inside the admin panel to be deep dark-slate boxes */
+.admin-panel-root .glass {
+  background: #0f172a !important; /* solid slate-900 */
+  border: 1px solid #1e293b !important; /* slate-800 border */
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Ensure headings inside are perfectly white and have great contrast */
+.admin-panel-root h2,
+.admin-panel-root h3,
+.admin-panel-root h4,
+.admin-panel-root h5,
+.admin-panel-root h6,
+.admin-panel-root .text-white {
+  color: #ffffff !important;
+}
+
+/* Remap slate text colors to maintain readability on dark background */
+.admin-panel-root .text-slate-950 {
+  color: #030712 !important; /* Keep active text readable on cyan backgrounds */
+}
+
+.admin-panel-root .text-slate-900,
+.admin-panel-root .text-slate-850,
+.admin-panel-root .text-slate-800,
+.admin-panel-root .text-slate-700,
+.admin-panel-root .text-slate-600 {
+  color: #f1f5f9 !important; /* very high contrast light gray */
+}
+
+.admin-panel-root .text-slate-500,
+.admin-panel-root .text-slate-400 {
+  color: #94a3b8 !important; /* comfortable readable medium gray */
+}
+
+/* Remap bg classes that clash */
+.admin-panel-root .bg-slate-950\/40,
+.admin-panel-root .bg-slate-950\/50,
+.admin-panel-root .bg-slate-900\/50,
+.admin-panel-root .bg-slate-950,
+.admin-panel-root .bg-slate-900 {
+  background-color: #030712 !important; /* Solid dark background */
+}
+
+/* Remap input, select, textarea elements in admin panel to prevent global theme clashing */
+.admin-panel-root input,
+.admin-panel-root textarea,
+.admin-panel-root select {
+  background-color: #030712 !important;
+  border: 1px solid #334155 !important;
+  color: #ffffff !important;
+  font-weight: 500 !important;
+}
+
+.admin-panel-root input::placeholder,
+.admin-panel-root textarea::placeholder {
+  color: #475569 !important; /* highly visible slate placeholder */
+}
+
+.admin-panel-root input:focus,
+.admin-panel-root textarea:focus,
+.admin-panel-root select:focus {
+  border-color: #06b6d4 !important; /* glowing cyan focus */
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.25) !important;
+}
+
+/* Select option styling */
+.admin-panel-root select option {
+  background-color: #0f172a !important;
+  color: #ffffff !important;
+}
+
+/* Labels custom styling */
+.admin-panel-root label {
+  color: #94a3b8 !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  font-family: var(--font-mono) !important;
+  font-size: 10px !important;
+  letter-spacing: 0.1em !important;
+}
+
+/* Custom Table Overhaul for newsletters and lists */
+.admin-panel-root table {
+  background-color: #0f172a !important;
+}
+
+.admin-panel-root thead tr {
+  background-color: #030712 !important;
+  border-bottom: 1px solid #1e293b !important;
+}
+
+.admin-panel-root tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.03) !important;
+}
+
+/* Alert dialogue boxes */
+.admin-panel-root .bg-cyan-500 {
+  background-color: #06b6d4 !important;
+  color: #030712 !important;
+}
+
+.admin-panel-root .text-cyan-400 {
+  color: #22d3ee !important;
+}
+
+/* Border overrides */
+.admin-panel-root .border-slate-900,
+.admin-panel-root .border-slate-800 {
+  border-color: #1e293b !important;
+}
+
