@@ -152,13 +152,13 @@ export const InteractiveSolutionMatcher: React.FC<InteractiveSolutionMatcherProp
   ];
 
   return (
-    <div id="solution-matcher" className={`rounded-3xl border border-gray-200 bg-white shadow-sm overflow-hidden ${className}`}>
+    <div id="solution-matcher" className={`rounded-3xl border border-white/[0.08] bg-[#0E121E] text-white shadow-2xl overflow-hidden ${className}`}>
       
       {/* Top Wizard Indicator */}
-      <div className="bg-[#FBFBFB] px-6 sm:px-8 py-5 border-b border-gray-200 flex items-center justify-between">
+      <div className="bg-[#0A0D15] px-6 sm:px-8 py-5 border-b border-white/[0.08] flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Sparkles className="size-4 text-black" />
-          <span className="text-xs font-mono uppercase tracking-wider text-black font-semibold">
+          <Sparkles className="size-4 text-[#FF5C00]" />
+          <span className="text-xs font-mono uppercase tracking-wider text-white font-semibold">
             Interactive Solution Diagnostic &amp; Architecture Matcher
           </span>
         </div>
@@ -168,10 +168,10 @@ export const InteractiveSolutionMatcher: React.FC<InteractiveSolutionMatcherProp
               key={i}
               className={`h-1.5 rounded-full transition-all duration-300 ${
                 step === i 
-                  ? 'w-8 bg-black' 
+                  ? 'w-8 bg-[#FF5C00] shadow-[0_0_8px_#FF5C00]' 
                   : step > i 
-                    ? 'w-3 bg-gray-400' 
-                    : 'w-3 bg-gray-200'
+                    ? 'w-3 bg-[#FF7A1A]/50' 
+                    : 'w-3 bg-white/20'
               }`}
             />
           ))}
@@ -184,11 +184,11 @@ export const InteractiveSolutionMatcher: React.FC<InteractiveSolutionMatcherProp
         {step === 1 && (
           <div>
             <div className="mb-8">
-              <span className="font-mono text-xs text-gray-500 uppercase tracking-widest block mb-2">Step 1 of 4</span>
-              <h3 className="text-2xl sm:text-3xl font-normal -tracking-[1px] text-black">
+              <span className="font-mono text-xs text-[#FF5C00] uppercase tracking-widest block mb-2 font-semibold">Step 1 of 4</span>
+              <h3 className="text-2xl sm:text-3xl font-normal -tracking-[1px] text-white">
                 What type of product or solution are you building?
               </h3>
-              <p className="text-sm text-gray-600 font-normal mt-2">
+              <p className="text-sm text-slate-300 font-normal mt-2">
                 Select your primary system archetype so we can calibrate the optimal cloud stack.
               </p>
             </div>
@@ -200,16 +200,16 @@ export const InteractiveSolutionMatcher: React.FC<InteractiveSolutionMatcherProp
                   onClick={() => setProjectType(opt.label)}
                   className={`p-6 rounded-2xl border transition-all cursor-pointer flex items-start gap-4 ${
                     projectType === opt.label
-                      ? 'border-black bg-[#FBFBFB] shadow-sm'
-                      : 'border-gray-200 hover:border-gray-400 bg-white'
+                      ? 'border-[#FF5C00] bg-[#141A2E] ring-1 ring-[#FF5C00] shadow-[0_0_15px_rgba(255,92,0,0.15)]'
+                      : 'border-white/[0.08] hover:border-white/20 bg-[#101424]'
                   }`}
                 >
-                  <div className="p-3 rounded-xl bg-white border border-gray-200 shrink-0">
+                  <div className="p-3 rounded-xl bg-[#141828] border border-white/10 shrink-0 text-[#FF5C00]">
                     {opt.icon}
                   </div>
                   <div>
-                    <div className="text-base font-semibold text-black">{opt.label}</div>
-                    <div className="text-xs text-gray-500 font-normal mt-1 leading-relaxed">{opt.desc}</div>
+                    <div className="text-base font-semibold text-white">{opt.label}</div>
+                    <div className="text-xs text-slate-300 font-normal mt-1 leading-relaxed">{opt.desc}</div>
                   </div>
                 </div>
               ))}
@@ -219,7 +219,7 @@ export const InteractiveSolutionMatcher: React.FC<InteractiveSolutionMatcherProp
               <button
                 type="button"
                 onClick={() => setStep(2)}
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-black text-white hover:bg-gray-800 text-xs font-mono uppercase tracking-wider transition-all cursor-pointer"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-gradient-to-r from-[#FF5C00] to-[#FF7A1A] text-white hover:shadow-[0_0_15px_rgba(255,92,0,0.4)] text-xs font-mono uppercase tracking-wider transition-all cursor-pointer font-bold border border-[#FFA566]/30"
               >
                 <span>Continue to Stage</span>
                 <ArrowRight className="size-3.5" />
@@ -232,11 +232,11 @@ export const InteractiveSolutionMatcher: React.FC<InteractiveSolutionMatcherProp
         {step === 2 && (
           <div>
             <div className="mb-8">
-              <span className="font-mono text-xs text-gray-500 uppercase tracking-widest block mb-2">Step 2 of 4</span>
-              <h3 className="text-2xl sm:text-3xl font-normal -tracking-[1px] text-black">
+              <span className="font-mono text-xs text-[#FF5C00] uppercase tracking-widest block mb-2 font-semibold">Step 2 of 4</span>
+              <h3 className="text-2xl sm:text-3xl font-normal -tracking-[1px] text-white">
                 What is the current maturity of your product?
               </h3>
-              <p className="text-sm text-gray-600 font-normal mt-2">
+              <p className="text-sm text-slate-300 font-normal mt-2">
                 Helps determine whether you need rapid discovery sprints, UX design, or immediate coding.
               </p>
             </div>
@@ -248,12 +248,12 @@ export const InteractiveSolutionMatcher: React.FC<InteractiveSolutionMatcherProp
                   onClick={() => setStage(opt.label)}
                   className={`p-6 rounded-2xl border transition-all cursor-pointer ${
                     stage === opt.label
-                      ? 'border-black bg-[#FBFBFB] shadow-sm'
-                      : 'border-gray-200 hover:border-gray-400 bg-white'
+                      ? 'border-[#FF5C00] bg-[#141A2E] ring-1 ring-[#FF5C00] shadow-[0_0_15px_rgba(255,92,0,0.15)]'
+                      : 'border-white/[0.08] hover:border-white/20 bg-[#101424]'
                   }`}
                 >
-                  <div className="text-base font-semibold text-black">{opt.label}</div>
-                  <div className="text-xs text-gray-500 font-normal mt-1.5 leading-relaxed">{opt.desc}</div>
+                  <div className="text-base font-semibold text-white">{opt.label}</div>
+                  <div className="text-xs text-slate-300 font-normal mt-1.5 leading-relaxed">{opt.desc}</div>
                 </div>
               ))}
             </div>
@@ -262,7 +262,7 @@ export const InteractiveSolutionMatcher: React.FC<InteractiveSolutionMatcherProp
               <button
                 type="button"
                 onClick={() => setStep(1)}
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-full border border-gray-200 hover:border-black text-xs font-mono uppercase tracking-wider text-black transition-all cursor-pointer"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-full border border-white/15 bg-white/[0.05] hover:border-[#FF5C00] text-xs font-mono uppercase tracking-wider text-white transition-all cursor-pointer font-semibold"
               >
                 <ArrowLeft className="size-3.5" />
                 <span>Back</span>
@@ -270,7 +270,7 @@ export const InteractiveSolutionMatcher: React.FC<InteractiveSolutionMatcherProp
               <button
                 type="button"
                 onClick={() => setStep(3)}
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-black text-white hover:bg-gray-800 text-xs font-mono uppercase tracking-wider transition-all cursor-pointer"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-gradient-to-r from-[#FF5C00] to-[#FF7A1A] text-white hover:shadow-[0_0_15px_rgba(255,92,0,0.4)] text-xs font-mono uppercase tracking-wider transition-all cursor-pointer font-bold border border-[#FFA566]/30"
               >
                 <span>Continue to Timeline</span>
                 <ArrowRight className="size-3.5" />
@@ -283,18 +283,18 @@ export const InteractiveSolutionMatcher: React.FC<InteractiveSolutionMatcherProp
         {step === 3 && (
           <div>
             <div className="mb-8">
-              <span className="font-mono text-xs text-gray-500 uppercase tracking-widest block mb-2">Step 3 of 4</span>
-              <h3 className="text-2xl sm:text-3xl font-normal -tracking-[1px] text-black">
+              <span className="font-mono text-xs text-[#FF5C00] uppercase tracking-widest block mb-2 font-semibold">Step 3 of 4</span>
+              <h3 className="text-2xl sm:text-3xl font-normal -tracking-[1px] text-white">
                 Target Timeline &amp; Investment Bracket
               </h3>
-              <p className="text-sm text-gray-600 font-normal mt-2">
+              <p className="text-sm text-slate-300 font-normal mt-2">
                 Transparent expectations ensure zero wasted time and accurate scoping.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
               <div>
-                <label className="block text-xs font-mono uppercase tracking-wider text-black mb-3">
+                <label className="block text-xs font-mono uppercase tracking-wider text-slate-200 mb-3 font-semibold">
                   Target Launch Horizon:
                 </label>
                 <div className="space-y-3">
@@ -304,19 +304,19 @@ export const InteractiveSolutionMatcher: React.FC<InteractiveSolutionMatcherProp
                       onClick={() => setTimeline(opt.label)}
                       className={`p-4 rounded-2xl border transition-all cursor-pointer ${
                         timeline === opt.label
-                          ? 'border-black bg-[#FBFBFB]'
-                          : 'border-gray-200 hover:border-gray-400 bg-white'
+                          ? 'border-[#FF5C00] bg-[#141A2E] ring-1 ring-[#FF5C00]'
+                          : 'border-white/[0.08] hover:border-white/20 bg-[#101424]'
                       }`}
                     >
-                      <div className="text-sm font-semibold text-black">{opt.label}</div>
-                      <div className="text-xs text-gray-500 mt-1">{opt.desc}</div>
+                      <div className="text-sm font-semibold text-white">{opt.label}</div>
+                      <div className="text-xs text-slate-300 mt-1">{opt.desc}</div>
                     </div>
                   ))}
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-mono uppercase tracking-wider text-black mb-3">
+                <label className="block text-xs font-mono uppercase tracking-wider text-slate-200 mb-3 font-semibold">
                   Estimated Capital Allocation:
                 </label>
                 <div className="space-y-3">
@@ -326,12 +326,12 @@ export const InteractiveSolutionMatcher: React.FC<InteractiveSolutionMatcherProp
                       onClick={() => setBudget(opt.label)}
                       className={`p-4 rounded-2xl border transition-all cursor-pointer ${
                         budget === opt.label
-                          ? 'border-black bg-[#FBFBFB]'
-                          : 'border-gray-200 hover:border-gray-400 bg-white'
+                          ? 'border-[#FF5C00] bg-[#141A2E] ring-1 ring-[#FF5C00]'
+                          : 'border-white/[0.08] hover:border-white/20 bg-[#101424]'
                       }`}
                     >
-                      <div className="text-sm font-semibold text-black">{opt.label}</div>
-                      <div className="text-xs text-gray-500 mt-1">{opt.desc}</div>
+                      <div className="text-sm font-semibold text-white">{opt.label}</div>
+                      <div className="text-xs text-slate-300 mt-1">{opt.desc}</div>
                     </div>
                   ))}
                 </div>
@@ -342,7 +342,7 @@ export const InteractiveSolutionMatcher: React.FC<InteractiveSolutionMatcherProp
               <button
                 type="button"
                 onClick={() => setStep(2)}
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-full border border-gray-200 hover:border-black text-xs font-mono uppercase tracking-wider text-black transition-all cursor-pointer"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-full border border-white/15 bg-white/[0.05] hover:border-[#FF5C00] text-xs font-mono uppercase tracking-wider text-white transition-all cursor-pointer font-semibold"
               >
                 <ArrowLeft className="size-3.5" />
                 <span>Back</span>
@@ -350,7 +350,7 @@ export const InteractiveSolutionMatcher: React.FC<InteractiveSolutionMatcherProp
               <button
                 type="button"
                 onClick={() => setStep(4)}
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-black text-white hover:bg-gray-800 text-xs font-mono uppercase tracking-wider transition-all cursor-pointer"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-gradient-to-r from-[#FF5C00] via-[#FF6C00] to-[#FF8526] hover:shadow-[0_0_24px_rgba(255,92,0,0.5)] text-white text-xs font-mono uppercase tracking-wider transition-all cursor-pointer font-bold border border-[#FFA566]/30"
               >
                 <span>View Architecture Blueprint</span>
                 <ArrowRight className="size-3.5" />
@@ -363,104 +363,104 @@ export const InteractiveSolutionMatcher: React.FC<InteractiveSolutionMatcherProp
         {step === 4 && (
           <div>
             <div className="mb-8">
-              <span className="font-mono text-xs text-gray-500 uppercase tracking-widest block mb-2">Step 4 of 4</span>
-              <h3 className="text-2xl sm:text-3xl font-normal -tracking-[1px] text-black">
+              <span className="font-mono text-xs text-[#FF5C00] uppercase tracking-widest block mb-2 font-semibold">Step 4 of 4</span>
+              <h3 className="text-2xl sm:text-3xl font-normal -tracking-[1px] text-white">
                 Your Calibrated Solution Architecture
               </h3>
-              <p className="text-sm text-gray-600 font-normal mt-2">
+              <p className="text-sm text-slate-300 font-normal mt-2">
                 Based on your inputs, here is our recommended stack, turnaround sprint model, and engagement framework.
               </p>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-10">
               {/* Architecture Blueprint Card */}
-              <div className="lg:col-span-7 p-7 rounded-3xl bg-[#FBFBFB] border border-gray-200">
-                <div className="flex items-center justify-between pb-4 border-b border-gray-200 mb-5">
-                  <span className="font-mono text-xs uppercase tracking-wider text-gray-500">Recommended Model</span>
-                  <span className="text-sm font-semibold text-black">{currentRecs.model}</span>
+              <div className="lg:col-span-7 p-7 rounded-3xl bg-[#101424] border border-white/[0.08]">
+                <div className="flex items-center justify-between pb-4 border-b border-white/[0.08] mb-5">
+                  <span className="font-mono text-xs uppercase tracking-wider text-slate-400">Recommended Model</span>
+                  <span className="text-sm font-semibold text-[#FF7A1A]">{currentRecs.model}</span>
                 </div>
 
                 <div className="space-y-4 mb-6">
                   <div>
-                    <div className="text-xs font-mono uppercase tracking-wider text-gray-400 mb-2">
+                    <div className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-2">
                       Optimal Technology Ecosystem:
                     </div>
                     <div className="flex flex-wrap gap-2">
                       {currentRecs.stack.map((stk, i) => (
-                        <span key={i} className="px-3 py-1 rounded-full bg-white border border-gray-200 text-xs font-mono text-black">
+                        <span key={i} className="px-3 py-1 rounded-full bg-[#141828] border border-white/10 text-xs font-mono text-slate-200">
                           {stk}
                         </span>
                       ))}
                     </div>
                   </div>
 
-                  <div className="pt-4 border-t border-gray-200 grid grid-cols-2 gap-4">
+                  <div className="pt-4 border-t border-white/[0.08] grid grid-cols-2 gap-4">
                     <div>
-                      <div className="text-xs font-mono uppercase tracking-wider text-gray-400">Estimated Duration</div>
-                      <div className="text-base font-semibold text-black mt-1">{currentRecs.weeks}</div>
+                      <div className="text-xs font-mono uppercase tracking-wider text-slate-400">Estimated Duration</div>
+                      <div className="text-base font-semibold text-white mt-1">{currentRecs.weeks}</div>
                     </div>
                     <div>
-                      <div className="text-xs font-mono uppercase tracking-wider text-gray-400">IP Ownership</div>
-                      <div className="text-base font-semibold text-black mt-1">100% Client Transferred</div>
+                      <div className="text-xs font-mono uppercase tracking-wider text-slate-400">IP Ownership</div>
+                      <div className="text-base font-semibold text-[#FF7A1A] mt-1">100% Client Transferred</div>
                     </div>
                   </div>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-white border border-gray-200 text-xs text-gray-600 font-normal leading-relaxed">
-                  <ShieldCheck className="size-4 text-black inline mr-1.5" />
+                <div className="p-4 rounded-2xl bg-[#141A2E] border border-white/[0.08] text-xs text-slate-300 font-normal leading-relaxed">
+                  <ShieldCheck className="size-4 text-[#FF5C00] inline mr-1.5" />
                   Every deliverable includes automated continuous integration, cloud architecture diagrams, and full source code handover.
                 </div>
               </div>
 
               {/* Email / Lead Capture Form */}
-              <div className="lg:col-span-5 p-7 rounded-3xl bg-white border border-gray-200 flex flex-col justify-between">
+              <div className="lg:col-span-5 p-7 rounded-3xl bg-[#101424] border border-white/[0.08] flex flex-col justify-between shadow-xl">
                 <form onSubmit={handleSaveAndSend} className="space-y-4">
-                  <h4 className="text-lg font-normal text-black">
+                  <h4 className="text-lg font-normal text-white">
                     Receive Full PDF Architecture Blueprint
                   </h4>
-                  <p className="text-xs text-gray-500 font-normal leading-relaxed">
+                  <p className="text-xs text-slate-300 font-normal leading-relaxed">
                     We will send the complete technical roadmap and sprint breakdown directly to your inbox.
                   </p>
 
                   <div>
-                    <label className="block text-[11px] font-mono uppercase tracking-wider text-gray-500 mb-1">Your Name</label>
+                    <label className="block text-[11px] font-mono uppercase tracking-wider text-slate-300 mb-1">Your Name</label>
                     <input
                       type="text"
                       required
                       value={contactName}
                       onChange={(e) => setContactName(e.target.value)}
                       placeholder="e.g. Alex Morgan"
-                      className="w-full px-4 py-3 rounded-2xl border border-gray-200 focus:border-black text-xs text-black font-normal outline-none"
+                      className="w-full px-4 py-3 rounded-2xl border border-white/10 bg-[#141828] focus:border-[#FF5C00] text-xs text-white placeholder-slate-400 font-normal outline-none"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-[11px] font-mono uppercase tracking-wider text-gray-500 mb-1">Work Email</label>
+                    <label className="block text-[11px] font-mono uppercase tracking-wider text-slate-300 mb-1">Work Email</label>
                     <input
                       type="email"
                       required
                       value={contactEmail}
                       onChange={(e) => setContactEmail(e.target.value)}
                       placeholder="alex@company.com"
-                      className="w-full px-4 py-3 rounded-2xl border border-gray-200 focus:border-black text-xs text-black font-normal outline-none"
+                      className="w-full px-4 py-3 rounded-2xl border border-white/10 bg-[#141828] focus:border-[#FF5C00] text-xs text-white placeholder-slate-400 font-normal outline-none"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-[11px] font-mono uppercase tracking-wider text-gray-500 mb-1">Company / Project Name</label>
+                    <label className="block text-[11px] font-mono uppercase tracking-wider text-slate-300 mb-1">Company / Project Name</label>
                     <input
                       type="text"
                       value={company}
                       onChange={(e) => setCompany(e.target.value)}
                       placeholder="e.g. Nexus Corp"
-                      className="w-full px-4 py-3 rounded-2xl border border-gray-200 focus:border-black text-xs text-black font-normal outline-none"
+                      className="w-full px-4 py-3 rounded-2xl border border-white/10 bg-[#141828] focus:border-[#FF5C00] text-xs text-white placeholder-slate-400 font-normal outline-none"
                     />
                   </div>
 
                   <button
                     type="submit"
                     disabled={saving}
-                    className="w-full mt-2 py-3.5 px-6 rounded-full bg-black text-white hover:bg-gray-800 disabled:opacity-50 text-xs font-mono uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer"
+                    className="w-full mt-2 py-3.5 px-6 rounded-full bg-gradient-to-r from-[#FF5C00] via-[#FF6C00] to-[#FF8526] hover:shadow-[0_0_24px_rgba(255,92,0,0.5)] text-white disabled:opacity-50 text-xs font-mono uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer font-bold border border-[#FFA566]/30"
                   >
                     {saving ? (
                       <>
@@ -482,7 +482,7 @@ export const InteractiveSolutionMatcher: React.FC<InteractiveSolutionMatcherProp
               <button
                 type="button"
                 onClick={() => setStep(3)}
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-full border border-gray-200 hover:border-black text-xs font-mono uppercase tracking-wider text-black transition-all cursor-pointer"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-full border border-white/15 bg-white/[0.05] hover:border-[#FF5C00] text-xs font-mono uppercase tracking-wider text-white transition-all cursor-pointer font-semibold"
               >
                 <ArrowLeft className="size-3.5" />
                 <span>Adjust Parameters</span>
@@ -494,17 +494,17 @@ export const InteractiveSolutionMatcher: React.FC<InteractiveSolutionMatcherProp
         {/* STEP 5: SUCCESS STATE */}
         {step === 5 && (
           <div className="py-8 text-center max-w-2xl mx-auto">
-            <div className="size-16 rounded-full bg-[#FBFBFB] border border-gray-200 flex items-center justify-center mx-auto mb-6">
-              <CheckCircle2 className="size-8 text-black" />
+            <div className="size-16 rounded-full bg-[#141A2E] border border-white/10 flex items-center justify-center mx-auto mb-6">
+              <CheckCircle2 className="size-8 text-[#FF5C00]" />
             </div>
 
-            <span className="font-mono text-xs uppercase tracking-widest text-gray-500 mb-2 block">
+            <span className="font-mono text-xs uppercase tracking-widest text-[#FF5C00] mb-2 block font-semibold">
               Diagnostic Complete
             </span>
-            <h3 className="text-3xl font-normal -tracking-[1px] text-black mb-4">
+            <h3 className="text-3xl font-normal -tracking-[1px] text-white mb-4">
               Your Architecture Blueprint is Ready
             </h3>
-            <p className="text-sm text-gray-600 font-normal leading-relaxed mb-8">
+            <p className="text-sm text-slate-300 font-normal leading-relaxed mb-8">
               We have generated your custom solution blueprint for <strong>{contactEmail}</strong>. A copy has been dispatched to our engineering leadership for direct review.
             </p>
 
@@ -513,7 +513,7 @@ export const InteractiveSolutionMatcher: React.FC<InteractiveSolutionMatcherProp
                 <button
                   type="button"
                   onClick={() => onBookConsultationWithDiagnostic(`Diagnostic: ${projectType} (${currentRecs.model}) for ${contactName}`)}
-                  className="px-7 py-3.5 rounded-full bg-black text-white hover:bg-gray-800 text-xs font-mono uppercase tracking-wider transition-all cursor-pointer"
+                  className="px-7 py-3.5 rounded-full bg-gradient-to-r from-[#FF5C00] via-[#FF6C00] to-[#FF8526] hover:shadow-[0_0_24px_rgba(255,92,0,0.5)] text-white text-xs font-mono uppercase tracking-wider transition-all cursor-pointer font-bold border border-[#FFA566]/30"
                 >
                   Book 30-Min Architecture Walkthrough
                 </button>
@@ -522,7 +522,7 @@ export const InteractiveSolutionMatcher: React.FC<InteractiveSolutionMatcherProp
               <button
                 type="button"
                 onClick={() => setStep(1)}
-                className="px-6 py-3.5 rounded-full border border-gray-200 hover:border-black text-xs font-mono uppercase tracking-wider text-black transition-all cursor-pointer"
+                className="px-6 py-3.5 rounded-full border border-white/15 bg-white/[0.05] hover:border-[#FF5C00] text-xs font-mono uppercase tracking-wider text-white transition-all cursor-pointer font-semibold"
               >
                 Start New Diagnostic
               </button>

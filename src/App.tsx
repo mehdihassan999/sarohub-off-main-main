@@ -133,11 +133,21 @@ export default function App() {
   });
 
   useEffect(() => {
-    api.getSettings().then(setGlobalSettings).catch(console.error);
+    api.getSettings().then((s) => {
+      setGlobalSettings(s);
+      if (typeof window !== 'undefined') {
+        (window as any).__SAROHUB_LOGO__ = s.company_logo || s.logo_url || '/assets/sarohub-logo.png';
+      }
+    }).catch(console.error);
     api.getVentures().catch(() => {});
 
     const onDataUpdated = () => {
-      api.getSettings().then(setGlobalSettings).catch(console.error);
+      api.getSettings().then((s) => {
+        setGlobalSettings(s);
+        if (typeof window !== 'undefined') {
+          (window as any).__SAROHUB_LOGO__ = s.company_logo || s.logo_url || '/assets/sarohub-logo.png';
+        }
+      }).catch(console.error);
     };
     window.addEventListener('sarohub-data-updated', onDataUpdated);
     return () => window.removeEventListener('sarohub-data-updated', onDataUpdated);
@@ -147,9 +157,13 @@ export default function App() {
     <Router>
       <ScrollToTop />
       <SEOHead />
-      <div className={`flex min-h-screen flex-col font-sans antialiased bg-white text-black selection:bg-black selection:text-white relative`}>
+      <div className={`vaboulus-theme flex min-h-screen flex-col font-sans antialiased bg-[#08090E] text-[#94A3B8] selection:bg-[#FF5C00] selection:text-white relative`}>
         {/* Navigation Bar */}
-        <Navbar isAdminLoggedIn={isAdminLoggedIn} />
+        <Navbar 
+          isAdminLoggedIn={isAdminLoggedIn} 
+          settings={globalSettings} 
+          logoUrl={globalSettings?.company_logo || globalSettings?.logo_url} 
+        />
 
         {/* Core Layout Pages */}
         <main className="flex-1 relative z-10 overflow-x-hidden">
@@ -405,13 +419,14 @@ function ServicesView({ settings }: { settings?: { [key: string]: string } }) {
         keywords="software development services, custom software Skardu, SaaS development Pakistan, AI automation services, web applications"
         canonicalUrl="https://sarohub.com/services"
       />
-      <div className="py-16 border-b text-center" style={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-app)' }}>
-        <div className="mx-auto max-w-7xl px-6">
-          <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 mb-4">
-            Capabilities & Verticals
+      <div className="py-16 border-b border-white/[0.08] text-center bg-[#0A0D15] relative overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-[#FF5C00]/8 blur-[120px] pointer-events-none -z-10" />
+        <div className="mx-auto max-w-7xl px-6 relative z-10">
+          <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold uppercase tracking-wider bg-[#FF5C00]/10 text-[#FF7A1A] border border-[#FF5C00]/25 mb-4">
+            Capabilities &amp; Verticals
           </span>
-          <h1 className="font-display text-4xl sm:text-5xl font-black text-white tracking-tight">
-            Software & Technology Services
+          <h1 className="font-display text-4xl sm:text-5xl font-normal -tracking-[1.8px] text-white">
+            Software &amp; Technology <span className="italic text-[#FF5C00]">Services</span>
           </h1>
           <p className="mt-4 text-sm sm:text-base text-slate-400 max-w-2xl mx-auto leading-relaxed">
             Custom software development, scalable cloud systems, web platforms, and practical AI solutions.
@@ -486,7 +501,7 @@ function StudentProjectsView() {
 // --- OUR VENTURES & PRODUCTS VIEW ---
 function VenturesView() {
   return (
-    <div className="relative">
+    <div className="relative min-h-screen bg-[#08090E] text-white">
       <SEOHead
         title="Proprietary Ventures & Digital Products | SaroHub Technologies"
         description="Discover proprietary software products, SaaS platforms, and digital ventures developed and scaled in-house by SaroHub Technologies."
@@ -941,23 +956,25 @@ function BlogView() {
   });
 
   return (
-    <div className="py-24 bg-slate-50">
-      <div className="mx-auto max-w-7xl px-6">
+    <div className="py-20 lg:py-24 bg-[#08090E] min-h-screen relative">
+      <div className="mx-auto max-w-7xl px-6 relative z-10">
 
         <div className="flex flex-col lg:flex-row gap-12 justify-between items-start">
           <div className="w-full lg:w-3/4">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-100/50 mb-4">
-              <BookOpen className="h-3 w-3" /> Articles & Insights
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold uppercase tracking-wider bg-[#FF5C00]/10 text-[#FF7A1A] border border-[#FF5C00]/25 mb-4">
+              <BookOpen className="h-3 w-3" /> Articles &amp; Insights
             </span>
-            <h1 className="font-display text-4xl font-extrabold tracking-tight text-slate-900">Blog & Insights</h1>
-            <p className="mt-4 text-sm text-slate-600 mb-12 max-w-2xl">
+            <h1 className="font-display text-4xl sm:text-5xl font-normal -tracking-[1.8px] text-white">
+              Blog &amp; <span className="italic text-[#FF5C00]">Insights</span>
+            </h1>
+            <p className="mt-4 text-sm sm:text-base text-slate-400 mb-12 max-w-2xl leading-relaxed">
               Practical tech guides, software development tutorials, and technology updates compiled by our team.
             </p>
 
             {/* Blogs List */}
-            <div className="space-y-8">
+            <div className="space-y-6">
               {filteredBlogs.length === 0 ? (
-                <div className="bg-white border border-slate-200/80 rounded-2xl p-12 text-center text-slate-500 font-medium">
+                <div className="bg-[#0E121E] border border-white/[0.08] rounded-3xl p-12 text-center text-slate-400 font-mono text-xs uppercase">
                   No blog articles found matching your criteria.
                 </div>
               ) : (
@@ -965,35 +982,35 @@ function BlogView() {
                   <div
                     key={item.id}
                     onClick={() => openPost(item)}
-                    className="bg-white border border-slate-200/80 rounded-2xl overflow-hidden flex flex-col md:flex-row group hover:shadow-md transition-all duration-300 cursor-pointer"
+                    className="bg-[#0E121E] border border-white/[0.08] rounded-3xl overflow-hidden flex flex-col md:flex-row group hover:border-[#FF5C00]/40 hover:shadow-[0_12px_35px_rgba(0,0,0,0.7),0_0_20px_rgba(255,92,0,0.15)] transition-all duration-300 cursor-pointer shadow-lg"
                   >
-                    <div className="w-full md:w-2/5 h-64 overflow-hidden relative bg-slate-100 shrink-0">
+                    <div className="w-full md:w-2/5 h-64 overflow-hidden relative bg-[#141828] shrink-0">
                       <img src={item.featured_image_url} alt={item.title} className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
                     </div>
                     <div className="w-full md:w-3/5 p-8 flex flex-col justify-between">
                       <div>
                         <div className="flex gap-4 items-center text-xs text-slate-400">
-                          <span className="rounded-full bg-blue-50 border border-blue-100 px-3 py-1 text-[10px] text-blue-700 font-mono font-bold">
+                          <span className="rounded-full bg-[#FF5C00]/10 border border-[#FF5C00]/25 px-3 py-1 text-[10px] text-[#FF7A1A] font-mono font-bold uppercase">
                             {categories.find(c => c.id === item.category_id)?.name || 'Technical'}
                           </span>
-                          <span>{item.reading_time || '5 min read'}</span>
-                          <span>{item.created_at ? new Date(item.created_at).toLocaleDateString() : ''}</span>
+                          <span className="font-mono text-[11px]">{item.reading_time || '5 min read'}</span>
+                          <span className="font-mono text-[11px]">{item.created_at ? new Date(item.created_at).toLocaleDateString() : ''}</span>
                         </div>
-                        <h3 className="mt-4 font-display text-xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors">{item.title}</h3>
-                        <p className="mt-3 text-sm text-slate-600 line-clamp-3 leading-relaxed">{item.content ? item.content.replace(/[#*`_]/g, '') : ''}</p>
+                        <h3 className="mt-4 font-display text-xl font-bold text-white group-hover:text-[#FF7A1A] transition-colors">{item.title}</h3>
+                        <p className="mt-3 text-sm text-slate-400 line-clamp-3 leading-relaxed">{item.content ? item.content.replace(/[#*`_]/g, '') : ''}</p>
                       </div>
 
-                      <div className="mt-6 pt-6 border-t border-slate-100 flex justify-between items-center">
+                      <div className="mt-6 pt-6 border-t border-white/[0.08] flex justify-between items-center">
                         <div className="flex items-center gap-3">
-                          <img src={item.author_avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=100&h=100'} alt={item.author_name} className="h-8 w-8 rounded-full object-cover bg-slate-100" referrerPolicy="no-referrer" />
-                          <span className="text-xs text-slate-700 font-semibold">{item.author_name || 'SaroHub Team'}</span>
+                          <img src={item.author_avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=100&h=100'} alt={item.author_name} className="h-8 w-8 rounded-full object-cover bg-[#141828]" referrerPolicy="no-referrer" />
+                          <span className="text-xs text-slate-300 font-semibold">{item.author_name || 'SaroHub Team'}</span>
                         </div>
                         <button
                           onClick={(e) => {
                             e.stopPropagation();
                             openPost(item);
                           }}
-                          className="text-xs font-bold text-blue-600 hover:text-blue-800 hover:underline flex items-center gap-1 cursor-pointer"
+                          className="text-xs font-mono uppercase tracking-wider font-bold text-[#FF5C00] hover:text-[#FFA043] flex items-center gap-1 cursor-pointer"
                         >
                           Read Article <BookOpen className="h-3.5 w-3.5" />
                         </button>
@@ -1006,29 +1023,29 @@ function BlogView() {
           </div>
 
           {/* Sidebar */}
-          <div className="w-full lg:w-1/4 space-y-8 lg:sticky lg:top-24">
+          <div className="w-full lg:w-1/4 space-y-6 lg:sticky lg:top-24">
             {/* Search */}
-            <div className="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm">
-              <h4 className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-4 font-bold">Search Bulletin</h4>
+            <div className="bg-[#0E121E] border border-white/[0.08] rounded-3xl p-6 shadow-lg">
+              <h4 className="text-xs font-mono uppercase tracking-wider text-[#FF5C00] mb-4 font-bold">Search Bulletin</h4>
               <div className="relative">
                 <input
                   type="text"
                   placeholder="Query syntax..."
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  className="w-full rounded-lg bg-slate-50 border border-slate-200 px-4 py-2.5 pr-10 text-sm text-slate-900 focus:outline-none focus:border-blue-500 focus:bg-white transition-colors"
+                  className="w-full rounded-xl bg-[#141828] border border-white/10 px-4 py-2.5 pr-10 text-sm text-white focus:outline-none focus:border-[#FF5C00] transition-colors"
                 />
                 <Search className="absolute right-3 top-3 h-4.5 w-4.5 text-slate-400" />
               </div>
             </div>
 
             {/* Categories */}
-            <div className="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm">
-              <h4 className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-4 font-bold">Categories</h4>
+            <div className="bg-[#0E121E] border border-white/[0.08] rounded-3xl p-6 shadow-lg">
+              <h4 className="text-xs font-mono uppercase tracking-wider text-[#FF5C00] mb-4 font-bold">Categories</h4>
               <div className="space-y-1">
                 <button
                   onClick={() => setSelectedCat(null)}
-                  className={`block w-full text-left text-xs px-3 py-2 rounded-lg font-medium transition-colors ${selectedCat === null ? 'bg-blue-50 text-blue-700 font-bold' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'}`}
+                  className={`block w-full text-left text-xs px-3 py-2 rounded-xl font-medium transition-colors ${selectedCat === null ? 'bg-[#FF5C00] text-white font-bold' : 'text-slate-300 hover:text-white hover:bg-white/[0.04]'}`}
                 >
                   All Research Areas
                 </button>
@@ -1036,7 +1053,7 @@ function BlogView() {
                   <button
                     key={c.id}
                     onClick={() => setSelectedCat(c.id)}
-                    className={`block w-full text-left text-xs px-3 py-2 rounded-lg font-medium transition-colors ${selectedCat === c.id ? 'bg-blue-50 text-blue-700 font-bold' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'}`}
+                    className={`block w-full text-left text-xs px-3 py-2 rounded-xl font-medium transition-colors ${selectedCat === c.id ? 'bg-[#FF5C00] text-white font-bold' : 'text-slate-300 hover:text-white hover:bg-white/[0.04]'}`}
                   >
                     {c.name}
                   </button>
@@ -1050,7 +1067,7 @@ function BlogView() {
         <AnimatePresence>
           {activePost && (
             <div
-              className="fixed inset-0 z-[9999] flex items-center justify-center p-2 sm:p-4 md:p-6 bg-slate-950/80 backdrop-blur-md overflow-hidden"
+              className="fixed inset-0 z-[9999] flex items-center justify-center p-2 sm:p-4 md:p-6 bg-black/85 backdrop-blur-md overflow-hidden"
               onClick={closePost}
             >
               <motion.div
@@ -1059,18 +1076,18 @@ function BlogView() {
                 exit={{ opacity: 0, scale: 0.95, y: 15 }}
                 transition={{ duration: 0.2 }}
                 onClick={(e) => e.stopPropagation()}
-                className="relative w-full max-w-3xl h-[calc(100dvh-3rem)] max-h-[calc(100dvh-3rem)] sm:h-[78vh] sm:max-h-[78vh] bg-white rounded-2xl border border-slate-200 shadow-2xl flex flex-col overflow-hidden"
+                className="relative w-full max-w-3xl h-[calc(100dvh-3rem)] max-h-[calc(100dvh-3rem)] sm:h-[78vh] sm:max-h-[78vh] bg-[#0E121E] text-white rounded-3xl border border-white/[0.12] shadow-2xl flex flex-col overflow-hidden"
               >
                 {/* Fixed Top Modal Header with Guaranteed Visible Close Button */}
-                <div className="relative z-50 flex items-center gap-2 px-4 pr-16 py-3 bg-white border-b border-slate-200 shrink-0">
+                <div className="relative z-50 flex items-center gap-2 px-4 pr-16 py-3 bg-[#0E121E] border-b border-white/[0.08] shrink-0">
                   <div className="flex items-center gap-2">
-                    <span className="h-2 w-2 rounded-full bg-blue-500"></span>
-                    <span className="text-xs font-mono font-bold text-slate-600 uppercase tracking-wider">Engineering Article</span>
+                    <span className="h-2 w-2 rounded-full bg-[#FF5C00]"></span>
+                    <span className="text-xs font-mono font-bold text-[#FF7A1A] uppercase tracking-wider">Engineering Article</span>
                   </div>
                   <button
                     onClick={closePost}
                     aria-label="Close article modal"
-                    className="absolute top-2 right-3 z-[60] h-10 w-10 shrink-0 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 shadow-sm transition-all hover:scale-105 cursor-pointer flex items-center justify-center"
+                    className="absolute top-2 right-3 z-[60] h-10 w-10 shrink-0 rounded-full bg-white/[0.06] hover:bg-white/[0.15] text-white border border-white/10 shadow-sm transition-all hover:scale-105 cursor-pointer flex items-center justify-center"
                   >
                     <X className="h-5 w-5" />
                   </button>
@@ -1079,46 +1096,46 @@ function BlogView() {
                 {/* Scrollable Modal Content Container */}
                 <div className="overflow-y-auto overscroll-contain flex-1 min-h-0">
                   {/* Hero / Banner Image */}
-                  <div className="h-40 sm:h-64 md:h-72 overflow-hidden relative bg-slate-100">
+                  <div className="h-40 sm:h-64 md:h-72 overflow-hidden relative bg-[#141828]">
                     <img
                       src={activePost.featured_image_url || 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&q=80&w=800&h=450'}
                       alt={activePost.title}
                       className="h-full w-full object-cover"
                       referrerPolicy="no-referrer"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0E121E] via-transparent to-transparent" />
                   </div>
 
                   {/* Article Detail Body */}
                   <div className="p-4 pb-8 sm:p-6 sm:pb-10 md:p-8 md:pb-12">
-                    <div className="flex flex-wrap gap-2.5 items-center text-xs text-slate-500">
-                      <span className="rounded-full bg-blue-50 border border-blue-100 px-3 py-1 text-[10px] text-blue-700 font-mono font-bold">
+                    <div className="flex flex-wrap gap-2.5 items-center text-xs text-slate-400">
+                      <span className="rounded-full bg-[#FF5C00]/10 border border-[#FF5C00]/25 px-3 py-1 text-[10px] text-[#FF7A1A] font-mono font-bold uppercase">
                         {categories.find(c => c.id === activePost.category_id)?.name || 'Technical'}
                       </span>
-                      <span>{activePost.reading_time || '5 min read'}</span>
+                      <span className="font-mono">{activePost.reading_time || '5 min read'}</span>
                       <span>&bull;</span>
-                      <span>{activePost.created_at ? new Date(activePost.created_at).toLocaleDateString() : ''}</span>
+                      <span className="font-mono">{activePost.created_at ? new Date(activePost.created_at).toLocaleDateString() : ''}</span>
                     </div>
 
-                    <h2 className="mt-4 font-display text-lg sm:text-2xl md:text-3xl font-extrabold text-slate-900 leading-snug">
+                    <h2 className="mt-4 font-display text-lg sm:text-2xl md:text-3xl font-extrabold text-white leading-snug">
                       {activePost.title}
                     </h2>
 
                     {/* Author detail */}
-                    <div className="mt-5 flex items-center gap-3 border-b border-slate-100 pb-5">
+                    <div className="mt-5 flex items-center gap-3 border-b border-white/[0.08] pb-5">
                       <img
                         src={activePost.author_avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=100&h=100'}
                         alt={activePost.author_name}
-                        className="h-9 w-9 sm:h-10 sm:w-10 rounded-full object-cover bg-slate-100 border border-slate-200"
+                        className="h-9 w-9 sm:h-10 sm:w-10 rounded-full object-cover bg-[#141828] border border-white/10"
                         referrerPolicy="no-referrer"
                       />
                       <div>
-                        <h5 className="text-xs sm:text-sm font-bold text-slate-900">{activePost.author_name || 'SaroHub Team'}</h5>
-                        <span className="text-[10px] font-mono text-slate-400 font-medium">Research & Development Lead</span>
+                        <h5 className="text-xs sm:text-sm font-bold text-white">{activePost.author_name || 'SaroHub Team'}</h5>
+                        <span className="text-[10px] font-mono text-slate-400 font-medium">Research &amp; Development Lead</span>
                       </div>
                     </div>
 
-                    <div className="mt-6 text-slate-700 leading-relaxed text-sm sm:text-base space-y-4 whitespace-pre-line">
+                    <div className="mt-6 text-slate-300 leading-relaxed text-sm sm:text-base space-y-4 whitespace-pre-line">
                       {activePost.content}
                     </div>
                   </div>
@@ -1317,60 +1334,60 @@ function CareersView() {
   });
 
   return (
-    <div className="py-20 lg:py-24 bg-slate-50 min-h-screen">
-      <div className="mx-auto max-w-7xl px-6">
+    <div className="py-20 lg:py-24 bg-[#08090E] min-h-screen relative">
+      <div className="mx-auto max-w-7xl px-6 relative z-10">
         
         {/* Page Header */}
         <div className="max-w-3xl mb-10">
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs sm:text-sm font-mono font-bold bg-blue-50 text-blue-800 border border-blue-200/80 mb-4 shadow-2xs">
-            <Briefcase className="h-4 w-4 text-blue-600" /> SaroHub Talent &amp; Innovation Portal
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs sm:text-sm font-mono font-bold bg-[#FF5C00]/10 text-[#FF7A1A] border border-[#FF5C00]/25 mb-4 shadow-2xs">
+            <Briefcase className="h-4 w-4 text-[#FF5C00]" /> SaroHub Talent &amp; Innovation Portal
           </span>
-          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight">
-            Build the Future <span className="text-blue-600">With Us</span>
+          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-normal -tracking-[1.8px] text-white leading-tight">
+            Build the Future <span className="italic text-[#FF5C00]">With Us</span>
           </h1>
-          <p className="mt-4 text-base sm:text-lg text-slate-700 leading-relaxed font-normal">
+          <p className="mt-4 text-base sm:text-lg text-slate-400 leading-relaxed font-normal">
             Join SaroHub Technologies to build next-generation enterprise software, AI-driven solutions, and digital infrastructures that power businesses worldwide. Explore our open positions, university internships, and technical research fellowships.
           </p>
         </div>
 
         {/* Filter Navigation Tabs */}
-        <div className="flex flex-wrap items-center gap-2.5 mb-10 pb-6 border-b border-slate-200">
+        <div className="flex flex-wrap items-center gap-2.5 mb-10 pb-6 border-b border-white/[0.08]">
           <button
             onClick={() => setActiveTab('all')}
-            className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all cursor-pointer ${
+            className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-mono uppercase tracking-wider transition-all cursor-pointer border ${
               activeTab === 'all'
-                ? 'bg-slate-900 text-white shadow-sm'
-                : 'bg-white text-slate-700 hover:text-black hover:bg-slate-100 border border-slate-200'
+                ? 'bg-gradient-to-r from-[#FF5C00] to-[#FF7A1A] text-white border-[#FFA566]/30 shadow-[0_0_15px_rgba(255,92,0,0.4)] font-bold'
+                : 'bg-white/[0.04] text-slate-300 hover:text-white hover:bg-white/[0.08] border-white/10'
             }`}
           >
             All Openings &amp; Programs ({allItems.length})
           </button>
           <button
             onClick={() => setActiveTab('careers')}
-            className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all cursor-pointer ${
+            className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-mono uppercase tracking-wider transition-all cursor-pointer border ${
               activeTab === 'careers'
-                ? 'bg-slate-900 text-white shadow-sm'
-                : 'bg-white text-slate-700 hover:text-black hover:bg-slate-100 border border-slate-200'
+                ? 'bg-gradient-to-r from-[#FF5C00] to-[#FF7A1A] text-white border-[#FFA566]/30 shadow-[0_0_15px_rgba(255,92,0,0.4)] font-bold'
+                : 'bg-white/[0.04] text-slate-300 hover:text-white hover:bg-white/[0.08] border-white/10'
             }`}
           >
             Full-Time Jobs ({careers.filter(c => !(c.job_type || '').toLowerCase().includes('intern')).length})
           </button>
           <button
             onClick={() => setActiveTab('internships')}
-            className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all cursor-pointer ${
+            className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-mono uppercase tracking-wider transition-all cursor-pointer border ${
               activeTab === 'internships'
-                ? 'bg-slate-900 text-white shadow-sm'
-                : 'bg-white text-slate-700 hover:text-black hover:bg-slate-100 border border-slate-200'
+                ? 'bg-gradient-to-r from-[#FF5C00] to-[#FF7A1A] text-white border-[#FFA566]/30 shadow-[0_0_15px_rgba(255,92,0,0.4)] font-bold'
+                : 'bg-white/[0.04] text-slate-300 hover:text-white hover:bg-white/[0.08] border-white/10'
             }`}
           >
             Internships &amp; Traineeships ({allItems.filter(i => i.itemType === 'internship').length})
           </button>
           <button
             onClick={() => setActiveTab('scholarships')}
-            className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all cursor-pointer ${
+            className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-mono uppercase tracking-wider transition-all cursor-pointer border ${
               activeTab === 'scholarships'
-                ? 'bg-slate-900 text-white shadow-sm'
-                : 'bg-white text-slate-700 hover:text-black hover:bg-slate-100 border border-slate-200'
+                ? 'bg-gradient-to-r from-[#FF5C00] to-[#FF7A1A] text-white border-[#FFA566]/30 shadow-[0_0_15px_rgba(255,92,0,0.4)] font-bold'
+                : 'bg-white/[0.04] text-slate-300 hover:text-white hover:bg-white/[0.08] border-white/10'
             }`}
           >
             Scholarships &amp; Fellowships ({opportunities.filter(o => !(o.type || '').toLowerCase().includes('intern')).length})
@@ -1381,57 +1398,57 @@ function CareersView() {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           {loading ? (
             [1, 2, 3, 4].map(n => (
-              <div key={n} className="h-64 rounded-2xl bg-white border border-slate-200 p-8 animate-pulse" />
+              <div key={n} className="h-64 rounded-3xl bg-[#0E121E] border border-white/[0.08] p-8 animate-pulse" />
             ))
           ) : filteredItems.length > 0 ? (
             filteredItems.map((item) => (
-              <div key={`${item.isOpportunity ? 'opp' : 'career'}-${item.id}`} className="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+              <div key={`${item.isOpportunity ? 'opp' : 'career'}-${item.id}`} className="bg-[#0E121E] border border-white/[0.08] rounded-3xl overflow-hidden shadow-lg hover:border-[#FF5C00]/40 hover:shadow-[0_12px_35px_rgba(0,0,0,0.7),0_0_20px_rgba(255,92,0,0.15)] transition-all duration-300 flex flex-col justify-between group">
                 {item.banner_url && (
-                  <div className="w-full h-48 overflow-hidden bg-slate-100 border-b border-slate-100">
+                  <div className="w-full h-48 overflow-hidden bg-[#141828] border-b border-white/[0.08]">
                     <img src={item.banner_url} alt={item.displayTitle} className="w-full h-full object-cover group-hover:scale-104 transition-transform duration-500" />
                   </div>
                 )}
                 {item.featured_image_url && !item.banner_url && (
-                  <div className="w-full h-48 overflow-hidden bg-slate-100 border-b border-slate-100">
+                  <div className="w-full h-48 overflow-hidden bg-[#141828] border-b border-white/[0.08]">
                     <img src={item.featured_image_url} alt={item.displayTitle} className="w-full h-full object-cover group-hover:scale-104 transition-transform duration-500" />
                   </div>
                 )}
                 <div className="p-7 sm:p-8 flex-1 flex flex-col justify-between">
                   <div>
                     <div className="flex flex-wrap items-center justify-between gap-2.5 mb-3">
-                      <span className="font-mono text-xs sm:text-sm text-blue-700 font-bold uppercase tracking-wider">
+                      <span className="font-mono text-xs sm:text-sm text-[#FF5C00] font-bold uppercase tracking-wider">
                         {item.displaySubtitle}
                       </span>
                       <div className="flex items-center gap-2">
-                        <span className="px-3 py-1 rounded-full bg-slate-950 text-white text-xs sm:text-sm font-mono font-bold shadow-2xs">
+                        <span className="px-3 py-1 rounded-full bg-[#FF5C00]/10 text-[#FF7A1A] border border-[#FF5C00]/25 text-xs sm:text-sm font-mono font-bold">
                           {item.displayType}
                         </span>
                         {item.displayLocation && (
-                          <span className="px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs sm:text-sm font-mono font-semibold border border-slate-200">
+                          <span className="px-3 py-1 rounded-full bg-white/[0.04] text-slate-400 text-xs sm:text-sm font-mono font-semibold border border-white/10">
                             {item.displayLocation}
                           </span>
                         )}
                       </div>
                     </div>
 
-                    <h3 className="mt-2 font-display text-2xl sm:text-[26px] font-bold text-slate-950 group-hover:text-blue-600 transition-colors tracking-tight">
+                    <h3 className="mt-2 font-display text-2xl sm:text-[26px] font-bold text-white group-hover:text-[#FF7A1A] transition-colors tracking-tight">
                       {item.displayTitle}
                     </h3>
 
                     {item.displayComp && (
-                      <div className="mt-3 flex items-center gap-1.5 text-sm sm:text-base font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 px-3.5 py-1.5 rounded-xl w-fit">
-                        <DollarSign className="h-4.5 w-4.5 text-emerald-600 shrink-0" />
+                      <div className="mt-3 flex items-center gap-1.5 text-sm sm:text-base font-bold text-emerald-400 bg-emerald-950/40 border border-emerald-500/30 px-3.5 py-1.5 rounded-xl w-fit">
+                        <DollarSign className="h-4.5 w-4.5 text-emerald-400 shrink-0" />
                         <span>{item.displayComp}</span>
                       </div>
                     )}
 
-                    <p className="mt-4 text-base text-slate-700 leading-relaxed font-normal line-clamp-3">
+                    <p className="mt-4 text-base text-slate-400 leading-relaxed font-normal line-clamp-3">
                       {item.displayDesc}
                     </p>
 
                     {item.deadline && (
-                      <div className="mt-3 inline-flex items-center gap-1.5 text-xs sm:text-sm font-mono font-bold text-rose-700 bg-rose-50 border border-rose-200 px-3 py-1 rounded-lg">
-                        <Calendar className="h-4 w-4 text-rose-500" />
+                      <div className="mt-3 inline-flex items-center gap-1.5 text-xs sm:text-sm font-mono font-bold text-rose-400 bg-rose-950/40 border border-rose-500/30 px-3 py-1 rounded-lg">
+                        <Calendar className="h-4 w-4 text-rose-400" />
                         <span>Deadline: {item.deadline}</span>
                       </div>
                     )}
@@ -1439,7 +1456,7 @@ function CareersView() {
                     {item.displaySkills && item.displaySkills.length > 0 && (
                       <div className="mt-5 flex flex-wrap gap-1.5">
                         {item.displaySkills.map((s: string, idx: number) => (
-                          <span key={idx} className="rounded-lg bg-slate-100 border border-slate-300 px-3 py-1 text-xs sm:text-[13px] font-mono font-bold text-slate-800">
+                          <span key={idx} className="rounded-lg bg-white/[0.04] border border-white/10 px-3 py-1 text-xs sm:text-[13px] font-mono font-medium text-slate-300">
                             {s}
                           </span>
                         ))}
@@ -1447,8 +1464,8 @@ function CareersView() {
                     )}
                   </div>
 
-                  <div className="mt-8 pt-6 border-t border-slate-100 flex items-center justify-between gap-4">
-                    <span className="text-xs sm:text-sm font-mono font-semibold text-slate-500">
+                  <div className="mt-8 pt-6 border-t border-white/[0.08] flex items-center justify-between gap-4">
+                    <span className="text-xs sm:text-sm font-mono font-semibold text-slate-400">
                       {item.isOpportunity ? 'Academic / Fellowship' : 'Direct Hiring'}
                     </span>
                     <button
@@ -1459,7 +1476,7 @@ function CareersView() {
                         department: item.department || item.type || 'Engineering & Research',
                         experience: item.experience || item.duration || 'Standard Eligibility'
                       })}
-                      className="rounded-xl bg-blue-600 hover:bg-blue-700 px-6 py-3 text-xs sm:text-sm font-bold text-white cursor-pointer shadow-sm transition-all hover:shadow-md inline-flex items-center gap-1.5"
+                      className="rounded-full bg-gradient-to-r from-[#FF5C00] to-[#FF7A1A] hover:shadow-[0_0_20px_rgba(255,92,0,0.4)] px-6 py-3 text-xs sm:text-sm font-bold text-white cursor-pointer transition-all inline-flex items-center gap-1.5"
                     >
                       <span>{item.isOpportunity ? 'Apply for Program' : 'Apply for Vacancy'}</span>
                       <ArrowRight className="h-4 w-4" />
@@ -1469,15 +1486,15 @@ function CareersView() {
               </div>
             ))
           ) : (
-            <div className="col-span-2 text-center py-20 px-8 bg-white rounded-3xl border border-slate-200 shadow-sm max-w-2xl mx-auto">
-              <Briefcase className="h-14 w-14 text-slate-400 mx-auto mb-4" />
-              <h3 className="text-2xl font-bold text-slate-900">No Postings in This Category Currently Listed</h3>
-              <p className="text-base text-slate-600 mt-2 max-w-md mx-auto leading-relaxed">
+            <div className="col-span-2 text-center py-20 px-8 bg-[#0E121E] rounded-3xl border border-white/[0.08] shadow-2xl max-w-2xl mx-auto">
+              <Briefcase className="h-14 w-14 text-slate-500 mx-auto mb-4" />
+              <h3 className="text-2xl font-bold text-white">No Postings in This Category Currently Listed</h3>
+              <p className="text-base text-slate-400 mt-2 max-w-md mx-auto leading-relaxed font-normal">
                 We are constantly expanding our engineering, AI, and cloud teams. Submit your CV for future openings and priority consideration.
               </p>
               <button
                 onClick={() => setActiveJob({ id: 0, position: 'General Application & Executive Talent Pool', department: 'Talent Acquisition', experience: 'Open' })}
-                className="mt-6 px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold shadow-sm transition-colors cursor-pointer inline-flex items-center gap-2"
+                className="mt-6 px-7 py-3.5 rounded-full bg-gradient-to-r from-[#FF5C00] via-[#FF6C00] to-[#FF8526] hover:shadow-[0_0_24px_rgba(255,92,0,0.5)] text-white text-sm font-bold transition-all cursor-pointer inline-flex items-center gap-2 border border-[#FFA566]/30"
               >
                 <span>Submit General Application</span>
                 <ArrowRight className="h-4 w-4" />
@@ -1489,118 +1506,118 @@ function CareersView() {
         {/* Apply Modal */}
         <AnimatePresence>
           {activeJob && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                className="w-full max-w-lg bg-white rounded-3xl p-8 border border-slate-200 shadow-2xl max-h-[90vh] overflow-y-auto"
+                className="w-full max-w-lg bg-[#0E121E] text-white rounded-3xl p-8 border border-white/[0.12] shadow-2xl max-h-[90vh] overflow-y-auto"
               >
-                <div className="flex justify-between items-start mb-4 pb-4 border-b border-slate-100">
+                <div className="flex justify-between items-start mb-4 pb-4 border-b border-white/[0.08]">
                   <div>
-                    <span className="text-xs font-mono font-bold uppercase tracking-wider text-blue-600 block mb-1">
+                    <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#FF5C00] block mb-1">
                       {activeJob.department || 'Career Opening'}
                     </span>
-                    <h3 className="font-display text-2xl font-extrabold text-slate-950">
+                    <h3 className="font-display text-2xl font-bold text-white">
                       {activeJob.position}
                     </h3>
-                    <p className="text-sm text-slate-600 mt-1 font-medium">Requirement: {activeJob.experience}</p>
+                    <p className="text-sm text-slate-400 mt-1 font-medium">Requirement: {activeJob.experience}</p>
                   </div>
                   <button 
                     onClick={() => setActiveJob(null)} 
-                    className="p-2 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-700 cursor-pointer transition-colors"
+                    className="p-2 rounded-full bg-white/[0.06] hover:bg-white/[0.15] text-slate-300 hover:text-white cursor-pointer transition-colors border border-white/[0.08]"
                   >
                     <X className="h-5 w-5" />
                   </button>
                 </div>
 
                 {success ? (
-                  <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-5 text-sm text-emerald-900 leading-relaxed font-medium mt-4">
+                  <div className="bg-emerald-950/40 border border-emerald-500/30 rounded-2xl p-5 text-sm text-emerald-300 leading-relaxed font-medium mt-4">
                     {success}
                   </div>
                 ) : (
                   <form onSubmit={handleApply} className="space-y-4.5 mt-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-xs font-mono font-bold text-slate-700 uppercase mb-1.5">Full Name *</label>
+                        <label className="block text-xs font-mono font-bold text-slate-300 uppercase mb-1.5">Full Name *</label>
                         <input
                           type="text"
                           required
                           value={applyForm.name}
                           onChange={(e) => setApplyForm({ ...applyForm, name: e.target.value })}
-                          className="w-full rounded-xl bg-slate-50 border border-slate-300 px-4 py-3 text-sm text-slate-950 focus:outline-none focus:border-blue-600 focus:bg-white transition-colors"
+                          className="w-full rounded-xl bg-[#141828] border border-white/10 px-4 py-3 text-sm text-white focus:outline-none focus:border-[#FF5C00] transition-colors"
                           placeholder="Your Name"
                         />
                       </div>
                       <div>
-                        <label className="block text-xs font-mono font-bold text-slate-700 uppercase mb-1.5">Email Address *</label>
+                        <label className="block text-xs font-mono font-bold text-slate-300 uppercase mb-1.5">Email Address *</label>
                         <input
                           type="email"
                           required
                           value={applyForm.email}
                           onChange={(e) => setApplyForm({ ...applyForm, email: e.target.value })}
-                          className="w-full rounded-xl bg-slate-50 border border-slate-300 px-4 py-3 text-sm text-slate-950 focus:outline-none focus:border-blue-600 focus:bg-white transition-colors"
+                          className="w-full rounded-xl bg-[#141828] border border-white/10 px-4 py-3 text-sm text-white focus:outline-none focus:border-[#FF5C00] transition-colors"
                           placeholder="you@example.com"
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label className="block text-xs font-mono font-bold text-slate-700 uppercase mb-1.5">Phone Number *</label>
+                      <label className="block text-xs font-mono font-bold text-slate-300 uppercase mb-1.5">Phone Number *</label>
                       <input
                         type="text"
                         required
                         placeholder="+92 3XX XXXXXXX"
                         value={applyForm.phone}
                         onChange={(e) => setApplyForm({ ...applyForm, phone: e.target.value })}
-                        className="w-full rounded-xl bg-slate-50 border border-slate-300 px-4 py-3 text-sm text-slate-950 focus:outline-none focus:border-blue-600 focus:bg-white transition-colors"
+                        className="w-full rounded-xl bg-[#141828] border border-white/10 px-4 py-3 text-sm text-white focus:outline-none focus:border-[#FF5C00] transition-colors"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-mono font-bold text-slate-700 uppercase mb-1.5">
-                        Upload CV / Resume * <span className="text-slate-500 font-normal lowercase">(PDF or Word, max 5MB)</span>
+                      <label className="block text-xs font-mono font-bold text-slate-300 uppercase mb-1.5">
+                        Upload CV / Resume * <span className="text-slate-400 font-normal lowercase">(PDF or Word, max 5MB)</span>
                       </label>
                       <div className="relative">
                         <input
                           type="file"
                           accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
                           onChange={handleCvFileChange}
-                          className="w-full rounded-xl bg-slate-50 border border-slate-300 px-4 py-2.5 text-sm text-slate-950 focus:outline-none focus:border-blue-600 focus:bg-white transition-colors file:mr-4 file:py-1.5 file:px-3.5 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer"
+                          className="w-full rounded-xl bg-[#141828] border border-white/10 px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#FF5C00] transition-colors file:mr-4 file:py-1.5 file:px-3.5 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-[#FF5C00]/10 file:text-[#FF7A1A] hover:file:bg-[#FF5C00]/20 cursor-pointer"
                         />
                         {cvFile && (
-                          <p className="mt-2 text-xs font-bold text-emerald-700 font-mono flex items-center gap-1.5">
-                            <Check className="h-4 w-4 text-emerald-600" /> {cvFile.name} ({(cvFile.size / 1024 / 1024).toFixed(2)} MB)
+                          <p className="mt-2 text-xs font-bold text-emerald-400 font-mono flex items-center gap-1.5">
+                            <Check className="h-4 w-4 text-emerald-400" /> {cvFile.name} ({(cvFile.size / 1024 / 1024).toFixed(2)} MB)
                           </p>
                         )}
                         {cvError && (
-                          <p className="mt-2 text-xs font-bold text-rose-600">{cvError}</p>
+                          <p className="mt-2 text-xs font-bold text-rose-400">{cvError}</p>
                         )}
                       </div>
                     </div>
 
                     <div>
-                      <label className="block text-xs font-mono font-bold text-slate-700 uppercase mb-1.5">Cover Letter Summary</label>
+                      <label className="block text-xs font-mono font-bold text-slate-300 uppercase mb-1.5">Cover Letter Summary</label>
                       <textarea
                         rows={3}
                         placeholder="Highlight your background, relevant achievements, or why you'd be a great fit..."
                         value={applyForm.coverLetter}
                         onChange={(e) => setApplyForm({ ...applyForm, coverLetter: e.target.value })}
-                        className="w-full rounded-xl bg-slate-50 border border-slate-300 px-4 py-3 text-sm text-slate-950 focus:outline-none focus:border-blue-600 focus:bg-white transition-colors"
+                        className="w-full rounded-xl bg-[#141828] border border-white/10 px-4 py-3 text-sm text-white focus:outline-none focus:border-[#FF5C00] transition-colors"
                       />
                     </div>
 
-                    <div className="flex justify-end gap-3 pt-4 border-t border-slate-100">
+                    <div className="flex justify-end gap-3 pt-4 border-t border-white/[0.08]">
                       <button
                         type="button"
                         onClick={() => setActiveJob(null)}
-                        className="rounded-xl border border-slate-300 bg-white hover:bg-slate-50 px-5 py-2.5 text-xs sm:text-sm font-semibold text-slate-700 cursor-pointer transition-colors"
+                        className="rounded-xl border border-white/10 bg-white/[0.04] hover:bg-white/[0.08] px-5 py-2.5 text-xs sm:text-sm font-semibold text-slate-300 cursor-pointer transition-colors"
                       >
                         Cancel
                       </button>
                       <button
                         type="submit"
-                        className="rounded-xl bg-blue-600 hover:bg-blue-700 px-6 py-2.5 text-xs sm:text-sm font-bold text-white shadow-md cursor-pointer transition-colors"
+                        className="rounded-xl bg-gradient-to-r from-[#FF5C00] to-[#FF7A1A] hover:shadow-[0_0_20px_rgba(255,92,0,0.4)] px-6 py-2.5 text-xs sm:text-sm font-bold text-white shadow-md cursor-pointer transition-colors"
                       >
                         Submit Application
                       </button>
@@ -1659,75 +1676,79 @@ function ContactView({ settings }: { settings: { [key: string]: string } }) {
   };
 
   return (
-    <div className="py-24 bg-slate-50">
+    <div className="py-20 lg:py-24 bg-[#08090E] min-h-screen relative">
       <SEOHead
         title="Contact Us & Project Inquiries | SaroHub Technologies"
         description="Connect with SaroHub Technologies for custom software development, venture building partnerships, startup MVPs, or technology consultations."
         keywords="contact SaroHub, software inquiry, hire software engineers Skardu, build startup venture, technology consultation"
         canonicalUrl="https://sarohub.com/contact"
       />
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="mx-auto max-w-7xl px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
 
           {/* Details */}
           <div>
-            <span className="font-mono text-xs text-blue-600 uppercase font-bold tracking-wider">Start A Conversation</span>
-            <h1 className="mt-2 font-display text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">Let's Build Something Great</h1>
-            <p className="mt-6 text-sm text-slate-600 leading-relaxed">
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs sm:text-sm font-mono font-bold bg-[#FF5C00]/10 text-[#FF7A1A] border border-[#FF5C00]/25 mb-4 shadow-2xs">
+              <Mail className="h-4 w-4 text-[#FF5C00]" /> Start A Conversation
+            </span>
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-normal -tracking-[1.8px] text-white leading-tight">
+              Let's Build Something <span className="italic text-[#FF5C00]">Great</span>
+            </h1>
+            <p className="mt-5 text-base sm:text-lg text-slate-400 leading-relaxed font-normal">
               Connect with our engineering and partnership team to discuss ventures, custom software development, startup MVPs, or strategic collaborations.
             </p>
 
-            <ul className="mt-10 space-y-6">
-              <li className="flex gap-4">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 border border-blue-100/50 text-blue-600 shrink-0">
+            <ul className="mt-10 space-y-5">
+              <li className="flex gap-4 p-5 rounded-2xl bg-[#0E121E] border border-white/[0.08] hover:border-[#FF5C00]/30 transition-colors">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#FF5C00]/10 border border-[#FF5C00]/20 text-[#FF5C00] shrink-0">
                   <MapPin className="h-5 w-5" />
                 </div>
                 <div>
-                  <h4 className="font-display font-bold text-slate-900 text-sm">Headquarters & Tech Center</h4>
-                  <p className="text-xs text-slate-500 mt-1">{settings.office_address || 'Roshan Electric Store Building 3rd Floor, Skardu, Gilgit-Baltistan, Pakistan'}</p>
+                  <h4 className="font-display font-bold text-white text-base">Headquarters & Tech Center</h4>
+                  <p className="text-sm text-slate-400 mt-1 leading-relaxed">{settings.office_address || 'Roshan Electric Store Building 3rd Floor, Skardu, Gilgit-Baltistan, Pakistan'}</p>
                 </div>
               </li>
-              <li className="flex gap-4">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 border border-blue-100/50 text-blue-600 shrink-0">
+              <li className="flex gap-4 p-5 rounded-2xl bg-[#0E121E] border border-white/[0.08] hover:border-[#FF5C00]/30 transition-colors">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#FF5C00]/10 border border-[#FF5C00]/20 text-[#FF5C00] shrink-0">
                   <Mail className="h-5 w-5" />
                 </div>
                 <div>
-                  <h4 className="font-display font-bold text-slate-900 text-sm">Email Inquiries</h4>
-                  <p className="text-xs font-semibold mt-1">
-                    <a href={`mailto:${settings.email || 'info@sarohub.com'}`} className="text-blue-600 hover:text-blue-700 hover:underline">
+                  <h4 className="font-display font-bold text-white text-base">Email Inquiries</h4>
+                  <p className="text-sm font-semibold mt-1">
+                    <a href={`mailto:${settings.email || 'info@sarohub.com'}`} className="text-[#FF7A1A] hover:text-[#FFA566] transition-colors hover:underline">
                       {settings.email || 'info@sarohub.com'}
                     </a>
                   </p>
-                  <p className="text-[11px] text-slate-400 mt-0.5">Send RFPs, proposals & direct emails</p>
+                  <p className="text-xs text-slate-500 mt-1">Send RFPs, proposals & direct emails</p>
                 </div>
               </li>
-              <li className="flex gap-4">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 border border-blue-100/50 text-blue-600 shrink-0">
+              <li className="flex gap-4 p-5 rounded-2xl bg-[#0E121E] border border-white/[0.08] hover:border-[#FF5C00]/30 transition-colors">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#FF5C00]/10 border border-[#FF5C00]/20 text-[#FF5C00] shrink-0">
                   <Phone className="h-5 w-5" />
                 </div>
                 <div>
-                  <h4 className="font-display font-bold text-slate-900 text-sm">Direct Phone & WhatsApp</h4>
-                  <p className="text-xs text-slate-500 mt-1">{settings.whatsapp || settings.phone || '+92 343 0381473'}</p>
+                  <h4 className="font-display font-bold text-white text-base">Direct Phone & WhatsApp</h4>
+                  <p className="text-sm text-slate-400 mt-1 font-mono">{settings.whatsapp || settings.phone || '+92 343 0381473'}</p>
                 </div>
               </li>
-              <li className="flex gap-4">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 border border-blue-100/50 text-blue-600 shrink-0">
+              <li className="flex gap-4 p-5 rounded-2xl bg-[#0E121E] border border-white/[0.08] hover:border-[#FF5C00]/30 transition-colors">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#FF5C00]/10 border border-[#FF5C00]/20 text-[#FF5C00] shrink-0">
                   <Clock className="h-5 w-5" />
                 </div>
                 <div>
-                  <h4 className="font-display font-bold text-slate-900 text-sm">Working Hours</h4>
-                  <p className="text-xs text-slate-500 mt-1">{settings.business_hours || 'Monday – Friday: 9:00 AM – 6:00 PM (PKT)'}</p>
+                  <h4 className="font-display font-bold text-white text-base">Working Hours</h4>
+                  <p className="text-sm text-slate-400 mt-1">{settings.business_hours || 'Monday – Friday: 9:00 AM – 6:00 PM (PKT)'}</p>
                 </div>
               </li>
             </ul>
           </div>
 
           {/* Form */}
-          <div className="bg-white rounded-2xl p-8 border border-slate-200/80 shadow-sm">
-            <h3 className="font-display text-xl font-bold text-slate-900 mb-6">Send Us A Message</h3>
+          <div className="bg-[#0E121E] rounded-3xl p-8 sm:p-10 border border-white/[0.08] shadow-[0_12px_35px_rgba(0,0,0,0.7)]">
+            <h3 className="font-display text-2xl sm:text-3xl font-bold text-white mb-6">Send Us A Message</h3>
 
             {msg && (
-              <div className={`mb-6 p-4 rounded-xl border text-xs leading-relaxed font-medium ${msg.type === 'success' ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-rose-50 border-rose-200 text-rose-800'}`}>
+              <div className={`mb-6 p-4 rounded-2xl border text-sm leading-relaxed font-medium ${msg.type === 'success' ? 'bg-emerald-950/40 border-emerald-500/30 text-emerald-300' : 'bg-rose-950/40 border-rose-500/30 text-rose-300'}`}>
                 {msg.text}
               </div>
             )}
@@ -1735,61 +1756,61 @@ function ContactView({ settings }: { settings: { [key: string]: string } }) {
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-mono text-slate-500 mb-1">Your Name</label>
+                  <label className="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-1.5">Your Name</label>
                   <input
                     type="text"
                     required
                     placeholder="Your Full Name"
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className="w-full rounded-lg bg-slate-50 border border-slate-200 px-4 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-blue-500 focus:bg-white transition-colors"
+                    className="w-full rounded-xl bg-[#141828] border border-white/10 px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-[#FF5C00] focus:ring-1 focus:ring-[#FF5C00] transition-colors"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-mono text-slate-500 mb-1">Email Address</label>
+                  <label className="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-1.5">Email Address</label>
                   <input
                     type="email"
                     required
                     placeholder="you@company.com"
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    className="w-full rounded-lg bg-slate-50 border border-slate-200 px-4 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-blue-500 focus:bg-white transition-colors"
+                    className="w-full rounded-xl bg-[#141828] border border-white/10 px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-[#FF5C00] focus:ring-1 focus:ring-[#FF5C00] transition-colors"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-mono text-slate-500 mb-1">Contact Phone / WhatsApp (Optional)</label>
+                <label className="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-1.5">Contact Phone / WhatsApp (Optional)</label>
                 <input
                   type="text"
                   placeholder="e.g., +92 343 0381473"
                   value={form.phone}
                   onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                  className="w-full rounded-lg bg-slate-50 border border-slate-200 px-4 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-blue-500 focus:bg-white transition-colors"
+                  className="w-full rounded-xl bg-[#141828] border border-white/10 px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-[#FF5C00] focus:ring-1 focus:ring-[#FF5C00] transition-colors"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-mono text-slate-500 mb-1">Subject</label>
+                <label className="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-1.5">Subject</label>
                 <input
                   type="text"
                   required
                   placeholder="e.g., Start a Project / Technical Consultation"
                   value={form.subject}
                   onChange={(e) => setForm({ ...form, subject: e.target.value })}
-                  className="w-full rounded-lg bg-slate-50 border border-slate-200 px-4 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-blue-500 focus:bg-white transition-colors"
+                  className="w-full rounded-xl bg-[#141828] border border-white/10 px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-[#FF5C00] focus:ring-1 focus:ring-[#FF5C00] transition-colors"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-mono text-slate-500 mb-1">Your Message</label>
+                <label className="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-1.5">Your Message</label>
                 <textarea
                   required
                   rows={4}
                   placeholder="Please describe your project scope, requirements, or inquiry..."
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  className="w-full rounded-lg bg-slate-50 border border-slate-200 px-4 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-blue-500 focus:bg-white transition-colors"
+                  className="w-full rounded-xl bg-[#141828] border border-white/10 px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-[#FF5C00] focus:ring-1 focus:ring-[#FF5C00] transition-colors resize-y"
                 />
               </div>
 
@@ -1797,7 +1818,7 @@ function ContactView({ settings }: { settings: { [key: string]: string } }) {
                 type="submit"
                 id="contact-form-submit-btn"
                 disabled={isSubmitting}
-                className="w-full rounded-lg bg-blue-600 hover:bg-blue-700 disabled:opacity-60 disabled:cursor-not-allowed py-3 text-sm font-semibold text-white shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full rounded-full bg-gradient-to-r from-[#FF5C00] via-[#FF6C00] to-[#FF8526] hover:shadow-[0_0_24px_rgba(255,92,0,0.5)] disabled:opacity-60 disabled:cursor-not-allowed py-3.5 text-sm font-bold text-white shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer border border-[#FFA566]/30"
               >
                 {isSubmitting ? (
                   <>
@@ -1823,18 +1844,18 @@ function ContactView({ settings }: { settings: { [key: string]: string } }) {
 // --- STANDARD POLICY VIEW ---
 function PolicyView({ title }: { title: string }) {
   return (
-    <div className="py-24 bg-slate-50">
-      <div className="mx-auto max-w-3xl px-6 bg-white border border-slate-200 p-8 sm:p-12 rounded-3xl shadow-sm">
-        <h1 className="font-display text-4xl font-extrabold tracking-tight text-slate-900 mb-8">{title}</h1>
-        <div className="text-slate-600 leading-relaxed space-y-6 text-sm">
+    <div className="py-20 lg:py-24 bg-[#08090E] min-h-screen relative">
+      <div className="mx-auto max-w-3xl px-6 bg-[#0E121E] border border-white/[0.08] p-8 sm:p-12 rounded-3xl shadow-2xl">
+        <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-normal -tracking-[1.5px] text-white mb-8">{title}</h1>
+        <div className="text-slate-300 leading-relaxed space-y-6 text-sm sm:text-base">
           <p>
             Operating as an official software institution (SaroHub Technologies (Private) Limited), we enforce security headers and isolated virtual private networks to maintain user protection.
           </p>
-          <h3 className="font-display font-bold text-slate-900 text-base mt-8">1. Database Security Protocol</h3>
+          <h3 className="font-display font-bold text-white text-lg mt-8 text-[#FF7A1A]">1. Database Security Protocol</h3>
           <p>
             All application credentials, emails, and phone logs registered through our site are parsed securely utilizing parameterized SQL configurations to completely prevent SQL injection vectors.
           </p>
-          <h3 className="font-display font-bold text-slate-900 text-base mt-8">2. Operational SLA Warranties</h3>
+          <h3 className="font-display font-bold text-white text-lg mt-8 text-[#FF7A1A]">2. Operational SLA Warranties</h3>
           <p>
             Systems, purchase queries, and client data arrays are maintained on continuous replication disks to prevent transaction loss.
           </p>
@@ -2069,6 +2090,7 @@ function ControlRoomView({ onLogout, onSettingsChange }: { onLogout: () => void;
   const [oppApps, setOppApps] = useState<any[]>([]);
 
   // Settings edit
+  const [companyLogo, setCompanyLogo] = useState('');
   const [officeAdd, setOfficeAdd] = useState('');
   const [compMail, setCompMail] = useState('');
   const [compPhone, setCompPhone] = useState('');
@@ -2456,6 +2478,7 @@ function ControlRoomView({ onLogout, onSettingsChange }: { onLogout: () => void;
       setAgentAvailability(data.availability || 'online');
     }).catch(console.error);
     api.getSettings().then(s => {
+      setCompanyLogo(s.company_logo || s.logo_url || '/assets/sarohub-logo.png');
       setOfficeAdd(s.office_address || '');
       setCompMail(s.email || '');
       setCompPhone(s.phone || '');
@@ -2753,6 +2776,8 @@ function ControlRoomView({ onLogout, onSettingsChange }: { onLogout: () => void;
     e.preventDefault();
     try {
       await api.saveSettings({
+        company_logo: companyLogo.trim(),
+        logo_url: companyLogo.trim(),
         office_address: officeAdd,
         email: compMail,
         phone: compPhone,
@@ -2839,11 +2864,15 @@ function ControlRoomView({ onLogout, onSettingsChange }: { onLogout: () => void;
         smtp_from_email: smtpFromEmail.trim() || smtpUsr.trim(),
         custom_socials: JSON.stringify(customCompanySocials.filter(c => c.url && c.url.trim()))
       });
-      // Refresh global settings used by public pages (Footer social links etc.)
+      // Refresh global settings used by public pages (Navbar, Footer, Logo, etc.)
+      if (typeof window !== 'undefined') {
+        (window as any).__SAROHUB_LOGO__ = companyLogo.trim() || '/assets/sarohub-logo.png';
+        window.dispatchEvent(new CustomEvent('sarohub-data-updated'));
+      }
       api.getSettings().then((s) => {
         if (onSettingsChange) onSettingsChange(s);
       }).catch(console.error);
-      setAdminAlert({ title: 'Settings Saved', message: 'Corporate settings, CEO message, and social media channels have been synchronized successfully.' });
+      setAdminAlert({ title: 'Settings Saved', message: 'Corporate settings, brand logo, CEO message, and social media channels have been synchronized successfully.' });
       loadAllAdminData();
     } catch (err: any) {
       setAdminAlert({ title: 'Error Saving Settings', message: err.message });
@@ -9292,6 +9321,57 @@ function ControlRoomView({ onLogout, onSettingsChange }: { onLogout: () => void;
                 </form>
 
                 <form onSubmit={handleUpdateSettings} className="bg-slate-950/40 border border-slate-900 rounded-2xl p-6 space-y-6">
+
+                  {/* ── Dynamic Company Logo & Brand Identity ── */}
+                  <div className="pb-6 border-b border-slate-800/80">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+                      <h3 className="font-display font-bold text-white text-sm flex items-center gap-2">
+                        <span className="inline-block w-2.5 h-2.5 rounded-full bg-[#FF5C00] shadow-[0_0_8px_rgba(255,92,0,0.6)]" />
+                        Company Logo &amp; Brand Identity (Dynamic)
+                      </h3>
+                      {companyLogo && companyLogo !== '/assets/sarohub-logo.png' && (
+                        <button
+                          type="button"
+                          onClick={() => setCompanyLogo('/assets/sarohub-logo.png')}
+                          className="text-[11px] font-mono text-cyan-400 hover:text-cyan-300 underline cursor-pointer self-start sm:self-auto"
+                        >
+                          Reset to Default SaroHub Logo
+                        </button>
+                      )}
+                    </div>
+                    <p className="text-[10px] text-slate-400 mb-4">
+                      Upload your official corporate logo or enter an image URL. This dynamic logo updates in real-time across the Navbar, Footer, and all public pages.
+                    </p>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                      <div className="lg:col-span-7">
+                        <ImageUploadField
+                          label="Company Logo (PNG, SVG, WebP, or JPG)"
+                          value={companyLogo}
+                          onChange={(url) => setCompanyLogo(url)}
+                          placeholder="/assets/sarohub-logo.png or https://..."
+                        />
+                      </div>
+                      <div className="lg:col-span-5 bg-slate-900/60 border border-slate-800 rounded-xl p-4 flex flex-col items-center justify-center gap-2">
+                        <span className="text-[9px] font-mono text-slate-400 uppercase tracking-widest self-start">
+                          Live Navbar &amp; Footer Preview
+                        </span>
+                        <div className="w-full h-16 bg-[#08090E] border border-white/[0.08] rounded-lg flex items-center justify-center px-4 overflow-hidden">
+                          <img
+                            src={companyLogo || '/assets/sarohub-logo.png'}
+                            alt="Logo preview"
+                            className="max-h-10 max-w-full object-contain"
+                            onError={(e) => {
+                              (e.currentTarget as HTMLImageElement).src = '/assets/sarohub-logo.png';
+                            }}
+                          />
+                        </div>
+                        <span className="text-[10px] text-slate-400 font-mono text-center">
+                          Recommended format: Transparent PNG or SVG (Height: 36px–48px)
+                        </span>
+                      </div>
+                    </div>
+                  </div>
 
                   {/* ── Hero Section Settings ── */}
                   <div>

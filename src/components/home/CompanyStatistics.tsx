@@ -113,27 +113,31 @@ export default function CompanyStatistics({ apiStats }: StatsProps) {
   return (
     <section 
       id="company-statistics" 
-      className="bg-black py-12 lg:py-16 text-white rounded-3xl sm:rounded-4xl mx-3 sm:mx-6 lg:mx-8 my-6 sm:my-8 overflow-hidden shadow-xs"
+      className="bg-[#0A0D15] py-14 lg:py-20 text-white rounded-3xl sm:rounded-4xl mx-3 sm:mx-6 lg:mx-8 my-6 sm:my-8 overflow-hidden border border-white/[0.08] relative shadow-2xl"
     >
-      <div className="max-w-7xl mx-auto px-6">
+      {/* Ambient orange glow */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#FF5C00]/8 blur-[120px] pointer-events-none -z-10" />
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         
-        <div className="mb-8 lg:mb-10">
-          <span className="font-mono text-xs text-gray-400 uppercase tracking-widest block mb-2">
+        <div className="mb-10 lg:mb-12">
+          <span className="font-mono text-xs text-[#FF5C00] uppercase tracking-widest block mb-2 flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#FF5C00] animate-pulse" />
             Verified Milestones
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal -tracking-[1.8px] text-white">
-            Real Products. Real Projects. <span className="italic">Growing Every Day.</span>
+            Real Products. Real Projects. <span className="italic text-[#FF5C00]">Growing Every Day.</span>
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 divide-y sm:divide-y-0 lg:divide-x divide-[#222222]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 divide-y sm:divide-y-0 lg:divide-x divide-white/[0.08]">
           {displayList.map((item, idx) => (
             <div key={item.id || idx} className="pt-6 sm:pt-0 lg:px-8 first:pl-0">
-              <span className="text-4xl sm:text-5xl lg:text-6xl font-bold -tracking-[1.8px] text-white block mb-2 font-mono">
+              <span className="text-4xl sm:text-5xl lg:text-6xl font-bold -tracking-[1.8px] text-white block mb-2 font-mono group">
                 <AnimatedNumber targetValue={item.number} />
               </span>
               <h4 className="text-lg sm:text-xl font-bold text-white mb-1.5">{item.label}</h4>
-              <p className="text-sm text-gray-300 font-normal leading-relaxed">{item.description}</p>
+              <p className="text-sm text-slate-400 font-normal leading-relaxed">{item.description}</p>
             </div>
           ))}
         </div>

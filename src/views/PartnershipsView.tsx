@@ -105,7 +105,7 @@ export default function PartnershipsView() {
   ];
 
   return (
-    <div className="relative bg-white text-black">
+    <div className="relative bg-[#08090E] text-white min-h-screen">
       <SEOHead
         title="Strategic Partnerships & Alliances | SaroHub Technologies"
         description="Collaborate with SaroHub Technologies: Government public sector initiatives, white-label agency partnerships, and venture co-founding."
@@ -114,22 +114,24 @@ export default function PartnershipsView() {
       />
 
       {/* Header */}
-      <div className="py-20 lg:py-28 bg-[#FBFBFB] border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <span className="font-mono text-xs uppercase tracking-widest text-gray-500 mb-4 block">
+      <div className="py-20 lg:py-28 bg-[#0A0D15] border-b border-white/[0.08] relative overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-[#FF5C00]/8 blur-[120px] pointer-events-none -z-10" />
+        <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
+          <span className="font-mono text-xs uppercase tracking-widest text-[#FF5C00] mb-4 block flex items-center justify-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#FF5C00] animate-pulse" />
             Ecosystem Directory &amp; Alliances
           </span>
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-normal -tracking-[2.5px] text-black mb-6">
-            Strategic <span className="italic">Partnerships</span>
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-normal -tracking-[2.5px] text-white mb-6 font-display">
+            Strategic <span className="italic text-[#FF5C00]">Partnerships</span>
           </h1>
-          <p className="text-base sm:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed font-normal mb-8">
+          <p className="text-base sm:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed font-normal mb-8">
             Government sectors, digital agencies, and strategic alliances actively collaborating with SaroHub to deliver mission-critical software.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link
               to="/contact?type=partnership"
-              className="group px-7 py-3.5 inline-flex gap-2.5 items-center bg-black text-sm font-medium -tracking-[0.2px] leading-5 text-white rounded-full hover:bg-gray-800 transition-all duration-300"
+              className="group px-7 py-3.5 inline-flex gap-2.5 items-center bg-gradient-to-r from-[#FF5C00] via-[#FF6C00] to-[#FF8526] hover:shadow-[0_0_24px_rgba(255,92,0,0.5)] text-sm font-medium -tracking-[0.2px] leading-5 text-white rounded-full transition-all duration-300 font-bold border border-[#FFA566]/30"
             >
               <RollText>PROPOSE COLLABORATION</RollText>
               <DiagonalArrow size={18} />
@@ -139,14 +141,14 @@ export default function PartnershipsView() {
       </div>
 
       {/* Active Collaborations Directory */}
-      <section id="active-collaborations" className="max-w-7xl mx-auto px-6 py-20 lg:py-28 border-b border-gray-200">
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-14 gap-6 pb-8 border-b border-gray-100">
+      <section id="active-collaborations" className="max-w-7xl mx-auto px-6 py-20 lg:py-28 border-b border-white/[0.08]">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-14 gap-6 pb-8 border-b border-white/[0.08]">
           <div>
-            <span className="font-mono text-xs uppercase tracking-widest text-gray-500 mb-3 block">
+            <span className="font-mono text-xs uppercase tracking-widest text-[#FF5C00] mb-3 block">
               Active Network
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal -tracking-[1.92px] text-black">
-              Verified <span className="italic">Collaborations</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal -tracking-[1.92px] text-white font-display">
+              Verified <span className="italic text-[#FF5C00]">Collaborations</span>
             </h2>
           </div>
 
@@ -157,10 +159,10 @@ export default function PartnershipsView() {
                 <button
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
-                  className={`px-5 py-2.5 rounded-full text-xs font-mono uppercase tracking-wider transition-all duration-300 cursor-pointer ${
+                  className={`px-5 py-2.5 rounded-full text-xs font-mono uppercase tracking-wider transition-all duration-300 cursor-pointer font-bold ${
                     activeCategory === cat
-                      ? 'bg-black text-white shadow-xs'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      ? 'bg-gradient-to-r from-[#FF5C00] to-[#FF7A1A] text-white shadow-md'
+                      : 'bg-[#141828] border border-white/10 text-slate-400 hover:text-white'
                   }`}
                 >
                   {cat === 'all' ? 'All Partners' : cat}
@@ -172,7 +174,7 @@ export default function PartnershipsView() {
 
         {isLoading ? (
           <div className="flex justify-center items-center py-20">
-            <div className="size-8 rounded-full border-2 border-black border-t-transparent animate-spin" />
+            <div className="size-8 rounded-full border-2 border-[#FF5C00] border-t-transparent animate-spin" />
           </div>
         ) : filteredPartners.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -185,7 +187,7 @@ export default function PartnershipsView() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-16 bg-[#FBFBFB] rounded-3xl border border-gray-200 font-mono text-xs text-gray-500 uppercase">
+          <div className="text-center py-16 bg-[#0E121E] rounded-3xl border border-white/[0.08] font-mono text-xs text-slate-400 uppercase">
             No collaborations registered in this category.
           </div>
         )}
@@ -194,11 +196,11 @@ export default function PartnershipsView() {
       {/* Partnership Models */}
       <section className="max-w-7xl mx-auto px-6 py-20 lg:py-28 space-y-12">
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <span className="font-mono text-xs uppercase tracking-widest text-gray-500 mb-3 block">
+          <span className="font-mono text-xs uppercase tracking-widest text-[#FF5C00] mb-3 block">
             Structured Frameworks
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal -tracking-[1.92px] text-black">
-            How We Partner &amp; <span className="italic">Collaborate</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal -tracking-[1.92px] text-white font-display">
+            How We Partner &amp; <span className="italic text-[#FF5C00]">Collaborate</span>
           </h2>
         </div>
 
@@ -207,32 +209,32 @@ export default function PartnershipsView() {
             return (
               <div
                 key={model.id}
-                className="p-8 sm:p-12 rounded-3xl border border-gray-200 bg-[#FBFBFB] hover:border-black transition-all duration-300"
+                className="p-8 sm:p-12 rounded-3xl border border-white/[0.08] bg-[#0E121E] hover:border-[#FF5C00]/40 hover:shadow-[0_0_30px_rgba(255,92,0,0.08)] transition-all duration-300 shadow-xl"
               >
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
                   <div className="lg:col-span-6 space-y-5">
-                    <span className="font-mono text-xs uppercase text-gray-500 tracking-wider block">
+                    <span className="font-mono text-xs uppercase text-[#FF7A1A] tracking-wider block font-semibold">
                       MODEL 0{idx + 1} &bull; {model.subtitle}
                     </span>
-                    <h3 className="text-2xl sm:text-3xl font-normal text-black">
+                    <h3 className="text-2xl sm:text-3xl font-normal text-white font-display">
                       {model.title}
                     </h3>
-                    <p className="text-base text-gray-600 leading-relaxed font-normal">
+                    <p className="text-base text-slate-300 leading-relaxed font-normal">
                       {model.description}
                     </p>
 
-                    <div className="p-5 rounded-2xl bg-white border border-gray-200">
-                      <span className="font-mono text-xs uppercase tracking-wider text-black block mb-1 font-semibold">
+                    <div className="p-5 rounded-2xl bg-[#141828] border border-white/[0.08]">
+                      <span className="font-mono text-xs uppercase tracking-wider text-[#FF5C00] block mb-1 font-semibold">
                         Who It Is For
                       </span>
-                      <p className="text-sm text-gray-600 font-normal">
+                      <p className="text-sm text-slate-300 font-normal">
                         {model.whoItsFor}
                       </p>
                     </div>
 
                     <Link
                       to={model.ctaLink}
-                      className="group px-6 py-3 inline-flex gap-2 items-center bg-black text-xs font-mono uppercase tracking-wider text-white rounded-full hover:bg-gray-800 transition-all cursor-pointer"
+                      className="group px-6 py-3.5 inline-flex gap-2 items-center bg-gradient-to-r from-[#FF5C00] via-[#FF6C00] to-[#FF8526] hover:shadow-[0_0_20px_rgba(255,92,0,0.5)] text-xs font-mono uppercase tracking-wider text-white rounded-full transition-all cursor-pointer font-bold border border-[#FFA566]/30"
                     >
                       <RollText>{model.ctaText.toUpperCase()}</RollText>
                       <DiagonalArrow size={16} />
@@ -240,28 +242,28 @@ export default function PartnershipsView() {
                   </div>
 
                   <div className="lg:col-span-6 space-y-4">
-                    <div className="p-6 rounded-2xl bg-white border border-gray-200">
-                      <h4 className="font-mono text-xs uppercase text-gray-500 tracking-wider mb-3">
+                    <div className="p-6 rounded-2xl bg-[#141828] border border-white/[0.08]">
+                      <h4 className="font-mono text-xs uppercase text-[#FF7A1A] tracking-wider mb-3 font-semibold">
                         How We Collaborate
                       </h4>
                       <ul className="space-y-2">
                         {model.collaboration.map((item, i) => (
-                          <li key={i} className="flex items-start gap-2.5 text-sm text-gray-700 font-normal">
-                            <CheckCircle2 className="size-4 text-black shrink-0 mt-0.5" />
+                          <li key={i} className="flex items-start gap-2.5 text-sm text-slate-300 font-normal">
+                            <CheckCircle2 className="size-4 text-[#FF5C00] shrink-0 mt-0.5" />
                             <span>{item}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
 
-                    <div className="p-6 rounded-2xl bg-white border border-gray-200">
-                      <h4 className="font-mono text-xs uppercase text-gray-500 tracking-wider mb-3">
+                    <div className="p-6 rounded-2xl bg-[#141828] border border-white/[0.08]">
+                      <h4 className="font-mono text-xs uppercase text-[#FF7A1A] tracking-wider mb-3 font-semibold">
                         Partner Benefits
                       </h4>
                       <ul className="space-y-2">
                         {model.benefits.map((benefit, i) => (
-                          <li key={i} className="flex items-start gap-2.5 text-sm text-gray-700 font-normal">
-                            <span className="size-1.5 rounded-full bg-black shrink-0 mt-2" />
+                          <li key={i} className="flex items-start gap-2.5 text-sm text-slate-300 font-normal">
+                            <span className="size-1.5 rounded-full bg-[#FF5C00] shrink-0 mt-2" />
                             <span>{benefit}</span>
                           </li>
                         ))}
@@ -276,17 +278,18 @@ export default function PartnershipsView() {
       </section>
 
       {/* Bottom CTA Banner */}
-      <section className="py-20 lg:py-24 bg-[#FBFBFB] border-t border-gray-200 text-center">
-        <div className="max-w-3xl mx-auto px-6">
-          <h3 className="text-3xl sm:text-4xl font-normal text-black mb-4">
+      <section className="py-20 lg:py-28 bg-[#0A0D15] border-t border-white/[0.08] text-center relative overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[250px] bg-[#FF5C00]/10 blur-[100px] pointer-events-none -z-10" />
+        <div className="max-w-3xl mx-auto px-6 relative z-10">
+          <h3 className="text-3xl sm:text-4xl font-normal text-white mb-4 font-display">
             Have a Government, Agency, or Venture Proposal?
           </h3>
-          <p className="text-base text-gray-600 mb-8 leading-relaxed font-normal">
+          <p className="text-base text-slate-400 mb-8 leading-relaxed font-normal">
             We are always ready to review project briefs, tenders, and strategic alliance proposals.
           </p>
           <Link
             to="/contact?type=partnership"
-            className="group px-8 py-4 inline-flex gap-2.5 items-center bg-black text-sm font-medium -tracking-[0.2px] leading-5 text-white rounded-full hover:bg-gray-800 transition-all duration-300"
+            className="group px-8 py-4 inline-flex gap-2.5 items-center bg-gradient-to-r from-[#FF5C00] via-[#FF6C00] to-[#FF8526] hover:shadow-[0_0_24px_rgba(255,92,0,0.5)] text-sm font-medium -tracking-[0.2px] leading-5 text-white rounded-full transition-all duration-300 font-bold border border-[#FFA566]/30"
           >
             <RollText>PROPOSE A COLLABORATION</RollText>
             <DiagonalArrow size={18} />
@@ -298,19 +301,19 @@ export default function PartnershipsView() {
       {selectedPartnerImage && (
         <div 
           onClick={() => setSelectedPartnerImage(null)}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-md"
         >
           <div 
             onClick={(e) => e.stopPropagation()}
-            className="relative max-w-4xl max-h-[85vh] rounded-3xl overflow-hidden bg-white border border-gray-200 shadow-2xl p-6 flex flex-col"
+            className="relative max-w-4xl max-h-[85vh] rounded-3xl overflow-hidden bg-[#0E121E] border border-white/[0.12] shadow-2xl p-6 flex flex-col"
           >
-            <div className="flex items-center justify-between pb-4 border-b border-gray-100 mb-4">
-              <span className="text-xs font-mono uppercase text-gray-500">
+            <div className="flex items-center justify-between pb-4 border-b border-white/[0.08] mb-4">
+              <span className="text-xs font-mono uppercase text-[#FF7A1A] font-bold">
                 {selectedPartnerImage.partnerName} &bull; Showcase Asset
               </span>
               <button
                 onClick={() => setSelectedPartnerImage(null)}
-                className="p-1.5 rounded-full bg-gray-100 hover:bg-black hover:text-white transition-colors cursor-pointer"
+                className="p-1.5 rounded-full bg-white/[0.05] border border-white/10 text-slate-400 hover:text-white hover:border-[#FF5C00] transition-colors cursor-pointer"
               >
                 <X className="size-4" />
               </button>

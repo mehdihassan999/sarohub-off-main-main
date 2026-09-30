@@ -62,8 +62,12 @@ export function clearApiCache(pathPrefix?: string) {
   }
 }
 
+export const invalidateApiCache = clearApiCache;
+
 const STATIC_GET_FALLBACKS: Record<string, any> = {
   '/settings': {
+    company_logo: '/assets/sarohub-logo.png',
+    logo_url: '/assets/sarohub-logo.png',
     company_name: 'SaroHub Technologies (Private) Limited',
     office_address: 'Ali Chowk, Roshan Electric Store Building 3rd Floor, Skardu, Gilgit-Baltistan, Pakistan',
     email: 'info@sarohub.com',
@@ -193,6 +197,12 @@ async function request<T>(path: string, options: RequestInit = {}, customRetries
   const data = await res.json();
   if (isGet) {
     apiMemoryCache.set(path, data);
+  } else {
+    // Invalidate cached GET queries on any mutating request
+    invalidateApiCache(cleanPath);
+    if (cleanPath.startsWith('/settings')) {
+      invalidateApiCache('/settings');
+    }
   }
   return data as Promise<T>;
 }

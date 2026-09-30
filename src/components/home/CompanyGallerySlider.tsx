@@ -134,34 +134,35 @@ export const CompanyGallerySlider: React.FC<CompanyGallerySliderProps> = ({
   };
 
   return (
-    <section id="gallery-slider-section" className="py-12 lg:py-16 border-b border-gray-200 bg-white relative">
+    <section id="gallery-slider-section" className="py-14 lg:py-20 border-b border-white/[0.08] bg-[#08090E] relative">
       <div className="max-w-7xl mx-auto px-6">
         
-        {/* NexStudio Section Header */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-8 gap-6 pb-6 border-b border-gray-100">
+        {/* Section Header */}
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-8 gap-6 pb-6 border-b border-white/[0.08]">
           <div>
-            <span className="font-mono text-xs uppercase tracking-widest text-gray-500 mb-2 block">
+            <span className="font-mono text-xs uppercase tracking-widest text-[#FF5C00] mb-2 block flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#FF5C00] animate-pulse" />
               Life &amp; Ecosystem Impact
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal -tracking-[1.8px] text-black">
-              Moments &amp; Life <span className="italic">at SaroHub</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal -tracking-[1.8px] text-white">
+              Moments &amp; Life <span className="italic text-[#FF5C00]">at SaroHub</span>
             </h2>
           </div>
 
           {showViewAllLink && (
             <Link
               to="/gallery"
-              className="group px-7 py-3.5 inline-flex gap-2.5 items-center bg-black text-sm font-semibold -tracking-[0.2px] text-white rounded-full hover:bg-gray-800 transition-all duration-300 shrink-0 shadow-xs"
+              className="group px-7 py-3.5 inline-flex gap-2.5 items-center bg-gradient-to-r from-[#FF5C00] via-[#FF6C00] to-[#FF8526] text-xs font-mono uppercase tracking-wider text-white rounded-full hover:shadow-[0_0_24px_rgba(255,92,0,0.5)] transition-all duration-300 shrink-0 border border-[#FFA566]/30 font-semibold"
             >
               <RollText>{`EXPLORE GALLERY (${items.length})`}</RollText>
-              <DiagonalArrow size={18} />
+              <DiagonalArrow size={16} />
             </Link>
           )}
         </div>
 
-        {/* NexStudio Clean Stage Container */}
+        {/* Clean Stage Container */}
         <div 
-          className="relative w-full aspect-[16/10] sm:aspect-[16/8] lg:aspect-[21/9] min-h-[360px] max-h-[540px] rounded-3xl overflow-hidden bg-gray-100 border border-gray-200 select-none group shadow-xs"
+          className="relative w-full aspect-[16/10] sm:aspect-[16/8] lg:aspect-[21/9] min-h-[360px] max-h-[540px] rounded-3xl overflow-hidden bg-[#0E121E] border border-white/[0.08] select-none group shadow-2xl"
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
           onMouseEnter={() => setIsPlaying(false)}
@@ -186,11 +187,11 @@ export const CompanyGallerySlider: React.FC<CompanyGallerySliderProps> = ({
               />
 
               {/* Minimal Bottom Vignette */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
               {/* Category Tag */}
               <div className="absolute top-5 left-5 flex items-center gap-2">
-                <span className="px-3.5 py-1 rounded-full text-xs font-mono uppercase bg-white/95 text-black font-semibold shadow-xs">
+                <span className="px-3.5 py-1 rounded-full text-xs font-mono uppercase bg-black/80 text-[#FF7A1A] border border-[#FF5C00]/30 font-bold backdrop-blur-md shadow-xs">
                   {currentItem.category}
                 </span>
               </div>
@@ -201,7 +202,7 @@ export const CompanyGallerySlider: React.FC<CompanyGallerySliderProps> = ({
                   e.stopPropagation();
                   setLightboxOpen(true);
                 }}
-                className="absolute top-5 right-5 p-2.5 rounded-full bg-white/95 text-black hover:bg-black hover:text-white transition-all cursor-pointer shadow-xs"
+                className="absolute top-5 right-5 p-2.5 rounded-full bg-black/80 text-white hover:bg-[#FF5C00] hover:text-white transition-all cursor-pointer border border-white/10 backdrop-blur-md shadow-xs"
               >
                 <ZoomIn className="h-4 w-4" />
               </button>
@@ -209,16 +210,16 @@ export const CompanyGallerySlider: React.FC<CompanyGallerySliderProps> = ({
               {/* Bottom Caption & Title */}
               <div className="absolute bottom-0 inset-x-0 p-5 sm:p-8 pointer-events-none">
                 <div className="max-w-3xl space-y-1.5">
-                  <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-gray-200 uppercase font-semibold">
+                  <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-slate-300 uppercase font-semibold">
                     {currentItem.event_date && (
-                      <span className="flex items-center gap-1.5">
-                        <Calendar className="h-3.5 w-3.5" />
+                      <span className="flex items-center gap-1.5 text-[#FF7A1A]">
+                        <Calendar className="h-3.5 w-3.5 text-[#FF5C00]" />
                         {currentItem.event_date}
                       </span>
                     )}
                     {currentItem.location && (
                       <span className="flex items-center gap-1.5">
-                        <MapPin className="h-3.5 w-3.5" />
+                        <MapPin className="h-3.5 w-3.5 text-[#FF5C00]" />
                         {currentItem.location}
                       </span>
                     )}
@@ -227,7 +228,7 @@ export const CompanyGallerySlider: React.FC<CompanyGallerySliderProps> = ({
                     {currentItem.title}
                   </h3>
                   {(currentItem.description || currentItem.caption) && (
-                    <p className="text-sm text-gray-200 line-clamp-2 font-normal">
+                    <p className="text-sm text-slate-300 line-clamp-2 font-normal">
                       {currentItem.description || currentItem.caption}
                     </p>
                   )}
@@ -236,13 +237,13 @@ export const CompanyGallerySlider: React.FC<CompanyGallerySliderProps> = ({
             </motion.div>
           </AnimatePresence>
 
-          {/* NexStudio Circular Navigation Buttons */}
+          {/* Circular Navigation Buttons */}
           <button
             onClick={(e) => {
               e.stopPropagation();
               prevSlide();
             }}
-            className="absolute left-6 top-1/2 -translate-y-1/2 z-20 size-12 rounded-full bg-white/90 text-black hover:bg-black hover:text-white flex items-center justify-center transition-all cursor-pointer shadow-md"
+            className="absolute left-6 top-1/2 -translate-y-1/2 z-20 size-12 rounded-full bg-black/80 text-white hover:bg-[#FF5C00] hover:text-white flex items-center justify-center transition-all cursor-pointer shadow-lg border border-white/15 backdrop-blur-md"
           >
             <ChevronLeft className="h-5 w-5" />
           </button>
@@ -252,7 +253,7 @@ export const CompanyGallerySlider: React.FC<CompanyGallerySliderProps> = ({
               e.stopPropagation();
               nextSlide();
             }}
-            className="absolute right-6 top-1/2 -translate-y-1/2 z-20 size-12 rounded-full bg-white/90 text-black hover:bg-black hover:text-white flex items-center justify-center transition-all cursor-pointer shadow-md"
+            className="absolute right-6 top-1/2 -translate-y-1/2 z-20 size-12 rounded-full bg-black/80 text-white hover:bg-[#FF5C00] hover:text-white flex items-center justify-center transition-all cursor-pointer shadow-lg border border-white/15 backdrop-blur-md"
           >
             <ChevronRight className="h-5 w-5" />
           </button>
@@ -268,13 +269,13 @@ export const CompanyGallerySlider: React.FC<CompanyGallerySliderProps> = ({
         >
           <button
             onClick={() => setLightboxOpen(false)}
-            className="absolute top-6 right-6 p-2 rounded-full bg-white/20 text-white hover:bg-white hover:text-black transition-colors cursor-pointer"
+            className="absolute top-6 right-6 p-2 rounded-full bg-white/10 text-white hover:bg-[#FF5C00] hover:text-white transition-colors cursor-pointer border border-white/10"
           >
             <X className="h-6 w-6" />
           </button>
 
           <div 
-            className="max-w-4xl max-h-[85vh] bg-white rounded-3xl overflow-hidden shadow-2xl p-4 flex flex-col"
+            className="max-w-4xl max-h-[85vh] bg-[#0E121E] border border-white/[0.12] rounded-3xl overflow-hidden shadow-2xl p-4 flex flex-col"
             onClick={(e) => e.stopPropagation()}
           >
             <img
@@ -282,13 +283,13 @@ export const CompanyGallerySlider: React.FC<CompanyGallerySliderProps> = ({
               alt={currentItem.title}
               className="max-h-[70vh] w-auto max-w-full rounded-2xl object-contain mx-auto"
             />
-            <div className="pt-4 px-2 flex justify-between items-center text-xs font-mono text-gray-500 uppercase">
-              <span>{currentItem.title}</span>
+            <div className="pt-4 px-2 flex justify-between items-center text-xs font-mono text-slate-400 uppercase">
+              <span className="text-white font-medium">{currentItem.title}</span>
               <a
                 href={currentItem.image_url}
                 target="_blank"
                 rel="noreferrer"
-                className="text-black font-semibold hover:underline flex items-center gap-1"
+                className="text-[#FF7A1A] hover:text-[#FFA566] font-semibold hover:underline flex items-center gap-1"
               >
                 <span>Full Resolution</span>
                 <ExternalLink className="h-3 w-3" />

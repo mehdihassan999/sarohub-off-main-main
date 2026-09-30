@@ -239,23 +239,24 @@ export default function OurServices({ services }: ServicesProps) {
   const filteredServices = displayServices.filter(item => matchesCategory(item, activeCategory));
 
   return (
-    <section id="services" className="py-12 lg:py-16 bg-white border-b border-gray-200">
+    <section id="services" className="py-14 lg:py-20 bg-[#08090E] border-b border-white/[0.08] relative">
       <div className="max-w-7xl mx-auto px-6">
         
-        {/* NexStudio Section Header */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-8 gap-6 pb-6 border-b border-gray-200">
+        {/* Section Header */}
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-10 gap-6 pb-6 border-b border-white/[0.08]">
           <div>
-            <span className="font-mono text-xs uppercase tracking-widest text-gray-500 mb-2 block">
+            <span className="font-mono text-xs uppercase tracking-widest text-[#FF5C00] mb-2 block flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#FF5C00] animate-pulse" />
               Core Capabilities
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal -tracking-[1.8px] text-black">
-              Our <span className="italic">Services</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal -tracking-[1.8px] text-white">
+              Our <span className="italic text-[#FF5C00]">Services</span>
             </h2>
           </div>
 
           <Link
             to="/contact"
-            className="group px-7 py-3.5 inline-flex gap-2.5 items-center bg-black text-sm font-medium -tracking-[0.2px] leading-5 text-white rounded-full hover:bg-gray-800 transition-all duration-300 shrink-0 shadow-xs"
+            className="group px-7 py-3.5 inline-flex gap-2.5 items-center bg-gradient-to-r from-[#FF5C00] via-[#FF6C00] to-[#FF8526] text-sm font-semibold text-white rounded-full shadow-[0_0_24px_rgba(255,92,0,0.38)] hover:shadow-[0_0_36px_rgba(255,92,0,0.65)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 shrink-0 border border-[#FFA566]/30"
           >
             <RollText>BOOK CONSULTATION</RollText>
             <DiagonalArrow size={18} />
@@ -263,7 +264,7 @@ export default function OurServices({ services }: ServicesProps) {
         </div>
 
         {/* Category Filter Tabs */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-8">
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
           {categoryFilters.map(cat => {
             const isActive = activeCategory === cat.id;
             return (
@@ -271,10 +272,10 @@ export default function OurServices({ services }: ServicesProps) {
                 key={cat.id}
                 type="button"
                 onClick={() => setActiveCategory(cat.id)}
-                className={`px-4 py-2 rounded-full text-xs font-mono uppercase tracking-wider transition-all duration-200 cursor-pointer font-medium ${
+                className={`px-4 py-2 rounded-full text-xs font-mono uppercase tracking-wider transition-all duration-200 cursor-pointer font-medium border ${
                   isActive
-                    ? 'bg-black text-white shadow-xs'
-                    : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
+                    ? 'bg-gradient-to-r from-[#FF5C00] to-[#FF7A1A] text-white border-[#FFA566]/30 shadow-[0_0_15px_rgba(255,92,0,0.4)]'
+                    : 'bg-white/[0.04] border-white/[0.08] text-slate-300 hover:bg-white/[0.08] hover:text-white'
                 }`}
               >
                 {cat.label}
@@ -283,7 +284,7 @@ export default function OurServices({ services }: ServicesProps) {
           })}
         </div>
 
-        {/* 3-Column NexStudio Cards Grid */}
+        {/* 3-Column Vaboulus Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {filteredServices.map((item, idx) => {
             const techList = parseArrayField(item.technologies);
@@ -295,28 +296,28 @@ export default function OurServices({ services }: ServicesProps) {
                 viewport={{ once: true }}
                 whileHover={{ y: -4 }}
                 transition={{ duration: 0.4, delay: idx * 0.06 }}
-                className="p-6 sm:p-7 rounded-3xl border border-gray-200 bg-[#FBFBFB] hover:border-black hover:shadow-md transition-all duration-300 flex flex-col justify-between group"
+                className="p-6 sm:p-7 rounded-3xl border border-white/[0.08] bg-[#0E121E] hover:border-[#FF5C00]/40 hover:shadow-[0_12px_35px_rgba(0,0,0,0.7),0_0_20px_rgba(255,92,0,0.15)] transition-all duration-300 flex flex-col justify-between group shadow-lg"
               >
                 <div>
-                  <div className="flex items-center justify-between text-xs font-mono text-gray-600 mb-3 uppercase">
-                    <span className="text-black font-bold">0{idx + 1} / SERVICE</span>
-                    <span className="font-semibold text-gray-700">{item.category || 'Engineering'}</span>
+                  <div className="flex items-center justify-between text-xs font-mono text-slate-400 mb-3 uppercase">
+                    <span className="text-[#FF7A1A] font-bold">0{idx + 1} / SERVICE</span>
+                    <span className="font-semibold text-slate-400">{item.category || 'Engineering'}</span>
                   </div>
 
-                  <h3 className="text-xl sm:text-2xl font-bold text-black mb-2.5 group-hover:text-gray-700 transition-colors tracking-tight">
+                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-2.5 group-hover:text-[#FF7A1A] transition-colors tracking-tight">
                     <Link to={`/services/${item.slug || item.id}`}>
                       {item.title}
                     </Link>
                   </h3>
 
-                  <p className="text-sm text-gray-700 mb-5 leading-relaxed line-clamp-3 font-normal">
+                  <p className="text-sm text-slate-400 mb-5 leading-relaxed line-clamp-3 font-normal">
                     {item.short_description || item.description}
                   </p>
 
                   {techList.length > 0 && (
                     <div className="flex flex-wrap gap-1.5 mb-6">
                       {techList.slice(0, 4).map((tech, tIdx) => (
-                        <span key={tIdx} className="px-2.5 py-1 bg-white border border-gray-200 text-gray-800 text-[11px] font-mono font-medium rounded-md shadow-xs">
+                        <span key={tIdx} className="px-2.5 py-1 bg-white/[0.04] border border-white/10 text-slate-300 text-[11px] font-mono font-medium rounded-md shadow-xs">
                           {tech}
                         </span>
                       ))}
@@ -324,18 +325,18 @@ export default function OurServices({ services }: ServicesProps) {
                   )}
                 </div>
 
-                <div className="pt-4 border-t border-gray-200 flex items-center justify-between">
+                <div className="pt-4 border-t border-white/[0.08] flex items-center justify-between">
                   <button
                     type="button"
                     onClick={() => setSelectedService(item)}
-                    className="text-xs font-mono uppercase tracking-wider text-gray-700 hover:text-black font-semibold transition-colors cursor-pointer"
+                    className="text-xs font-mono uppercase tracking-wider text-slate-400 hover:text-white font-semibold transition-colors cursor-pointer"
                   >
                     Quick View
                   </button>
 
                   <Link
                     to={`/services/${item.slug || item.id}`}
-                    className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-black group-hover:text-gray-700 font-bold"
+                    className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-[#FF5C00] group-hover:text-[#FFA043] font-bold"
                   >
                     <span>Full Details</span>
                     <span className="transition-transform group-hover:translate-x-1 font-sans">&rarr;</span>
@@ -351,7 +352,7 @@ export default function OurServices({ services }: ServicesProps) {
       {/* Service Detail Modal */}
       <AnimatePresence>
         {selectedService && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-md">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -364,37 +365,37 @@ export default function OurServices({ services }: ServicesProps) {
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative w-full max-w-2xl rounded-3xl bg-white border border-gray-200 shadow-2xl z-10 p-8 max-h-[85vh] overflow-y-auto"
+              className="relative w-full max-w-2xl rounded-3xl bg-[#0E121E] border border-white/[0.12] text-white shadow-2xl z-10 p-8 max-h-[85vh] overflow-y-auto"
             >
-              <div className="flex items-start justify-between mb-6 pb-4 border-b border-gray-100">
+              <div className="flex items-start justify-between mb-6 pb-4 border-b border-white/[0.08]">
                 <div>
-                  <span className="font-mono text-xs uppercase tracking-widest text-gray-500 block mb-1">
+                  <span className="font-mono text-xs uppercase tracking-widest text-[#FF5C00] block mb-1">
                     {selectedService.category || 'Service'}
                   </span>
-                  <h3 className="text-2xl sm:text-3xl font-normal text-black">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-white">
                     {selectedService.title}
                   </h3>
                 </div>
                 <button
                   type="button"
                   onClick={() => setSelectedService(null)}
-                  className="p-2 rounded-full bg-gray-100 hover:bg-black hover:text-white transition-colors cursor-pointer"
+                  className="p-2 rounded-full bg-white/[0.06] hover:bg-white/[0.15] text-slate-300 hover:text-white transition-colors cursor-pointer border border-white/[0.08]"
                 >
                   <X className="w-5 h-5" />
                 </button>
               </div>
 
-              <p className="text-base text-gray-600 leading-relaxed mb-6 font-normal">
+              <p className="text-base text-slate-300 leading-relaxed mb-6 font-normal">
                 {selectedService.description || selectedService.short_description}
               </p>
 
               {selectedService.benefits && selectedService.benefits.length > 0 && (
                 <div className="mb-6">
-                  <h4 className="font-mono text-xs uppercase text-gray-500 tracking-wider mb-3">Key Benefits</h4>
+                  <h4 className="font-mono text-xs uppercase text-[#FF5C00] tracking-wider mb-3">Key Benefits</h4>
                   <ul className="space-y-2">
                     {selectedService.benefits.map((b: string, i: number) => (
-                      <li key={i} className="flex items-start gap-2.5 text-sm text-gray-700">
-                        <CheckCircle2 className="w-4 h-4 text-black shrink-0 mt-0.5" />
+                      <li key={i} className="flex items-start gap-2.5 text-sm text-slate-300">
+                        <CheckCircle2 className="w-4 h-4 text-[#FF5C00] shrink-0 mt-0.5" />
                         <span>{b}</span>
                       </li>
                     ))}
@@ -402,17 +403,17 @@ export default function OurServices({ services }: ServicesProps) {
                 </div>
               )}
 
-              <div className="pt-6 border-t border-gray-200 flex justify-end gap-3">
+              <div className="pt-6 border-t border-white/[0.08] flex justify-end gap-3">
                 <button
                   type="button"
                   onClick={() => setSelectedService(null)}
-                  className="px-6 py-2.5 rounded-full border border-gray-200 text-xs font-mono uppercase tracking-wider text-black hover:bg-gray-100 cursor-pointer"
+                  className="px-6 py-2.5 rounded-full border border-white/[0.1] text-xs font-mono uppercase tracking-wider text-slate-300 hover:bg-white/[0.06] cursor-pointer"
                 >
                   Close
                 </button>
                 <Link
                   to={`/services/${selectedService.slug || selectedService.id}`}
-                  className="px-6 py-2.5 rounded-full bg-black text-white text-xs font-mono uppercase tracking-wider hover:bg-gray-800 transition-colors"
+                  className="px-6 py-2.5 rounded-full bg-gradient-to-r from-[#FF5C00] to-[#FF7A1A] text-white text-xs font-mono uppercase tracking-wider hover:shadow-[0_0_20px_rgba(255,92,0,0.4)] transition-all font-semibold"
                 >
                   Full Service Page &rarr;
                 </Link>

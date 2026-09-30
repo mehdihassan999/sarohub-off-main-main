@@ -13,15 +13,19 @@ import DiagonalArrow from './common/DiagonalArrow';
 
 interface NavbarProps {
   isAdminLoggedIn: boolean;
+  logoUrl?: string;
+  settings?: { [key: string]: string };
 }
 
-export default function Navbar({ isAdminLoggedIn }: NavbarProps) {
+export default function Navbar({ isAdminLoggedIn, logoUrl, settings }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [toolsOpen, setToolsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+
+  const activeLogoUrl = logoUrl || settings?.company_logo || settings?.logo_url;
 
   const moreRef = useRef<HTMLDivElement>(null);
   const servicesRef = useRef<HTMLDivElement>(null);
@@ -132,8 +136,8 @@ export default function Navbar({ isAdminLoggedIn }: NavbarProps) {
     <header
       className={`sticky top-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-white/90 backdrop-blur-md border-b border-gray-200/80 shadow-xs'
-          : 'bg-white border-b border-gray-100'
+          ? 'bg-[#08090E]/90 backdrop-blur-xl border-b border-white/[0.08] shadow-[0_8px_30px_rgba(0,0,0,0.6)]'
+          : 'bg-[#08090E]/80 backdrop-blur-md border-b border-white/[0.06]'
       }`}
     >
       <nav>
@@ -142,21 +146,21 @@ export default function Navbar({ isAdminLoggedIn }: NavbarProps) {
             {/* Logo */}
             <div>
               <Link to="/" className="inline-block transition-transform duration-300 hover:scale-[1.02]">
-                <Logo height={36} showText={false} variant="light" />
+                <Logo height={36} showText={false} variant="dark" imageUrl={activeLogoUrl} />
               </Link>
             </div>
 
-            {/* Desktop Navigation Links (NexStudio Uppercase + RollText) */}
+            {/* Desktop Navigation Links (Vaboulus Style) */}
             <div className="hidden lg:block">
               <ul className="flex items-center space-x-6 xl:space-x-8">
                 {/* Home */}
                 <li>
                   <Link
                     to="/"
-                    className={`group py-2 inline-block uppercase text-xs xl:text-sm font-normal tracking-wide transition-colors ${
+                    className={`group py-2 inline-block uppercase text-xs xl:text-sm font-medium tracking-wide transition-colors ${
                       isActive('/') && location.pathname === '/'
-                        ? 'text-black font-semibold'
-                        : 'text-black hover:text-gray-500'
+                        ? 'text-[#FF5C00] font-semibold'
+                        : 'text-slate-300 hover:text-white'
                     }`}
                   >
                     <RollText>HOME</RollText>
@@ -167,10 +171,10 @@ export default function Navbar({ isAdminLoggedIn }: NavbarProps) {
                 <li>
                   <Link
                     to="/about"
-                    className={`group py-2 inline-block uppercase text-xs xl:text-sm font-normal tracking-wide transition-colors ${
+                    className={`group py-2 inline-block uppercase text-xs xl:text-sm font-medium tracking-wide transition-colors ${
                       isActive('/about')
-                        ? 'text-black font-semibold'
-                        : 'text-black hover:text-gray-500'
+                        ? 'text-[#FF5C00] font-semibold'
+                        : 'text-slate-300 hover:text-white'
                     }`}
                   >
                     <RollText>ABOUT</RollText>
@@ -185,16 +189,16 @@ export default function Navbar({ isAdminLoggedIn }: NavbarProps) {
                       setMoreOpen(false);
                       setToolsOpen(false);
                     }}
-                    className={`group py-2 inline-flex items-center gap-1.5 uppercase text-xs xl:text-sm font-normal tracking-wide transition-colors cursor-pointer ${
+                    className={`group py-2 inline-flex items-center gap-1.5 uppercase text-xs xl:text-sm font-medium tracking-wide transition-colors cursor-pointer ${
                       location.pathname.startsWith('/services')
-                        ? 'text-black font-semibold'
-                        : 'text-black hover:text-gray-500'
+                        ? 'text-[#FF5C00] font-semibold'
+                        : 'text-slate-300 hover:text-white'
                     }`}
                   >
                     <RollText>SERVICES</RollText>
                     <ChevronDown
                       className={`h-3.5 w-3.5 transition-transform duration-200 ${
-                        servicesOpen ? 'rotate-180' : ''
+                        servicesOpen ? 'rotate-180 text-[#FF5C00]' : ''
                       }`}
                     />
                   </button>
@@ -206,14 +210,14 @@ export default function Navbar({ isAdminLoggedIn }: NavbarProps) {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 10 }}
                         transition={{ duration: 0.18 }}
-                        className="absolute left-0 mt-3 w-80 rounded-2xl border border-gray-200 bg-white p-3 shadow-xl z-50 text-left"
+                        className="absolute left-0 mt-3 w-80 rounded-2xl border border-white/[0.1] bg-[#0E121E]/95 backdrop-blur-2xl p-3 shadow-2xl z-50 text-left"
                       >
-                        <div className="px-3 py-2 text-[10px] font-mono uppercase tracking-widest text-gray-400 border-b border-gray-100 mb-1 flex justify-between items-center">
+                        <div className="px-3 py-2 text-[10px] font-mono uppercase tracking-widest text-slate-400 border-b border-white/[0.08] mb-1 flex justify-between items-center">
                           <span>Capabilities</span>
                           <Link
                             to="/services"
                             onClick={() => setServicesOpen(false)}
-                            className="text-black font-semibold hover:underline"
+                            className="text-[#FF5C00] font-semibold hover:underline"
                           >
                             All Services →
                           </Link>
@@ -224,12 +228,12 @@ export default function Navbar({ isAdminLoggedIn }: NavbarProps) {
                               key={item.path}
                               to={item.path}
                               onClick={() => setServicesOpen(false)}
-                              className="group block px-3 py-2 rounded-xl hover:bg-gray-50 transition-colors"
+                              className="group block px-3 py-2 rounded-xl hover:bg-white/[0.06] transition-colors"
                             >
-                              <div className="text-xs font-medium text-black group-hover:text-gray-600 transition-colors">
+                              <div className="text-xs font-medium text-white group-hover:text-[#FF5C00] transition-colors">
                                 {item.name}
                               </div>
-                              <div className="text-[11px] text-gray-500 line-clamp-1">{item.desc}</div>
+                              <div className="text-[11px] text-slate-400 line-clamp-1">{item.desc}</div>
                             </Link>
                           ))}
                         </div>
@@ -242,10 +246,10 @@ export default function Navbar({ isAdminLoggedIn }: NavbarProps) {
                 <li>
                   <Link
                     to="/work"
-                    className={`group py-2 inline-block uppercase text-xs xl:text-sm font-normal tracking-wide transition-colors ${
+                    className={`group py-2 inline-block uppercase text-xs xl:text-sm font-medium tracking-wide transition-colors ${
                       isActive('/work') || isActive('/projects')
-                        ? 'text-black font-semibold'
-                        : 'text-black hover:text-gray-500'
+                        ? 'text-[#FF5C00] font-semibold'
+                        : 'text-slate-300 hover:text-white'
                     }`}
                   >
                     <RollText>PROJECTS</RollText>
@@ -256,10 +260,10 @@ export default function Navbar({ isAdminLoggedIn }: NavbarProps) {
                 <li>
                   <Link
                     to="/ventures"
-                    className={`group py-2 inline-block uppercase text-xs xl:text-sm font-normal tracking-wide transition-colors ${
+                    className={`group py-2 inline-block uppercase text-xs xl:text-sm font-medium tracking-wide transition-colors ${
                       isActive('/ventures')
-                        ? 'text-black font-semibold'
-                        : 'text-black hover:text-gray-500'
+                        ? 'text-[#FF5C00] font-semibold'
+                        : 'text-slate-300 hover:text-white'
                     }`}
                   >
                     <RollText>VENTURES</RollText>
@@ -270,10 +274,10 @@ export default function Navbar({ isAdminLoggedIn }: NavbarProps) {
                 <li>
                   <Link
                     to="/partnerships"
-                    className={`group py-2 inline-block uppercase text-xs xl:text-sm font-normal tracking-wide transition-colors ${
+                    className={`group py-2 inline-block uppercase text-xs xl:text-sm font-medium tracking-wide transition-colors ${
                       isActive('/partnerships')
-                        ? 'text-black font-semibold'
-                        : 'text-black hover:text-gray-500'
+                        ? 'text-[#FF5C00] font-semibold'
+                        : 'text-slate-300 hover:text-white'
                     }`}
                   >
                     <RollText>PARTNERSHIPS</RollText>
@@ -284,10 +288,10 @@ export default function Navbar({ isAdminLoggedIn }: NavbarProps) {
                 <li>
                   <Link
                     to="/insights"
-                    className={`group py-2 inline-block uppercase text-xs xl:text-sm font-normal tracking-wide transition-colors ${
+                    className={`group py-2 inline-block uppercase text-xs xl:text-sm font-medium tracking-wide transition-colors ${
                       isActive('/insights') || isActive('/blog')
-                        ? 'text-black font-semibold'
-                        : 'text-black hover:text-gray-500'
+                        ? 'text-[#FF5C00] font-semibold'
+                        : 'text-slate-300 hover:text-white'
                     }`}
                   >
                     <RollText>BLOG</RollText>
@@ -298,14 +302,14 @@ export default function Navbar({ isAdminLoggedIn }: NavbarProps) {
                 <li>
                   <Link
                     to="/careers"
-                    className={`group py-2 inline-flex items-center gap-1.5 uppercase text-xs xl:text-sm font-normal tracking-wide transition-colors ${
+                    className={`group py-2 inline-flex items-center gap-1.5 uppercase text-xs xl:text-sm font-medium tracking-wide transition-colors ${
                       isActive('/careers') || isActive('/opportunities')
-                        ? 'text-blue-600 font-semibold'
-                        : 'text-black hover:text-blue-600'
+                        ? 'text-[#FF5C00] font-semibold'
+                        : 'text-slate-300 hover:text-[#FF5C00]'
                     }`}
                   >
                     <RollText>CAREERS</RollText>
-                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#FF5C00] animate-pulse" />
                   </Link>
                 </li>
 
@@ -317,16 +321,16 @@ export default function Navbar({ isAdminLoggedIn }: NavbarProps) {
                       setServicesOpen(false);
                       setToolsOpen(false);
                     }}
-                    className={`group py-2 inline-flex items-center gap-1.5 uppercase text-xs xl:text-sm font-normal tracking-wide transition-colors cursor-pointer ${
+                    className={`group py-2 inline-flex items-center gap-1.5 uppercase text-xs xl:text-sm font-medium tracking-wide transition-colors cursor-pointer ${
                       moreLinks.some((l) => isActive(l.path))
-                        ? 'text-black font-semibold'
-                        : 'text-black hover:text-gray-500'
+                        ? 'text-[#FF5C00] font-semibold'
+                        : 'text-slate-300 hover:text-white'
                     }`}
                   >
                     <RollText>MORE</RollText>
                     <ChevronDown
                       className={`h-3.5 w-3.5 transition-transform duration-200 ${
-                        moreOpen ? 'rotate-180' : ''
+                        moreOpen ? 'rotate-180 text-[#FF5C00]' : ''
                       }`}
                     />
                   </button>
@@ -338,9 +342,9 @@ export default function Navbar({ isAdminLoggedIn }: NavbarProps) {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 10 }}
                         transition={{ duration: 0.18 }}
-                        className="absolute right-0 mt-3 w-80 rounded-2xl border border-gray-200 bg-white p-3 shadow-xl z-50 text-left"
+                        className="absolute right-0 mt-3 w-80 rounded-2xl border border-white/[0.1] bg-[#0E121E]/95 backdrop-blur-2xl p-3 shadow-2xl z-50 text-left"
                       >
-                        <div className="px-3 py-2 text-[10px] font-mono uppercase tracking-widest text-gray-400 border-b border-gray-100 mb-2">
+                        <div className="px-3 py-2 text-[10px] font-mono uppercase tracking-widest text-slate-400 border-b border-white/[0.08] mb-2">
                           Client Solutions
                         </div>
                         <div className="grid grid-cols-1 gap-1 mb-3">
@@ -349,20 +353,20 @@ export default function Navbar({ isAdminLoggedIn }: NavbarProps) {
                               key={item.path}
                               to={item.path}
                               onClick={() => setMoreOpen(false)}
-                              className="group flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-gray-50 transition-colors"
+                              className="group flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-white/[0.06] transition-colors"
                             >
-                              <item.icon className="w-4 h-4 text-gray-700 group-hover:text-black shrink-0" />
+                              <item.icon className="w-4 h-4 text-slate-400 group-hover:text-[#FF5C00] shrink-0 transition-colors" />
                               <div className="min-w-0">
-                                <div className="text-xs font-medium text-black group-hover:text-gray-600 transition-colors">
+                                <div className="text-xs font-medium text-white group-hover:text-[#FF5C00] transition-colors">
                                   {item.name}
                                 </div>
-                                <div className="text-[11px] text-gray-500 line-clamp-1">{item.desc}</div>
+                                <div className="text-[11px] text-slate-400 line-clamp-1">{item.desc}</div>
                               </div>
                             </Link>
                           ))}
                         </div>
 
-                        <div className="px-3 py-2 text-[10px] font-mono uppercase tracking-widest text-gray-400 border-b border-gray-100 mb-2">
+                        <div className="px-3 py-2 text-[10px] font-mono uppercase tracking-widest text-slate-400 border-b border-white/[0.08] mb-2">
                           Company & Ecosystem
                         </div>
                         <div className="grid grid-cols-1 gap-1">
@@ -371,14 +375,14 @@ export default function Navbar({ isAdminLoggedIn }: NavbarProps) {
                               key={item.path}
                               to={item.path}
                               onClick={() => setMoreOpen(false)}
-                              className="group flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-gray-50 transition-colors"
+                              className="group flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-white/[0.06] transition-colors"
                             >
-                              <item.icon className="w-4 h-4 text-gray-700 group-hover:text-black shrink-0" />
+                              <item.icon className="w-4 h-4 text-slate-400 group-hover:text-[#FF5C00] shrink-0 transition-colors" />
                               <div className="min-w-0">
-                                <div className="text-xs font-medium text-black group-hover:text-gray-600 transition-colors">
+                                <div className="text-xs font-medium text-white group-hover:text-[#FF5C00] transition-colors">
                                   {item.name}
                                 </div>
-                                <div className="text-[11px] text-gray-500 line-clamp-1">{item.desc}</div>
+                                <div className="text-[11px] text-slate-400 line-clamp-1">{item.desc}</div>
                               </div>
                             </Link>
                           ))}
@@ -392,10 +396,10 @@ export default function Navbar({ isAdminLoggedIn }: NavbarProps) {
 
             {/* Right Action / CTA */}
             <div className="flex items-center gap-3 lg:gap-4">
-              {/* Signature NexStudio CTA Button */}
+              {/* Signature Vaboulus Orange Pill Button */}
               <Link
                 to="/contact"
-                className="group px-4 lg:px-6 py-2.5 lg:py-3 hidden sm:inline-flex items-center justify-center bg-black text-xs lg:text-sm font-medium -tracking-[0.2px] leading-5 text-white rounded-full hover:bg-gray-800 transition-all duration-300 gap-2"
+                className="group px-5 lg:px-6 py-2.5 lg:py-3 hidden sm:inline-flex items-center justify-center bg-gradient-to-r from-[#FF5C00] via-[#FF6C00] to-[#FF8526] text-xs lg:text-sm font-semibold leading-5 text-white rounded-full shadow-[0_0_24px_rgba(255,92,0,0.38)] hover:shadow-[0_0_36px_rgba(255,92,0,0.65)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 gap-2 border border-[#FFA566]/30"
               >
                 <RollText>CONTACT US</RollText>
                 <DiagonalArrow size={18} />
@@ -405,7 +409,7 @@ export default function Navbar({ isAdminLoggedIn }: NavbarProps) {
               <button
                 type="button"
                 onClick={() => setIsOpen(!isOpen)}
-                className="lg:hidden p-2 rounded-full border border-gray-200 text-black hover:bg-gray-50 transition-colors cursor-pointer"
+                className="lg:hidden p-2 rounded-full border border-white/10 text-white hover:bg-white/5 transition-colors cursor-pointer"
                 aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
               >
                 {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -414,7 +418,7 @@ export default function Navbar({ isAdminLoggedIn }: NavbarProps) {
           </div>
         </div>
 
-        {/* Mobile Menu Drawer (NexStudio Style: Slide down with backdrop blur) */}
+        {/* Mobile Menu Drawer (Vaboulus Dark Frosted Sheet) */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
@@ -422,17 +426,17 @@ export default function Navbar({ isAdminLoggedIn }: NavbarProps) {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.25, ease: 'easeInOut' }}
-              className="lg:hidden border-b border-gray-200 bg-white/98 backdrop-blur-md shadow-lg overflow-hidden"
+              className="lg:hidden border-b border-white/[0.1] bg-[#0E121E]/98 backdrop-blur-2xl shadow-2xl overflow-hidden"
             >
               <div className="max-w-7xl mx-auto px-6 py-6">
-                <ul className="space-y-1 divide-y divide-gray-100">
+                <ul className="space-y-1 divide-y divide-white/[0.06]">
                   {allMobileLinks.map((item) => (
                     <li key={item.path} className="pt-2">
                       <Link
                         to={item.path}
                         onClick={() => setIsOpen(false)}
-                        className={`group block py-2 uppercase text-sm font-normal tracking-wide transition-colors ${
-                          isActive(item.path) ? 'text-black font-semibold' : 'text-black hover:text-gray-500'
+                        className={`group block py-2 uppercase text-sm font-medium tracking-wide transition-colors ${
+                          isActive(item.path) ? 'text-[#FF5C00] font-semibold' : 'text-slate-300 hover:text-white'
                         }`}
                       >
                         <RollText>{item.name}</RollText>
@@ -441,11 +445,11 @@ export default function Navbar({ isAdminLoggedIn }: NavbarProps) {
                   ))}
                 </ul>
 
-                <div className="mt-6 pt-4 border-t border-gray-200 flex flex-col gap-3">
+                <div className="mt-6 pt-4 border-t border-white/[0.08] flex flex-col gap-3">
                   <Link
                     to="/contact"
                     onClick={() => setIsOpen(false)}
-                    className="group px-6 py-3.5 flex items-center justify-center gap-2 bg-black text-sm font-medium -tracking-[0.2px] leading-5 text-white rounded-full hover:bg-gray-800 transition-all text-center"
+                    className="group px-6 py-3.5 flex items-center justify-center gap-2 bg-gradient-to-r from-[#FF5C00] via-[#FF6C00] to-[#FF8526] text-sm font-semibold text-white rounded-full shadow-[0_0_24px_rgba(255,92,0,0.38)] hover:shadow-[0_0_36px_rgba(255,92,0,0.65)] hover:scale-[1.02] transition-all text-center border border-[#FFA566]/30"
                   >
                     <RollText>CONTACT US</RollText>
                     <DiagonalArrow size={18} />

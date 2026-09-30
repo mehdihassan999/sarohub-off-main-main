@@ -51,7 +51,7 @@ export default function CompanyOverview({ settings = {} }: CompanyOverviewProps)
   ];
 
   return (
-    <section id="overview" className="py-12 lg:py-16 bg-white border-b border-gray-200">
+    <section id="overview" className="py-14 lg:py-20 bg-[#08090E] border-b border-white/[0.08] relative">
       <div className="max-w-7xl mx-auto px-6 space-y-12">
         
         {/* Top: Who We Are & Mission / Vision Grid */}
@@ -60,45 +60,46 @@ export default function CompanyOverview({ settings = {} }: CompanyOverviewProps)
           {/* Left Column: Who We Are */}
           <div className="lg:col-span-6 space-y-5">
             <div>
-              <span className="font-mono text-xs uppercase tracking-widest text-gray-500 mb-2 block">
+              <span className="font-mono text-xs uppercase tracking-widest text-[#FF5C00] mb-2 block flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#FF5C00] animate-pulse" />
                 Who We Are • Software &amp; Research Organization
               </span>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal -tracking-[1.8px] text-black mb-4 leading-tight">
-                Software. Research. <span className="italic">Innovation.</span>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal -tracking-[1.8px] text-white mb-4 leading-tight">
+                Software. Research. <span className="italic text-[#FF5C00]">Innovation.</span>
               </h2>
-              <p className="text-base sm:text-lg text-gray-800 leading-relaxed font-normal mb-3">
+              <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal mb-3">
                 {overviewDescription}
               </p>
-              <p className="text-sm sm:text-base text-gray-700 leading-relaxed font-normal mb-4">
+              <p className="text-sm sm:text-base text-slate-400 leading-relaxed font-normal mb-4">
                 {overviewSecondary}
               </p>
-              <div className="p-4 rounded-2xl bg-gray-50 border border-gray-200 font-mono text-xs text-gray-800 font-semibold flex items-center gap-2">
-                <span className="size-2 rounded-full bg-black shrink-0" />
+              <div className="p-4 rounded-2xl bg-[#0E121E] border border-white/[0.08] font-mono text-xs text-white font-semibold flex items-center gap-2">
+                <span className="size-2 rounded-full bg-[#FF5C00] shrink-0" />
                 SAROHUB — Where Ideas Become Technology.
               </div>
             </div>
 
             {/* Mission & Vision Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 pt-2">
-              <div className="p-6 sm:p-7 rounded-3xl border border-gray-200 bg-[#FBFBFB] hover:border-black hover:shadow-md transition-all duration-300 shadow-xs">
-                <div className="size-11 rounded-2xl bg-black text-white flex items-center justify-center mb-3 shadow-xs">
+              <div className="p-6 sm:p-7 rounded-3xl border border-white/[0.08] bg-[#0E121E] hover:border-[#FF5C00]/40 hover:shadow-[0_12px_35px_rgba(0,0,0,0.7),0_0_20px_rgba(255,92,0,0.12)] transition-all duration-300 shadow-lg">
+                <div className="size-11 rounded-2xl bg-gradient-to-br from-[#FF5C00]/20 to-[#FF5C00]/5 border border-[#FF5C00]/30 text-[#FF6C00] flex items-center justify-center mb-3 shadow-[0_0_15px_rgba(255,92,0,0.2)]">
                   <Target className="h-5 w-5" />
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold text-black mb-1.5">{missionHeading}</h3>
-                <p className="text-sm text-gray-700 leading-relaxed font-normal">
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-1.5">{missionHeading}</h3>
+                <p className="text-sm text-slate-400 leading-relaxed font-normal">
                   {missionText}
                 </p>
               </div>
 
-              <div className="p-6 sm:p-7 rounded-3xl border border-gray-200 bg-[#FBFBFB] hover:border-black hover:shadow-md transition-all duration-300 shadow-xs">
-                <div className="size-11 rounded-2xl bg-black text-white flex items-center justify-center mb-3 shadow-xs">
+              <div className="p-6 sm:p-7 rounded-3xl border border-white/[0.08] bg-[#0E121E] hover:border-[#FF5C00]/40 hover:shadow-[0_12px_35px_rgba(0,0,0,0.7),0_0_20px_rgba(255,92,0,0.12)] transition-all duration-300 shadow-lg">
+                <div className="size-11 rounded-2xl bg-gradient-to-br from-[#FF5C00]/20 to-[#FF5C00]/5 border border-[#FF5C00]/30 text-[#FF6C00] flex items-center justify-center mb-3 shadow-[0_0_15px_rgba(255,92,0,0.2)]">
                   <Eye className="h-5 w-5" />
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold text-black mb-1.5">{visionHeading}</h3>
-                <p className="text-sm text-gray-700 leading-relaxed font-normal mb-2">
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-1.5">{visionHeading}</h3>
+                <p className="text-sm text-slate-400 leading-relaxed font-normal mb-2">
                   {visionText}
                 </p>
-                <p className="font-mono text-xs text-gray-600 font-semibold">
+                <p className="font-mono text-xs text-[#FF7A1A] font-semibold">
                   {visionSupporting}
                 </p>
               </div>
@@ -107,12 +108,11 @@ export default function CompanyOverview({ settings = {} }: CompanyOverviewProps)
 
           {/* Right Column: 4 Guiding Principles */}
           <div className="lg:col-span-6 space-y-3">
-            <span className="font-mono text-xs uppercase tracking-widest text-gray-500 mb-2 block">
+            <span className="font-mono text-xs uppercase tracking-widest text-[#FF5C00] mb-2 block">
               Core Principles
             </span>
             <div className="space-y-3.5">
               {principles.map((item, idx) => {
-                const Icon = item.icon;
                 return (
                   <motion.div
                     key={idx}
@@ -121,16 +121,16 @@ export default function CompanyOverview({ settings = {} }: CompanyOverviewProps)
                     viewport={{ once: true }}
                     whileHover={{ y: -3 }}
                     transition={{ duration: 0.35, delay: idx * 0.08 }}
-                    className="p-5 sm:p-6 rounded-3xl border border-gray-200 bg-[#FBFBFB] hover:border-black hover:shadow-md transition-all duration-300 flex items-start gap-4 sm:gap-5 group shadow-xs"
+                    className="p-5 sm:p-6 rounded-3xl border border-white/[0.08] bg-[#0E121E] hover:border-[#FF5C00]/40 hover:shadow-[0_12px_35px_rgba(0,0,0,0.7),0_0_20px_rgba(255,92,0,0.12)] transition-all duration-300 flex items-start gap-4 sm:gap-5 group shadow-lg"
                   >
-                    <span className="font-mono text-2xl font-bold italic text-gray-400 group-hover:text-black transition-colors shrink-0 pt-0.5">
+                    <span className="font-mono text-2xl font-bold italic text-slate-500 group-hover:text-[#FF5C00] transition-colors shrink-0 pt-0.5">
                       0{idx + 1}
                     </span>
                     <div>
-                      <h4 className="text-lg sm:text-xl font-bold text-black mb-1 group-hover:text-gray-700 transition-colors">
+                      <h4 className="text-lg sm:text-xl font-bold text-white mb-1 group-hover:text-[#FF7A1A] transition-colors">
                         {item.title}
                       </h4>
-                      <p className="text-sm text-gray-700 leading-relaxed font-normal">
+                      <p className="text-sm text-slate-400 leading-relaxed font-normal">
                         {item.desc}
                       </p>
                     </div>
@@ -143,18 +143,19 @@ export default function CompanyOverview({ settings = {} }: CompanyOverviewProps)
         </div>
 
         {/* Section 12: Company Story */}
-        <div className="p-8 sm:p-10 lg:p-12 rounded-3xl sm:rounded-4xl border border-gray-200 bg-[#FBFBFB] shadow-xs">
-          <div className="max-w-4xl">
-            <span className="font-mono text-xs uppercase tracking-widest text-gray-500 mb-2 block">
+        <div className="p-8 sm:p-10 lg:p-12 rounded-3xl sm:rounded-4xl border border-white/[0.08] bg-[#0E121E] shadow-2xl relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-80 h-80 bg-[#FF5C00]/5 blur-[120px] pointer-events-none -z-10" />
+          <div className="max-w-4xl relative z-10">
+            <span className="font-mono text-xs uppercase tracking-widest text-[#FF5C00] mb-2 block">
               Our Journey &amp; Ambition
             </span>
-            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-normal -tracking-[1.4px] text-black mb-4">
+            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-normal -tracking-[1.4px] text-white mb-4">
               {storyHeading}
             </h3>
-            <div className="space-y-4 text-base text-gray-700 leading-relaxed font-normal">
+            <div className="space-y-4 text-base text-slate-300 leading-relaxed font-normal">
               <p>{storyText1}</p>
               <p>{storyText2}</p>
-              <p className="font-medium text-black">{storyText3}</p>
+              <p className="font-medium text-white">{storyText3}</p>
             </div>
           </div>
         </div>

@@ -23,7 +23,7 @@ export const TrustAndAssuranceView: React.FC<TrustAndAssuranceViewProps> = ({
   const [isAuditModalOpen, setIsAuditModalOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-white text-black">
+    <div className="min-h-screen bg-[#08090E] text-white">
       <SEOHead
         title="Enterprise Trust, 100% IP Guarantee & Delivery Models | SaroHub Technologies"
         description="Discover our rigorous confidentiality covenants, bilateral NDAs, 100% intellectual property ownership, verified review badges, and transparent engagement models."
@@ -31,33 +31,35 @@ export const TrustAndAssuranceView: React.FC<TrustAndAssuranceViewProps> = ({
       />
 
       {/* Top Breadcrumb */}
-      <div className="border-b border-gray-200 bg-[#FBFBFB]">
-        <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+      <div className="border-b border-white/[0.08] bg-[#0A0D15]">
+        <div className="max-w-7xl mx-auto px-6 py-3.5 flex items-center justify-between">
           <Breadcrumbs
             items={[
               { name: 'Home', url: '/' },
               { name: 'Trust & Assurance', url: '/trust', isCurrent: true }
             ]}
           />
-          <span className="hidden sm:inline font-mono text-[11px] uppercase tracking-wider text-gray-500">
+          <span className="hidden sm:inline font-mono text-[11px] uppercase tracking-wider text-slate-300">
             Legal &amp; Delivery SLA
           </span>
         </div>
       </div>
 
       {/* HERO SECTION */}
-      <section className="py-20 lg:py-28 bg-[#FBFBFB] border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-6 text-center">
+      <section className="py-20 lg:py-28 bg-[#0A0D15] border-b border-white/[0.08] relative overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-[#FF5C00]/8 blur-[120px] pointer-events-none -z-10" />
+        <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
           <div className="max-w-3xl mx-auto">
-            <span className="font-mono text-xs uppercase tracking-widest text-gray-500 mb-4 block">
+            <span className="font-mono text-xs uppercase tracking-widest text-[#FF5C00] mb-4 block flex items-center justify-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#FF5C00] animate-pulse" />
               Verified Enterprise Standards
             </span>
 
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-normal -tracking-[2.5px] text-black leading-tight mb-6">
-              Enterprise Trust, Zero Lock-In &amp; <span className="italic">Guaranteed IP</span>
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-normal -tracking-[2.5px] text-white leading-tight mb-6 font-display">
+              Enterprise Trust, Zero Lock-In &amp; <span className="italic text-[#FF5C00]">Guaranteed IP</span>
             </h1>
 
-            <p className="text-lg sm:text-xl text-gray-600 font-normal leading-relaxed mb-8">
+            <p className="text-lg sm:text-xl text-slate-300 font-normal leading-relaxed mb-8">
               We eliminate traditional software outsourcing risks. Enforceable bilateral NDAs, continuous code handover, verified client reviews, and guaranteed on-time sprint deliveries.
             </p>
 
@@ -65,7 +67,7 @@ export const TrustAndAssuranceView: React.FC<TrustAndAssuranceViewProps> = ({
               <button
                 id="btn-hero-audit-cta"
                 onClick={() => setIsAuditModalOpen(true)}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-black text-white text-xs font-mono uppercase tracking-wider hover:bg-gray-800 transition-all cursor-pointer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-[#FF5C00] via-[#FF6C00] to-[#FF8526] hover:shadow-[0_0_24px_rgba(255,92,0,0.5)] text-white text-xs font-mono uppercase tracking-wider transition-all cursor-pointer font-bold border border-[#FFA566]/30"
               >
                 <RollText>REQUEST 48-HOUR AUDIT</RollText>
                 <DiagonalArrow size={16} />
@@ -73,7 +75,7 @@ export const TrustAndAssuranceView: React.FC<TrustAndAssuranceViewProps> = ({
 
               <a
                 href="#engagement-models"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-white border border-gray-200 hover:border-black text-black text-xs font-mono uppercase tracking-wider transition-all"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-white/[0.05] border border-white/15 hover:border-[#FF5C00]/50 hover:bg-white/[0.1] text-white text-xs font-mono uppercase tracking-wider transition-all font-semibold"
               >
                 <span>Explore Engagement Models</span>
                 <ArrowRight className="size-4" />
@@ -81,22 +83,22 @@ export const TrustAndAssuranceView: React.FC<TrustAndAssuranceViewProps> = ({
             </div>
 
             {/* Micro Stats Strip */}
-            <div className="mt-16 pt-10 border-t border-gray-200 grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
-              <div className="p-4 rounded-2xl bg-white border border-gray-200">
-                <div className="text-3xl font-normal -tracking-[1px] text-black">100%</div>
-                <div className="text-xs font-mono uppercase text-gray-500 mt-1">IP Ownership Assigned</div>
+            <div className="mt-16 pt-10 border-t border-white/[0.08] grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+              <div className="p-4 rounded-2xl bg-[#0E121E] border border-white/[0.08] shadow-md">
+                <div className="text-3xl font-normal -tracking-[1px] text-white">100%</div>
+                <div className="text-xs font-mono uppercase text-[#FF7A1A] mt-1 font-bold">IP Ownership Assigned</div>
               </div>
-              <div className="p-4 rounded-2xl bg-white border border-gray-200">
-                <div className="text-3xl font-normal -tracking-[1px] text-black">4.9 / 5.0</div>
-                <div className="text-xs font-mono uppercase text-gray-500 mt-1">Clutch &amp; GoodFirms</div>
+              <div className="p-4 rounded-2xl bg-[#0E121E] border border-white/[0.08] shadow-md">
+                <div className="text-3xl font-normal -tracking-[1px] text-white">4.9 / 5.0</div>
+                <div className="text-xs font-mono uppercase text-[#FF7A1A] mt-1 font-bold">Clutch &amp; GoodFirms</div>
               </div>
-              <div className="p-4 rounded-2xl bg-white border border-gray-200">
-                <div className="text-3xl font-normal -tracking-[1px] text-black">48 Hours</div>
-                <div className="text-xs font-mono uppercase text-gray-500 mt-1">Feasibility Turnaround</div>
+              <div className="p-4 rounded-2xl bg-[#0E121E] border border-white/[0.08] shadow-md">
+                <div className="text-3xl font-normal -tracking-[1px] text-white">48 Hours</div>
+                <div className="text-xs font-mono uppercase text-[#FF7A1A] mt-1 font-bold">Feasibility Turnaround</div>
               </div>
-              <div className="p-4 rounded-2xl bg-white border border-gray-200">
-                <div className="text-3xl font-normal -tracking-[1px] text-black">Zero</div>
-                <div className="text-xs font-mono uppercase text-gray-500 mt-1">Vendor Lock-In</div>
+              <div className="p-4 rounded-2xl bg-[#0E121E] border border-white/[0.08] shadow-md">
+                <div className="text-3xl font-normal -tracking-[1px] text-white">Zero</div>
+                <div className="text-xs font-mono uppercase text-[#FF7A1A] mt-1 font-bold">Vendor Lock-In</div>
               </div>
             </div>
 
@@ -118,16 +120,16 @@ export const TrustAndAssuranceView: React.FC<TrustAndAssuranceViewProps> = ({
       </div>
 
       {/* INTERACTIVE SOLUTION MATCHER */}
-      <section className="py-20 bg-[#FBFBFB] border-t border-gray-200">
+      <section className="py-20 bg-[#08090E] border-t border-white/[0.08]">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="font-mono text-xs uppercase tracking-widest text-gray-500 mb-3 block">
+            <span className="font-mono text-xs uppercase tracking-widest text-[#FF5C00] mb-3 block font-semibold">
               Interactive Diagnostic Wizard
             </span>
-            <h2 className="text-3xl sm:text-4xl font-normal -tracking-[1px] text-black">
+            <h2 className="text-3xl sm:text-4xl font-normal -tracking-[1px] text-white">
               Find Your Ideal Stack, Timeline &amp; Model
             </h2>
-            <p className="text-base text-gray-600 font-normal mt-3">
+            <p className="text-base text-slate-300 font-normal mt-3">
               Answer 4 quick questions to generate an architectural recommendation, tech stack blueprint, and sprint timeline.
             </p>
           </div>
@@ -142,16 +144,17 @@ export const TrustAndAssuranceView: React.FC<TrustAndAssuranceViewProps> = ({
 
       {/* 48-HOUR AUDIT CALLOUT BANNER */}
       <section className="py-20 max-w-7xl mx-auto px-6">
-        <div className="rounded-3xl bg-black text-white p-10 sm:p-16 relative overflow-hidden">
+        <div className="rounded-3xl bg-[#0E121E] border border-white/[0.08] text-white p-10 sm:p-16 relative overflow-hidden shadow-2xl">
+          <div className="absolute top-0 right-0 w-[500px] h-[300px] bg-[#FF5C00]/10 blur-[120px] pointer-events-none -z-10" />
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
             <div className="lg:col-span-8">
-              <span className="text-xs font-mono uppercase tracking-wider text-gray-400 mb-3 block">
+              <span className="text-xs font-mono uppercase tracking-wider text-[#FF5C00] mb-3 block font-bold">
                 Complimentary 48-Hour Technical Audit
               </span>
-              <h3 className="text-3xl sm:text-5xl font-normal -tracking-[1.5px] text-white leading-tight">
+              <h3 className="text-3xl sm:text-5xl font-normal -tracking-[1.5px] text-white leading-tight font-display">
                 Have a Complex Spec, Wireframe, or Stalling Codebase?
               </h3>
-              <p className="mt-4 text-base sm:text-lg text-gray-400 leading-relaxed max-w-2xl font-normal">
+              <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl font-normal">
                 Submit your architecture, Git repo, or product specification. Our Principal Systems Architects will analyze database schemas, cloud infrastructure, security vulnerabilities, and sprint feasibility &mdash; completely free within 48 hours.
               </p>
             </div>
@@ -159,7 +162,7 @@ export const TrustAndAssuranceView: React.FC<TrustAndAssuranceViewProps> = ({
               <button
                 id="btn-open-audit-banner"
                 onClick={() => setIsAuditModalOpen(true)}
-                className="px-8 py-4 rounded-full bg-white text-black hover:bg-gray-200 text-xs font-mono uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer"
+                className="px-8 py-4 rounded-full bg-gradient-to-r from-[#FF5C00] via-[#FF6C00] to-[#FF8526] hover:shadow-[0_0_24px_rgba(255,92,0,0.5)] text-white text-xs font-mono uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer font-bold border border-[#FFA566]/30"
               >
                 <RollText>REQUEST FREE AUDIT</RollText>
                 <DiagonalArrow size={16} />

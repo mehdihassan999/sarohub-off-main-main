@@ -365,11 +365,11 @@ function TeamMemberCard({ member, cardIndex = 0 }: TeamMemberCardProps) {
       viewport={{ once: true }}
       whileHover={{ y: -4, transition: { duration: 0.2 } }}
       transition={{ duration: 0.3 }}
-      className="p-5 sm:p-5.5 rounded-2xl border border-gray-200/90 bg-white hover:border-black hover:shadow-lg transition-all duration-300 flex flex-col justify-between group text-center"
+      className="p-5 sm:p-6 rounded-3xl border border-white/[0.08] bg-[#0E121E] hover:border-[#FF5C00]/40 hover:shadow-[0_12px_35px_rgba(0,0,0,0.7),0_0_20px_rgba(255,92,0,0.15)] transition-all duration-300 flex flex-col justify-between group text-center shadow-lg"
     >
       <div>
         {/* Compact Circular Portrait in Clean Theme Frame */}
-        <div className="relative w-22 h-22 sm:w-24 sm:h-24 rounded-full overflow-hidden mx-auto mb-3.5 border border-gray-200 ring-2 ring-gray-100 group-hover:border-black group-hover:ring-black/5 transition-all duration-300 bg-white shadow-2xs">
+        <div className="relative w-22 h-22 sm:w-24 sm:h-24 rounded-full overflow-hidden mx-auto mb-3.5 border border-white/[0.1] ring-2 ring-white/[0.05] group-hover:border-[#FF5C00] group-hover:ring-[#FF5C00]/20 transition-all duration-300 bg-[#141828] shadow-md">
           <img
             src={member.photo_url || '/assets/team/placeholder.png'}
             alt={member.name}
@@ -388,9 +388,8 @@ function TeamMemberCard({ member, cardIndex = 0 }: TeamMemberCardProps) {
           return (
             <div className="flex flex-wrap items-center justify-center gap-2 mb-3.5">
               <span 
-                className="px-3.5 py-1.5 rounded-full text-xs sm:text-[13px] font-mono font-bold uppercase tracking-wider inline-flex items-center gap-1.5 bg-slate-950 text-white border border-slate-800 shadow-2xs group-hover:border-slate-700 transition-colors"
+                className="px-3.5 py-1.5 rounded-full text-xs sm:text-[13px] font-mono font-bold uppercase tracking-wider inline-flex items-center gap-1.5 bg-[#FF5C00]/10 text-[#FF7A1A] border border-[#FF5C00]/25 shadow-xs"
               >
-                {/* Small light animation on the badge icon only */}
                 <motion.span
                   animate={{ 
                     scale: [1, 1.2, 1], 
@@ -401,7 +400,7 @@ function TeamMemberCard({ member, cardIndex = 0 }: TeamMemberCardProps) {
                     duration: 2.4, 
                     ease: 'easeInOut' 
                   }}
-                  className="text-cyan-400 inline-flex items-center shrink-0"
+                  className="text-[#FF5C00] inline-flex items-center shrink-0"
                 >
                   <IconComponent className="size-4" />
                 </motion.span>
@@ -409,8 +408,8 @@ function TeamMemberCard({ member, cardIndex = 0 }: TeamMemberCardProps) {
               </span>
 
               {expDisplay && (
-                <span className="px-3.5 py-1.5 rounded-full text-xs sm:text-[13px] font-mono font-bold border border-blue-200 bg-blue-50 text-blue-900 inline-flex items-center gap-1.5 shadow-xs">
-                  <Clock className="size-4 text-blue-600 shrink-0 stroke-[2.5]" />
+                <span className="px-3.5 py-1.5 rounded-full text-xs sm:text-[13px] font-mono font-bold border border-white/[0.08] bg-[#141828] text-slate-300 inline-flex items-center gap-1.5">
+                  <Clock className="size-4 text-[#FF5C00] shrink-0 stroke-[2.5]" />
                   <span>{expDisplay}</span>
                 </span>
               )}
@@ -419,32 +418,32 @@ function TeamMemberCard({ member, cardIndex = 0 }: TeamMemberCardProps) {
         })()}
 
         {/* Member Name */}
-        <h4 className="text-2xl sm:text-[26px] font-bold text-black mb-1 group-hover:text-blue-600 transition-colors tracking-tight">
+        <h4 className="text-2xl sm:text-[26px] font-bold text-white mb-1 group-hover:text-[#FF5C00] transition-colors tracking-tight">
           {member.name}
         </h4>
 
         {/* Position / Title */}
-        <p className="font-mono text-sm sm:text-base font-bold text-blue-700 uppercase tracking-wide mb-3 line-clamp-1">
+        <p className="font-mono text-xs sm:text-sm font-semibold text-slate-400 uppercase tracking-wide mb-3 line-clamp-1">
           {member.position}
         </p>
 
         {/* Expandable Bio with Read More / Show Less */}
         <ExpandableBio text={member.bio} maxLength={120} />
 
-        {/* High-Contrast, Crisp Core Competencies & Skills Pills */}
+        {/* Core Competencies & Skills Pills */}
         {skillsList.length > 0 && (
-          <div className="w-full my-3.5 pt-3 border-t border-gray-200">
+          <div className="w-full my-3.5 pt-3 border-t border-white/[0.08]">
             <div className="flex flex-wrap justify-center gap-1.5">
               {skillsList.slice(0, 5).map((skill: string, idx: number) => (
                 <span 
                   key={idx} 
-                  className="text-xs sm:text-[13px] font-mono font-bold px-3 py-1 bg-slate-950 text-white rounded border border-slate-800 shadow-2xs hover:bg-slate-900 transition-colors"
+                  className="text-xs sm:text-[13px] font-mono font-medium px-3 py-1 bg-[#141828] text-slate-300 rounded-md border border-white/[0.08]"
                 >
                   {skill}
                 </span>
               ))}
               {skillsList.length > 5 && (
-                <span className="text-xs sm:text-[13px] font-mono font-bold px-2.5 py-1 bg-gray-100 text-gray-800 rounded border border-gray-300">
+                <span className="text-xs sm:text-[13px] font-mono font-medium px-2.5 py-1 bg-[#141828] text-slate-400 rounded-md border border-white/[0.08]">
                   +{skillsList.length - 5}
                 </span>
               )}
@@ -454,7 +453,7 @@ function TeamMemberCard({ member, cardIndex = 0 }: TeamMemberCardProps) {
       </div>
 
       {/* Social Links Footer */}
-      <div className="pt-3 border-t border-gray-200 flex items-center justify-center gap-2">
+      <div className="pt-3 border-t border-white/[0.08] flex items-center justify-center gap-2">
         {socialLinks.length > 0 ? (
           socialLinks.map((sLink, sIdx) => (
             <a
@@ -462,15 +461,15 @@ function TeamMemberCard({ member, cardIndex = 0 }: TeamMemberCardProps) {
               href={sLink.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="size-8 rounded-full bg-white border border-gray-300 flex items-center justify-center text-gray-800 hover:bg-black hover:text-white hover:border-black transition-all duration-200 shadow-2xs cursor-pointer"
+              className="size-8 rounded-full bg-[#141828] border border-white/[0.1] flex items-center justify-center text-slate-300 hover:text-white hover:border-[#FF5C00] hover:bg-[#FF5C00]/20 transition-all duration-200 cursor-pointer"
               title={`${member.name} on ${sLink.platform}`}
             >
               <SocialIcon platform={sLink.platform} className="size-4" />
             </a>
           ))
         ) : (
-          <span className="text-xs font-mono font-semibold text-gray-600 flex items-center gap-1.5">
-            <CheckCircle2 className="size-3.5 text-cyan-600" />
+          <span className="text-xs font-mono font-semibold text-slate-400 flex items-center gap-1.5">
+            <CheckCircle2 className="size-3.5 text-[#FF5C00]" />
             <span>SaroHub Verified</span>
           </span>
         )}

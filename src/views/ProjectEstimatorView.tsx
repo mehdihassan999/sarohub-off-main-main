@@ -301,7 +301,7 @@ export default function ProjectEstimatorView({ settings = {} }: ProjectEstimator
   const currSymbol = currency === 'PKR' ? '₨ ' : '$';
 
   return (
-    <div className="min-h-screen bg-white text-black">
+    <div className="min-h-screen bg-[#08090E] text-white">
       <SEOHead 
         title={`Project Cost & Scope Calculator | ${companyName}`}
         description="Estimate your software project cost, delivery timeline, and phased architectural roadmap in real time. Transparent engineering pricing from SaroHub Technologies."
@@ -309,40 +309,44 @@ export default function ProjectEstimatorView({ settings = {} }: ProjectEstimator
       />
 
       {/* Top Breadcrumb */}
-      <div className="border-b border-gray-200 bg-[#FBFBFB]">
-        <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+      <div className="border-b border-white/[0.08] bg-[#0A0D15]">
+        <div className="max-w-7xl mx-auto px-6 py-3.5 flex items-center justify-between">
           <Breadcrumbs
             items={[
               { name: 'Home', url: '/' },
               { name: 'Scope & Cost Estimator', url: '/estimate', isCurrent: true }
             ]}
           />
-          <span className="hidden sm:inline font-mono text-[11px] uppercase tracking-wider text-gray-500">
+          <span className="hidden sm:inline font-mono text-[11px] uppercase tracking-wider text-slate-300">
             Interactive Cost Model
           </span>
         </div>
       </div>
 
       {/* Hero Header */}
-      <section className="py-20 lg:py-28 bg-[#FBFBFB] border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-6 text-center max-w-3xl">
-          <span className="font-mono text-xs uppercase tracking-widest text-gray-500 mb-4 block">
+      <section className="py-20 lg:py-28 bg-[#0A0D15] border-b border-white/[0.08] relative overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-[#FF5C00]/8 blur-[120px] pointer-events-none -z-10" />
+        <div className="max-w-7xl mx-auto px-6 text-center max-w-3xl relative z-10">
+          <span className="font-mono text-xs uppercase tracking-widest text-[#FF5C00] mb-4 block flex items-center justify-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#FF5C00] animate-pulse" />
             Scope &amp; Investment Calculator
           </span>
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-normal -tracking-[2.5px] text-black leading-tight mb-6">
-            Calculate Your <span className="italic">Project Scope</span>
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-normal -tracking-[2.5px] text-white leading-tight mb-6 font-display">
+            Calculate Your <span className="italic text-[#FF5C00]">Project Scope</span>
           </h1>
-          <p className="text-lg sm:text-xl text-gray-600 font-normal leading-relaxed">
+          <p className="text-lg sm:text-xl text-slate-300 font-normal leading-relaxed">
             Configure technical requirements, scale, and feature modules. Get instant, transparent projections for development budget, delivery milestones, and sprint timelines.
           </p>
 
           {/* Currency Toggle */}
-          <div className="inline-flex items-center gap-1 p-1 mt-8 rounded-full border border-gray-200 bg-white shadow-xs">
+          <div className="inline-flex items-center gap-1 p-1 mt-8 rounded-full border border-white/10 bg-[#0E121E] shadow-lg">
             <button
               type="button"
               onClick={() => setCurrency('USD')}
               className={`px-5 py-2 rounded-full text-xs font-mono uppercase tracking-wider transition-all cursor-pointer ${
-                currency === 'USD' ? 'bg-black text-white font-semibold' : 'text-gray-500 hover:text-black'
+                currency === 'USD' 
+                  ? 'bg-gradient-to-r from-[#FF5C00] to-[#FF7A1A] text-white font-bold shadow-[0_0_15px_rgba(255,92,0,0.4)]' 
+                  : 'text-slate-300 hover:text-white'
               }`}
             >
               USD ($) Global
@@ -351,7 +355,9 @@ export default function ProjectEstimatorView({ settings = {} }: ProjectEstimator
               type="button"
               onClick={() => setCurrency('PKR')}
               className={`px-5 py-2 rounded-full text-xs font-mono uppercase tracking-wider transition-all cursor-pointer ${
-                currency === 'PKR' ? 'bg-black text-white font-semibold' : 'text-gray-500 hover:text-black'
+                currency === 'PKR' 
+                  ? 'bg-gradient-to-r from-[#FF5C00] to-[#FF7A1A] text-white font-bold shadow-[0_0_15px_rgba(255,92,0,0.4)]' 
+                  : 'text-slate-300 hover:text-white'
               }`}
             >
               PKR (₨) Domestic
@@ -368,12 +374,12 @@ export default function ProjectEstimatorView({ settings = {} }: ProjectEstimator
           <div className="lg:col-span-7 space-y-8">
             
             {/* Step 1: Project Type */}
-            <div className="rounded-3xl border border-gray-200 bg-[#FBFBFB] p-7">
+            <div className="rounded-3xl border border-white/[0.08] bg-[#0E121E] p-7 shadow-xl">
               <div className="flex items-center gap-3 mb-6">
-                <span className="size-7 rounded-full bg-black text-white text-xs font-mono font-bold flex items-center justify-center">
+                <span className="size-7 rounded-full bg-gradient-to-r from-[#FF5C00] to-[#FF7A1A] text-white text-xs font-mono font-bold flex items-center justify-center shadow-xs">
                   1
                 </span>
-                <h2 className="text-xl font-normal text-black">Select Project Archetype</h2>
+                <h2 className="text-xl font-normal text-white">Select Project Archetype</h2>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -386,25 +392,25 @@ export default function ProjectEstimatorView({ settings = {} }: ProjectEstimator
                       onClick={() => setSelectedProjectType(type.id)}
                       className={`p-6 rounded-3xl border cursor-pointer transition-all duration-200 flex flex-col justify-between ${
                         isSelected
-                          ? 'border-black bg-white shadow-xs ring-1 ring-black'
-                          : 'border-gray-200 bg-white hover:border-gray-400'
+                          ? 'border-[#FF5C00] bg-[#141A2E] shadow-[0_0_20px_rgba(255,92,0,0.18)] ring-1 ring-[#FF5C00]'
+                          : 'border-white/[0.08] bg-[#101424] hover:border-white/20'
                       }`}
                     >
                       <div>
                         <div className="flex items-center justify-between gap-2 mb-3">
                           <div className={`size-10 rounded-2xl flex items-center justify-center ${
-                            isSelected ? 'bg-black text-white' : 'bg-[#FBFBFB] border border-gray-200 text-black'
+                            isSelected ? 'bg-[#FF5C00] text-white shadow-xs' : 'bg-[#141828] border border-white/10 text-slate-300'
                           }`}>
                             <Icon className="size-5" />
                           </div>
-                          {isSelected && <Check className="size-4 text-black" />}
+                          {isSelected && <Check className="size-4 text-[#FF7A1A]" />}
                         </div>
-                        <h3 className="text-base font-normal text-black mb-1">
+                        <h3 className="text-base font-medium text-white mb-1">
                           {type.name}
                         </h3>
-                        <p className="text-xs text-gray-500 font-normal leading-relaxed line-clamp-2">{type.desc}</p>
+                        <p className="text-xs text-slate-300 font-normal leading-relaxed line-clamp-2">{type.desc}</p>
                       </div>
-                      <div className="mt-4 pt-3 border-t border-gray-100 text-[11px] font-mono text-gray-400">
+                      <div className="mt-4 pt-3 border-t border-white/[0.06] text-[11px] font-mono text-slate-400">
                         Base: ~{type.baseWeeks} weeks delivery
                       </div>
                     </div>
@@ -414,12 +420,12 @@ export default function ProjectEstimatorView({ settings = {} }: ProjectEstimator
             </div>
 
             {/* Step 2: Architecture & Scalability Tier */}
-            <div className="rounded-3xl border border-gray-200 bg-[#FBFBFB] p-7">
+            <div className="rounded-3xl border border-white/[0.08] bg-[#0E121E] p-7 shadow-xl">
               <div className="flex items-center gap-3 mb-6">
-                <span className="size-7 rounded-full bg-black text-white text-xs font-mono font-bold flex items-center justify-center">
+                <span className="size-7 rounded-full bg-gradient-to-r from-[#FF5C00] to-[#FF7A1A] text-white text-xs font-mono font-bold flex items-center justify-center shadow-xs">
                   2
                 </span>
-                <h2 className="text-xl font-normal text-black">Architecture &amp; Scalability Tier</h2>
+                <h2 className="text-xl font-normal text-white">Architecture &amp; Scalability Tier</h2>
               </div>
 
               <div className="grid grid-cols-1 gap-3">
@@ -431,19 +437,19 @@ export default function ProjectEstimatorView({ settings = {} }: ProjectEstimator
                       onClick={() => setSelectedScale(tier.id)}
                       className={`p-5 rounded-2xl border cursor-pointer transition-all ${
                         isSelected
-                          ? 'border-black bg-white shadow-xs ring-1 ring-black'
-                          : 'border-gray-200 bg-white hover:border-gray-400'
+                          ? 'border-[#FF5C00] bg-[#141A2E] shadow-[0_0_20px_rgba(255,92,0,0.18)] ring-1 ring-[#FF5C00]'
+                          : 'border-white/[0.08] bg-[#101424] hover:border-white/20'
                       }`}
                     >
                       <div className="flex items-center justify-between mb-1">
-                        <h3 className="text-sm font-semibold text-black">
+                        <h3 className="text-sm font-semibold text-white">
                           {tier.id}
                         </h3>
-                        <span className="text-[10px] font-mono uppercase tracking-wider px-3 py-1 rounded-full bg-[#FBFBFB] border border-gray-200 text-gray-600">
+                        <span className="text-[10px] font-mono uppercase tracking-wider px-3 py-1 rounded-full bg-[#141828] border border-white/10 text-slate-300">
                           {tier.badge}
                         </span>
                       </div>
-                      <p className="text-xs text-gray-500 font-normal">{tier.desc}</p>
+                      <p className="text-xs text-slate-300 font-normal">{tier.desc}</p>
                     </div>
                   );
                 })}
@@ -451,15 +457,15 @@ export default function ProjectEstimatorView({ settings = {} }: ProjectEstimator
             </div>
 
             {/* Step 3: Feature Modules / Add-ons */}
-            <div className="rounded-3xl border border-gray-200 bg-[#FBFBFB] p-7">
+            <div className="rounded-3xl border border-white/[0.08] bg-[#0E121E] p-7 shadow-xl">
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-3">
-                  <span className="size-7 rounded-full bg-black text-white text-xs font-mono font-bold flex items-center justify-center">
+                  <span className="size-7 rounded-full bg-gradient-to-r from-[#FF5C00] to-[#FF7A1A] text-white text-xs font-mono font-bold flex items-center justify-center shadow-xs">
                     3
                   </span>
-                  <h2 className="text-xl font-normal text-black">Feature Modules &amp; Integrations</h2>
+                  <h2 className="text-xl font-normal text-white">Feature Modules &amp; Integrations</h2>
                 </div>
-                <span className="text-xs font-mono text-gray-500">{selectedModules.length} selected</span>
+                <span className="text-xs font-mono text-slate-300">{selectedModules.length} selected</span>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -475,24 +481,24 @@ export default function ProjectEstimatorView({ settings = {} }: ProjectEstimator
                       onClick={() => toggleModule(mod.id)}
                       className={`p-4 rounded-2xl border cursor-pointer transition-all ${
                         isSelected
-                          ? 'border-black bg-white shadow-xs ring-1 ring-black'
-                          : 'border-gray-200 bg-white hover:border-gray-400'
+                          ? 'border-[#FF5C00] bg-[#141A2E] shadow-[0_0_15px_rgba(255,92,0,0.15)] ring-1 ring-[#FF5C00]'
+                          : 'border-white/[0.08] bg-[#101424] hover:border-white/20'
                       }`}
                     >
                       <div className="flex items-start justify-between gap-2 mb-1.5">
-                        <h4 className="text-xs font-semibold text-black">
+                        <h4 className="text-xs font-semibold text-white">
                           {mod.name}
                         </h4>
                         <div className={`size-4 rounded flex items-center justify-center shrink-0 border ${
-                          isSelected ? 'bg-black border-black text-white' : 'border-gray-300'
+                          isSelected ? 'bg-[#FF5C00] border-[#FF5C00] text-white' : 'border-white/20 bg-[#141828]'
                         }`}>
                           {isSelected && <Check className="size-3 text-white" />}
                         </div>
                       </div>
-                      <p className="text-[11px] text-gray-500 line-clamp-2 mb-2 font-normal">{mod.desc}</p>
+                      <p className="text-[11px] text-slate-300 line-clamp-2 mb-2 font-normal">{mod.desc}</p>
                       <div className="flex items-center justify-between text-[10px] font-mono">
-                        <span className="text-gray-400 uppercase">{mod.category}</span>
-                        <span className="font-semibold text-black">{displayCost}</span>
+                        <span className="text-slate-400 uppercase">{mod.category}</span>
+                        <span className="font-semibold text-[#FF7A1A]">{displayCost}</span>
                       </div>
                     </div>
                   );
@@ -501,12 +507,12 @@ export default function ProjectEstimatorView({ settings = {} }: ProjectEstimator
             </div>
 
             {/* Step 4: Delivery Cadence */}
-            <div className="rounded-3xl border border-gray-200 bg-[#FBFBFB] p-7">
+            <div className="rounded-3xl border border-white/[0.08] bg-[#0E121E] p-7 shadow-xl">
               <div className="flex items-center gap-3 mb-6">
-                <span className="size-7 rounded-full bg-black text-white text-xs font-mono font-bold flex items-center justify-center">
+                <span className="size-7 rounded-full bg-gradient-to-r from-[#FF5C00] to-[#FF7A1A] text-white text-xs font-mono font-bold flex items-center justify-center shadow-xs">
                   4
                 </span>
-                <h2 className="text-xl font-normal text-black">Delivery Cadence &amp; Priority</h2>
+                <h2 className="text-xl font-normal text-white">Delivery Cadence &amp; Priority</h2>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -531,18 +537,18 @@ export default function ProjectEstimatorView({ settings = {} }: ProjectEstimator
                       onClick={() => setTimelineSpeed(speed.id)}
                       className={`p-5 rounded-2xl border cursor-pointer transition-all ${
                         isSelected
-                          ? 'border-black bg-white shadow-xs ring-1 ring-black'
-                          : 'border-gray-200 bg-white hover:border-gray-400'
+                          ? 'border-[#FF5C00] bg-[#141A2E] shadow-[0_0_20px_rgba(255,92,0,0.18)] ring-1 ring-[#FF5C00]'
+                          : 'border-white/[0.08] bg-[#101424] hover:border-white/20'
                       }`}
                     >
                       <div className="flex items-center justify-between mb-1">
-                        <h4 className="text-xs font-semibold text-black">
+                        <h4 className="text-xs font-semibold text-white">
                           {speed.name}
                         </h4>
-                        {isSelected && <Check className="size-3.5 text-black" />}
+                        {isSelected && <Check className="size-3.5 text-[#FF7A1A]" />}
                       </div>
-                      <p className="text-xs text-gray-500 mb-2 font-normal">{speed.desc}</p>
-                      <span className="text-[10px] font-mono uppercase text-gray-500 bg-[#FBFBFB] border border-gray-200 px-2 py-0.5 rounded-full">
+                      <p className="text-xs text-slate-300 mb-2 font-normal">{speed.desc}</p>
+                      <span className="text-[10px] font-mono uppercase text-[#FF7A1A] bg-[#141828] border border-[#FF5C00]/20 px-2 py-0.5 rounded-full font-semibold">
                         {speed.tag}
                       </span>
                     </div>
@@ -554,13 +560,13 @@ export default function ProjectEstimatorView({ settings = {} }: ProjectEstimator
 
           {/* Right Column: Live Scope & Investment Summary */}
           <div className="lg:col-span-5 sticky top-24 space-y-6">
-            <div className="rounded-3xl border border-gray-200 bg-[#FBFBFB] p-7 sm:p-8 space-y-6">
-              <div className="flex items-center justify-between border-b border-gray-200 pb-4">
+            <div className="rounded-3xl border border-white/[0.08] bg-[#0E121E] p-7 sm:p-8 space-y-6 shadow-2xl">
+              <div className="flex items-center justify-between border-b border-white/[0.08] pb-4">
                 <div>
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-gray-500 block">
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-[#FF5C00] block font-bold">
                     Live Calculation
                   </span>
-                  <h3 className="text-xl font-normal text-black">Preliminary Estimate</h3>
+                  <h3 className="text-xl font-normal text-white">Preliminary Estimate</h3>
                 </div>
                 <button
                   type="button"
@@ -571,7 +577,7 @@ export default function ProjectEstimatorView({ settings = {} }: ProjectEstimator
                     setTimelineSpeed('Standard Production Sprint');
                   }}
                   title="Reset to defaults"
-                  className="size-8 rounded-full border border-gray-200 bg-white flex items-center justify-center text-gray-500 hover:text-black transition-colors"
+                  className="size-8 rounded-full border border-white/10 bg-[#141828] flex items-center justify-center text-slate-300 hover:text-white transition-colors cursor-pointer"
                 >
                   <RefreshCw className="size-4" />
                 </button>
@@ -579,43 +585,43 @@ export default function ProjectEstimatorView({ settings = {} }: ProjectEstimator
 
               {/* Price & Timeline Display */}
               <div className="space-y-4">
-                <div className="p-6 rounded-3xl border border-gray-200 bg-white">
-                  <p className="text-xs font-mono uppercase text-gray-500 mb-1">Estimated Investment Range</p>
-                  <div className="text-3xl sm:text-4xl font-normal -tracking-[1px] text-black">
+                <div className="p-6 rounded-3xl border border-white/[0.08] bg-[#101424]">
+                  <p className="text-xs font-mono uppercase text-slate-300 mb-1">Estimated Investment Range</p>
+                  <div className="text-3xl sm:text-4xl font-normal -tracking-[1px] text-white">
                     {currSymbol}{calculation.finalMin.toLocaleString()} &ndash; {currSymbol}{calculation.finalMax.toLocaleString()}
                   </div>
-                  <p className="text-xs font-mono text-gray-400 mt-2">
+                  <p className="text-xs font-mono text-slate-400 mt-2">
                     Currency: {currency} &bull; Milestone-based disbursements under strict SLA
                   </p>
                 </div>
 
                 <div className="grid grid-cols-2 gap-3">
-                  <div className="p-4 rounded-2xl border border-gray-200 bg-white text-center">
-                    <Clock className="size-4 text-black mx-auto mb-1" />
-                    <p className="text-[10px] font-mono uppercase text-gray-400">Delivery</p>
-                    <p className="text-sm font-semibold text-black">{calculation.weeksMin} to {calculation.weeksMax} Weeks</p>
+                  <div className="p-4 rounded-2xl border border-white/[0.08] bg-[#101424] text-center">
+                    <Clock className="size-4 text-[#FF5C00] mx-auto mb-1" />
+                    <p className="text-[10px] font-mono uppercase text-slate-400">Delivery</p>
+                    <p className="text-sm font-semibold text-white">{calculation.weeksMin} to {calculation.weeksMax} Weeks</p>
                   </div>
-                  <div className="p-4 rounded-2xl border border-gray-200 bg-white text-center">
-                    <ShieldCheck className="size-4 text-black mx-auto mb-1" />
-                    <p className="text-[10px] font-mono uppercase text-gray-400">IP Rights</p>
-                    <p className="text-sm font-semibold text-black">100% Client Owned</p>
+                  <div className="p-4 rounded-2xl border border-white/[0.08] bg-[#101424] text-center">
+                    <ShieldCheck className="size-4 text-[#FF5C00] mx-auto mb-1" />
+                    <p className="text-[10px] font-mono uppercase text-slate-400">IP Rights</p>
+                    <p className="text-sm font-semibold text-white">100% Client Owned</p>
                   </div>
                 </div>
               </div>
 
               {/* Phased Roadmap */}
               <div>
-                <h4 className="text-xs font-mono uppercase tracking-wider text-gray-500 mb-3">
+                <h4 className="text-xs font-mono uppercase tracking-wider text-slate-300 mb-3">
                   Architectural Delivery Roadmap
                 </h4>
                 <div className="space-y-2">
                   {calculation.phases.map((phase, idx) => (
-                    <div key={idx} className="p-4 rounded-2xl border border-gray-200 bg-white text-xs">
-                      <div className="flex justify-between font-semibold text-black mb-1">
+                    <div key={idx} className="p-4 rounded-2xl border border-white/[0.08] bg-[#101424] text-xs">
+                      <div className="flex justify-between font-semibold text-white mb-1">
                         <span>{phase.name}</span>
-                        <span className="font-mono text-gray-500 shrink-0">~{phase.weeks} wks</span>
+                        <span className="font-mono text-[#FF7A1A] shrink-0 font-bold">~{phase.weeks} wks</span>
                       </div>
-                      <p className="text-[11px] text-gray-500 leading-relaxed font-normal">{phase.desc}</p>
+                      <p className="text-[11px] text-slate-300 leading-relaxed font-normal">{phase.desc}</p>
                     </div>
                   ))}
                 </div>
@@ -625,6 +631,7 @@ export default function ProjectEstimatorView({ settings = {} }: ProjectEstimator
               <div className="space-y-4 pt-2">
                 <button
                   type="button"
+                  id="cta-estimate-book"
                   onClick={() => {
                     navigate('/book', {
                       state: {
@@ -634,25 +641,25 @@ export default function ProjectEstimatorView({ settings = {} }: ProjectEstimator
                       }
                     });
                   }}
-                  className="w-full py-4 rounded-full bg-black text-white font-mono text-xs uppercase tracking-wider hover:bg-gray-800 transition-all flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full py-4 rounded-full bg-gradient-to-r from-[#FF5C00] via-[#FF6C00] to-[#FF8526] text-white font-mono text-xs uppercase tracking-wider hover:shadow-[0_0_24px_rgba(255,92,0,0.5)] transition-all flex items-center justify-center gap-2 cursor-pointer font-bold border border-[#FFA566]/30"
                 >
                   <RollText>BOOK DISCOVERY CALL TO LOCK SCOPE</RollText>
                   <DiagonalArrow size={16} />
                 </button>
 
                 {submitSuccess ? (
-                  <div className="p-4 rounded-2xl border border-gray-200 bg-white text-black text-xs flex items-center gap-2">
-                    <CheckCircle2 className="size-4 shrink-0" />
+                  <div className="p-4 rounded-2xl border border-white/[0.08] bg-[#141A2E] text-white text-xs flex items-center gap-2">
+                    <CheckCircle2 className="size-4 shrink-0 text-[#FF5C00]" />
                     <span>Estimate dispatched to your email! We will follow up within 24 hours.</span>
                   </div>
                 ) : (
-                  <form onSubmit={handleSaveAndEmail} className="pt-4 border-t border-gray-200 space-y-3">
-                    <p className="text-xs font-mono uppercase text-gray-500">
+                  <form onSubmit={handleSaveAndEmail} className="pt-4 border-t border-white/[0.08] space-y-3">
+                    <p className="text-xs font-mono uppercase text-slate-300">
                       Receive this official estimate breakdown in your inbox:
                     </p>
                     
                     {submitError && (
-                      <p className="text-xs text-red-500 font-mono">{submitError}</p>
+                      <p className="text-xs text-red-400 font-mono">{submitError}</p>
                     )}
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -661,7 +668,7 @@ export default function ProjectEstimatorView({ settings = {} }: ProjectEstimator
                         placeholder="Your Full Name"
                         value={clientName}
                         onChange={(e) => setClientName(e.target.value)}
-                        className="w-full px-3 py-2 rounded-xl border border-gray-200 bg-white text-xs text-black placeholder-gray-400 focus:outline-none focus:border-black"
+                        className="w-full px-3 py-2 rounded-xl border border-white/10 bg-[#141828] text-xs text-white placeholder-slate-400 focus:outline-none focus:border-[#FF5C00]"
                       />
                       <input
                         type="email"
@@ -669,20 +676,20 @@ export default function ProjectEstimatorView({ settings = {} }: ProjectEstimator
                         placeholder="you@company.com *"
                         value={clientEmail}
                         onChange={(e) => setClientEmail(e.target.value)}
-                        className="w-full px-3 py-2 rounded-xl border border-gray-200 bg-white text-xs text-black placeholder-gray-400 focus:outline-none focus:border-black"
+                        className="w-full px-3 py-2 rounded-xl border border-white/10 bg-[#141828] text-xs text-white placeholder-slate-400 focus:outline-none focus:border-[#FF5C00]"
                       />
                     </div>
 
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full py-3 rounded-full border border-gray-200 bg-white hover:border-black text-black font-mono text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all cursor-pointer"
+                      className="w-full py-3 rounded-full border border-white/15 bg-[#141828] hover:border-[#FF5C00] text-white font-mono text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all cursor-pointer font-semibold"
                     >
                       {isSubmitting ? (
                         <span>Dispatching...</span>
                       ) : (
                         <>
-                          <Send className="size-3.5" />
+                          <Send className="size-3.5 text-[#FF5C00]" />
                           <span>Email Me Formal Scope Summary</span>
                         </>
                       )}
@@ -691,16 +698,16 @@ export default function ProjectEstimatorView({ settings = {} }: ProjectEstimator
                 )}
               </div>
 
-              <div className="pt-4 border-t border-gray-200 text-xs font-mono text-gray-500 text-center space-y-1">
+              <div className="pt-4 border-t border-white/[0.08] text-xs font-mono text-slate-300 text-center space-y-1">
                 <div>
                   WhatsApp Desk:{' '}
-                  <a href={`https://wa.me/${whatsappNumber.replace(/\D/g, '')}`} className="text-black underline font-semibold">
+                  <a href={`https://wa.me/${whatsappNumber.replace(/\D/g, '')}`} className="text-[#FF7A1A] hover:text-[#FFA566] underline font-semibold">
                     {whatsappNumber}
                   </a>
                 </div>
                 <div>
                   Direct Email:{' '}
-                  <a href={`mailto:${companyEmail}`} className="text-black underline font-semibold">
+                  <a href={`mailto:${companyEmail}`} className="text-[#FF7A1A] hover:text-[#FFA566] underline font-semibold">
                     {companyEmail}
                   </a>
                 </div>

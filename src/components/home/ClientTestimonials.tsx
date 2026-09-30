@@ -79,29 +79,30 @@ export default function ClientTestimonials({ testimonials }: TestimonialsProps) 
   const currentItem = displayList[currentIndex] || displayList[0];
 
   return (
-    <section id="testimonials" className="py-12 lg:py-16 bg-white border-b border-gray-200">
+    <section id="testimonials" className="py-14 lg:py-20 bg-[#08090E] border-b border-white/[0.08] relative">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 lg:gap-12">
           
           {/* Left Column: Title & Controls */}
           <div className="w-full lg:w-5/12">
-            <span className="font-mono text-xs uppercase tracking-widest text-gray-500 mb-2 block">
+            <span className="font-mono text-xs uppercase tracking-widest text-[#FF5C00] mb-2 block flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#FF5C00] animate-pulse" />
               Client Feedback
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal -tracking-[1.8px] text-black mb-3 leading-tight">
-              Our Client <span className="italic">Reviews</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal -tracking-[1.8px] text-white mb-3 leading-tight">
+              Our Client <span className="italic text-[#FF5C00]">Reviews</span>
             </h2>
-            <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-6 font-normal">
+            <p className="text-sm sm:text-base text-slate-400 leading-relaxed mb-6 font-normal">
               Read verbatim accounts from founders, enterprise directors, and technical leaders who partnered with SaroHub to bring their vision to market.
             </p>
 
-            {/* NexStudio Signature Circular Arrows */}
+            {/* Circular Navigation Buttons */}
             <div className="flex items-center gap-3">
               <button
                 type="button"
                 onClick={handlePrev}
                 aria-label="Previous testimonial"
-                className="size-11 border border-black rounded-full inline-flex items-center justify-center text-black hover:bg-black hover:text-white transition-all duration-200 cursor-pointer shadow-xs"
+                className="size-11 border border-white/20 rounded-full inline-flex items-center justify-center text-slate-300 hover:text-white hover:border-[#FF5C00] hover:bg-[#FF5C00]/10 transition-all duration-200 cursor-pointer shadow-xs"
               >
                 <ChevronLeft className="w-5 h-5" />
               </button>
@@ -109,11 +110,11 @@ export default function ClientTestimonials({ testimonials }: TestimonialsProps) 
                 type="button"
                 onClick={handleNext}
                 aria-label="Next testimonial"
-                className="size-11 border border-black rounded-full inline-flex items-center justify-center text-black hover:bg-black hover:text-white transition-all duration-200 cursor-pointer shadow-xs"
+                className="size-11 border border-white/20 rounded-full inline-flex items-center justify-center text-slate-300 hover:text-white hover:border-[#FF5C00] hover:bg-[#FF5C00]/10 transition-all duration-200 cursor-pointer shadow-xs"
               >
                 <ChevronRight className="w-5 h-5" />
               </button>
-              <span className="font-mono text-xs text-gray-700 font-semibold ml-2">
+              <span className="font-mono text-xs text-slate-400 font-semibold ml-2">
                 {`${currentIndex + 1} / ${displayList.length}`}
               </span>
             </div>
@@ -121,7 +122,7 @@ export default function ClientTestimonials({ testimonials }: TestimonialsProps) 
 
           {/* Right Column: Active Card */}
           <div className="w-full lg:w-7/12">
-            <div className="relative min-h-[300px] p-6 sm:p-8 rounded-3xl border border-gray-200 bg-[#FBFBFB] shadow-xs flex flex-col justify-between">
+            <div className="relative min-h-[300px] p-6 sm:p-8 rounded-3xl border border-white/[0.08] bg-[#0E121E] shadow-2xl flex flex-col justify-between">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentItem.id || currentIndex}
@@ -133,30 +134,30 @@ export default function ClientTestimonials({ testimonials }: TestimonialsProps) 
                 >
                   <div>
                     {/* 5-Star Rating */}
-                    <div className="flex items-center gap-1 mb-5 text-black">
+                    <div className="flex items-center gap-1 mb-5 text-[#FF5C00]">
                       {[...Array(currentItem.rating || 5)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 fill-black text-black" />
+                        <Star key={i} className="w-4 h-4 fill-[#FF5C00] text-[#FF5C00]" />
                       ))}
                     </div>
 
                     {/* Quote text */}
-                    <blockquote className="text-lg sm:text-xl font-normal text-black leading-relaxed italic mb-6">
+                    <blockquote className="text-lg sm:text-xl font-normal text-white leading-relaxed italic mb-6">
                       &ldquo;{currentItem.feedback}&rdquo;
                     </blockquote>
                   </div>
 
                   {/* Author Meta */}
-                  <div className="pt-5 border-t border-gray-200 flex items-center justify-between">
+                  <div className="pt-5 border-t border-white/[0.08] flex items-center justify-between">
                     <div>
-                      <h4 className="text-base sm:text-lg font-bold text-black">
+                      <h4 className="text-base sm:text-lg font-bold text-white">
                         {currentItem.client_name}
                       </h4>
-                      <p className="text-xs font-mono text-gray-700 uppercase tracking-wider mt-0.5 font-medium">
+                      <p className="text-xs font-mono text-[#FF7A1A] uppercase tracking-wider mt-0.5 font-medium">
                         {currentItem.client_role} &bull; {currentItem.client_company}
                       </p>
                     </div>
                     {(currentItem as any).verified && (
-                      <span className="font-mono text-[11px] text-gray-600 uppercase tracking-wider font-medium">
+                      <span className="font-mono text-[11px] text-slate-400 uppercase tracking-wider font-medium">
                         Verified Review
                       </span>
                     )}

@@ -59,28 +59,30 @@ export default function TechnologyView() {
   });
 
   return (
-    <div className="relative min-h-screen bg-white">
+    <div className="relative min-h-screen bg-[#08090E] text-white">
       <SEOHead
         title="Technology Stack & Architecture | SaroHub Technologies"
         description="Our modern engineering stack spans React, Next.js, Node.js, Python, PostgreSQL, Flutter, Docker, AWS, and enterprise AI models."
       />
 
-      {/* Hero Header - NexStudio Style */}
-      <div className="py-20 lg:py-28 border-b border-gray-200 text-center bg-white">
-        <div className="max-w-7xl mx-auto px-6">
+      {/* Hero Header */}
+      <div className="py-20 lg:py-28 border-b border-white/[0.08] text-center bg-[#0A0D15] relative overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-[#FF5C00]/8 blur-[120px] pointer-events-none -z-10" />
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="mb-6 flex justify-center">
             <Breadcrumbs items={[{ label: 'Technology', path: '/technology' }]} />
           </div>
 
-          <span className="font-mono text-xs uppercase tracking-widest text-gray-500 mb-4 block">
+          <span className="font-mono text-xs uppercase tracking-widest text-[#FF5C00] mb-4 block flex items-center justify-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#FF5C00] animate-pulse" />
             Core Engineering Stack &amp; Standards
           </span>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-normal -tracking-[2px] text-black mb-6 leading-tight">
-            Built on <span className="italic">Battle-Tested Technologies</span>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-normal -tracking-[2px] text-white mb-6 leading-tight font-display">
+            Built on <span className="italic text-[#FF5C00]">Battle-Tested Technologies</span>
           </h1>
 
-          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed font-normal mb-10">
+          <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed font-normal mb-10">
             We build with modern, scalable, and secure technologies chosen for real-world reliability, type safety, performance, and long-term maintainability.
           </p>
 
@@ -90,10 +92,10 @@ export default function TechnologyView() {
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-5 py-2.5 rounded-full text-xs font-mono uppercase tracking-wider transition-all cursor-pointer ${
+                className={`px-5 py-2.5 rounded-full text-xs font-mono uppercase tracking-wider transition-all cursor-pointer border ${
                   selectedCategory === cat
-                    ? 'bg-black text-white shadow-xs'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    ? 'bg-gradient-to-r from-[#FF5C00] to-[#FF7A1A] border-[#FFA566]/30 text-white font-bold shadow-[0_0_15px_rgba(255,92,0,0.4)]'
+                    : 'bg-[#141828] border-white/10 text-slate-300 hover:text-white'
                 }`}
               >
                 {cat}
@@ -110,7 +112,7 @@ export default function TechnologyView() {
             {[1, 2, 3, 4, 5, 6].map(i => (
               <div
                 key={i}
-                className="h-40 rounded-3xl border border-gray-200 bg-[#FBFBFB] animate-pulse"
+                className="h-40 rounded-3xl border border-white/[0.08] bg-[#0E121E] animate-pulse"
               />
             ))}
           </div>
@@ -120,14 +122,14 @@ export default function TechnologyView() {
 
             return (
               <div key={category} className="space-y-6">
-                <div className="flex items-center gap-3 border-b border-gray-200 pb-4">
-                  <div className="size-9 rounded-xl bg-[#FBFBFB] border border-gray-200 flex items-center justify-center text-black">
+                <div className="flex items-center gap-3 border-b border-white/[0.08] pb-4">
+                  <div className="size-9 rounded-xl bg-[#141A2E] border border-white/10 flex items-center justify-center text-[#FF5C00] shadow-xs">
                     <Icon className="size-4 stroke-[1.8]" />
                   </div>
-                  <h2 className="text-2xl font-normal -tracking-[0.5px] text-black">
+                  <h2 className="text-2xl font-normal -tracking-[0.5px] text-white">
                     {category}
                   </h2>
-                  <span className="text-xs font-mono text-gray-400 ml-auto">
+                  <span className="text-xs font-mono text-slate-400 ml-auto">
                     {items.length} {items.length === 1 ? 'framework' : 'frameworks'}
                   </span>
                 </div>
@@ -136,17 +138,17 @@ export default function TechnologyView() {
                   {items.map((tech) => (
                     <div
                       key={tech.id}
-                      className="p-7 rounded-3xl border border-gray-200 bg-[#FBFBFB] hover:border-black transition-all duration-200 flex flex-col justify-between"
+                      className="p-7 rounded-3xl border border-white/[0.08] bg-[#0E121E] hover:border-[#FF5C00]/40 transition-all duration-200 flex flex-col justify-between shadow-lg"
                     >
                       <div>
-                        <span className="text-[10px] font-mono uppercase tracking-wider text-gray-400 block mb-3">
+                        <span className="text-[10px] font-mono uppercase tracking-wider text-[#FF7A1A] block mb-3 font-semibold">
                           {tech.category}
                         </span>
-                        <h3 className="text-lg font-normal text-black mb-2">
+                        <h3 className="text-lg font-normal text-white mb-2">
                           {tech.name}
                         </h3>
                         {tech.description && (
-                          <p className="text-xs text-gray-600 leading-relaxed font-normal">
+                          <p className="text-xs text-slate-300 leading-relaxed font-normal">
                             {tech.description}
                           </p>
                         )}
@@ -158,23 +160,23 @@ export default function TechnologyView() {
             );
           })
         ) : (
-          <div className="text-center py-20 text-gray-500 font-mono text-xs uppercase">
+          <div className="text-center py-20 text-slate-400 font-mono text-xs uppercase">
             No technologies found in this category.
           </div>
         )}
       </div>
 
       {/* Architectural Principles */}
-      <div className="max-w-7xl mx-auto px-6 py-20 lg:py-28 border-t border-gray-200">
-        <div className="rounded-3xl border border-gray-200 bg-[#FBFBFB] p-8 sm:p-14 lg:p-16">
+      <div className="max-w-7xl mx-auto px-6 py-20 lg:py-28 border-t border-white/[0.08]">
+        <div className="rounded-3xl border border-white/[0.08] bg-[#0E121E] p-8 sm:p-14 lg:p-16 shadow-2xl">
           <div className="max-w-3xl mb-12">
-            <span className="font-mono text-xs uppercase tracking-widest text-gray-500 mb-2 block">
+            <span className="font-mono text-xs uppercase tracking-widest text-[#FF5C00] mb-2 block font-semibold">
               Engineering Standards
             </span>
-            <h2 className="text-3xl sm:text-4xl font-normal -tracking-[1px] text-black mb-4">
+            <h2 className="text-3xl sm:text-4xl font-normal -tracking-[1px] text-white mb-4">
               How We Choose and Maintain Our Stack
             </h2>
-            <p className="text-base text-gray-600 leading-relaxed font-normal">
+            <p className="text-base text-slate-300 leading-relaxed font-normal">
               We do not chase transient tech fads. Every library, database, and cloud framework in our stack is vetted against four core engineering principles:
             </p>
           </div>
@@ -198,12 +200,12 @@ export default function TechnologyView() {
                 desc: 'Dockerized microservices and edge CDNs maximize throughput while minimizing cloud costs.'
               }
             ].map((principle, i) => (
-              <div key={i} className="p-6 rounded-2xl border border-gray-200 bg-white">
-                <CheckCircle2 className="size-5 text-black mb-3" />
-                <h3 className="text-sm font-semibold text-black mb-2">
+              <div key={i} className="p-6 rounded-2xl border border-white/[0.08] bg-[#141A2E] shadow-sm">
+                <CheckCircle2 className="size-5 text-[#FF5C00] mb-3" />
+                <h3 className="text-sm font-semibold text-white mb-2">
                   {principle.title}
                 </h3>
-                <p className="text-xs text-gray-600 leading-relaxed font-normal">
+                <p className="text-xs text-slate-300 leading-relaxed font-normal">
                   {principle.desc}
                 </p>
               </div>
@@ -214,7 +216,7 @@ export default function TechnologyView() {
             <Link
               to="/contact"
               id="tech-cta"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-black hover:bg-gray-800 text-white font-mono text-xs uppercase tracking-wider transition-all"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-[#FF5C00] via-[#FF6C00] to-[#FF8526] hover:shadow-[0_0_24px_rgba(255,92,0,0.5)] text-white font-mono text-xs uppercase tracking-wider transition-all font-bold border border-[#FFA566]/30 cursor-pointer"
             >
               <RollText>DISCUSS YOUR TECHNICAL REQUIREMENTS</RollText>
               <DiagonalArrow size={16} />

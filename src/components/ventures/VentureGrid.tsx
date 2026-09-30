@@ -44,10 +44,10 @@ export default function VentureGrid({ ventures }: VentureGridProps) {
             <button
               key={f}
               onClick={() => setActiveFilter(f)}
-              className={`px-4 py-2 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider border transition-all duration-200 cursor-pointer ${
+              className={`px-4 py-2 rounded-full text-xs font-mono uppercase tracking-wider border transition-all duration-200 cursor-pointer ${
                 activeFilter === f
-                  ? 'bg-slate-950 text-white border-slate-950 shadow-md'
-                  : 'bg-white text-slate-800 border-slate-300 hover:border-slate-900 hover:text-slate-950 shadow-xs'
+                  ? 'bg-gradient-to-r from-[#FF5C00] to-[#FF7A1A] text-white border-[#FFA566]/30 shadow-[0_0_15px_rgba(255,92,0,0.4)] font-bold'
+                  : 'bg-[#0E121E] text-slate-300 border-white/[0.08] hover:border-[#FF5C00]/40 hover:text-white'
               }`}
             >
               {f}
@@ -58,8 +58,8 @@ export default function VentureGrid({ ventures }: VentureGridProps) {
 
       {/* Venture Grid */}
       {filtered.length === 0 ? (
-        <div className="text-center py-16" style={{ color: 'var(--text-muted)' }}>
-          <p className="text-sm font-medium">No ventures match this filter.</p>
+        <div className="text-center py-16 text-slate-400 font-mono text-xs uppercase">
+          <p className="font-medium">No ventures match this filter.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

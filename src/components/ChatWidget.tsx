@@ -892,10 +892,10 @@ export default function ChatWidget() {
         )}
       </AnimatePresence>
 
-      {/* Floating Toggle Button matching SaroHub Theme */}
+      {/* Floating Toggle Button matching Vaboulus Theme */}
       <button
         onClick={toggleWidget}
-        className="relative h-14 w-14 rounded-full bg-black text-white hover:bg-gray-800 hover:scale-105 active:scale-95 transition-all flex items-center justify-center cursor-pointer shadow-2xl border border-white/20"
+        className="relative h-14 w-14 rounded-full bg-gradient-to-r from-[#FF5C00] via-[#FF6C00] to-[#FF8526] text-white hover:scale-105 active:scale-95 transition-all flex items-center justify-center cursor-pointer shadow-[0_0_30px_rgba(255,92,0,0.55)] border border-[#FFA566]/40"
         aria-label="Open support portal"
       >
         <AnimatePresence mode="wait">
@@ -921,8 +921,8 @@ export default function ChatWidget() {
               <MessageSquare className="h-6 w-6 text-white stroke-[2.2]" />
               {hasNewUnread && (
                 <span className="absolute -top-1 -right-1 flex h-3.5 w-3.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-blue-600 border-2 border-white"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF5C00] opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-[#FF5C00] border-2 border-white"></span>
                 </span>
               )}
             </motion.div>

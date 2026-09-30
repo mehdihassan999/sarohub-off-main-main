@@ -202,14 +202,14 @@ export default function EventsView() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-black">
+    <div className="min-h-screen bg-[#08090E] text-white">
       <SEOHead
         title="Corporate Events & Tech Summits | SaroHub Technologies"
         description="Join SaroHub founders, software engineers, and enterprise leaders in keynote summits, technical masterclasses, and developer hackathons."
       />
 
       {/* Top Breadcrumbs */}
-      <div className="border-b border-gray-200 bg-[#FBFBFB]">
+      <div className="border-b border-white/[0.08] bg-[#0A0D15]">
         <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
           <Breadcrumbs
             items={[
@@ -217,66 +217,68 @@ export default function EventsView() {
               { name: 'Events & Webinars', url: '/events', isCurrent: true }
             ]}
           />
-          <span className="hidden sm:inline font-mono text-[11px] uppercase tracking-wider text-gray-500">
+          <span className="hidden sm:inline font-mono text-[11px] uppercase tracking-wider text-slate-400">
             Tech Summits &amp; Forums
           </span>
         </div>
       </div>
 
       {/* Hero Section */}
-      <section className="py-12 lg:py-16 bg-[#FBFBFB] border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="py-14 lg:py-24 bg-[#0A0D15] border-b border-white/[0.08] relative overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-[#FF5C00]/8 blur-[120px] pointer-events-none -z-10" />
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="max-w-3xl">
-            <span className="font-mono text-xs uppercase tracking-widest text-gray-500 mb-2 block">
+            <span className="font-mono text-xs uppercase tracking-widest text-[#FF5C00] mb-3 block flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#FF5C00] animate-pulse" />
               Corporate Engagements &amp; Tech Summits
             </span>
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-normal -tracking-[2px] text-black leading-tight mb-4">
-              Events, Summits &amp; <span className="italic">Masterclasses</span>
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-normal -tracking-[2px] text-white leading-tight mb-4 font-display">
+              Events, Summits &amp; <span className="italic text-[#FF5C00]">Masterclasses</span>
             </h1>
-            <p className="text-sm sm:text-base lg:text-lg text-gray-700 font-normal leading-relaxed">
+            <p className="text-sm sm:text-base lg:text-lg text-slate-400 font-normal leading-relaxed">
               Connect directly with SaroHub venture architects, core system engineers, and technology partners. We host technical deep-dives, developer hackathons, and corporate conferences on scalable digital architecture.
             </p>
           </div>
 
           {/* Quick Stats Grid */}
           <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4">
-            <div className="rounded-3xl border border-gray-200 bg-white p-5 shadow-xs">
-              <span className="text-2xl sm:text-3xl font-bold text-black block">{events.length}</span>
-              <p className="text-xs font-mono text-gray-500 mt-1 uppercase tracking-wider font-medium">Total Scheduled</p>
+            <div className="rounded-3xl border border-white/[0.08] bg-[#0E121E] p-5 shadow-lg">
+              <span className="text-2xl sm:text-3xl font-bold text-white block">{events.length}</span>
+              <p className="text-xs font-mono text-slate-400 mt-1 uppercase tracking-wider font-medium">Total Scheduled</p>
             </div>
-            <div className="rounded-3xl border border-gray-200 bg-white p-5 shadow-xs">
-              <span className="text-2xl sm:text-3xl font-bold text-black block">
+            <div className="rounded-3xl border border-white/[0.08] bg-[#0E121E] p-5 shadow-lg">
+              <span className="text-2xl sm:text-3xl font-bold text-[#FF7A1A] block">
                 {events.filter(e => !parseEventDate(e.event_date).isPast).length}
               </span>
-              <p className="text-xs font-mono text-gray-500 mt-1 uppercase tracking-wider font-medium">Upcoming Sessions</p>
+              <p className="text-xs font-mono text-slate-400 mt-1 uppercase tracking-wider font-medium">Upcoming Sessions</p>
             </div>
-            <div className="rounded-3xl border border-gray-200 bg-white p-5 shadow-xs">
-              <span className="text-2xl sm:text-3xl font-bold text-black block">Hybrid</span>
-              <p className="text-xs font-mono text-gray-500 mt-1 uppercase tracking-wider font-medium">Global Access</p>
+            <div className="rounded-3xl border border-white/[0.08] bg-[#0E121E] p-5 shadow-lg">
+              <span className="text-2xl sm:text-3xl font-bold text-white block">Hybrid</span>
+              <p className="text-xs font-mono text-slate-400 mt-1 uppercase tracking-wider font-medium">Global Access</p>
             </div>
-            <div className="rounded-3xl border border-gray-200 bg-white p-5 shadow-xs">
-              <span className="text-2xl sm:text-3xl font-bold text-black block">Instant</span>
-              <p className="text-xs font-mono text-gray-500 mt-1 uppercase tracking-wider font-medium">Seat Reservation</p>
+            <div className="rounded-3xl border border-white/[0.08] bg-[#0E121E] p-5 shadow-lg">
+              <span className="text-2xl sm:text-3xl font-bold text-white block">Instant</span>
+              <p className="text-xs font-mono text-slate-400 mt-1 uppercase tracking-wider font-medium">Seat Reservation</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Main Events Directory */}
-      <section className="py-12 lg:py-16 bg-white">
+      <section className="py-14 lg:py-20 bg-[#08090E]">
         <div className="max-w-7xl mx-auto px-6">
           
           {/* Filter and Search Bar */}
-          <div className="flex flex-col md:flex-row gap-4 justify-between items-stretch md:items-center bg-[#FBFBFB] border border-gray-200 rounded-3xl p-4 mb-8 shadow-xs">
+          <div className="flex flex-col md:flex-row gap-4 justify-between items-stretch md:items-center bg-[#0E121E] border border-white/[0.08] rounded-3xl p-4 mb-8 shadow-lg">
             {/* Time Filter Pills */}
-            <div className="flex items-center gap-1 p-1 bg-white rounded-full border border-gray-200 overflow-x-auto shadow-xs">
+            <div className="flex items-center gap-1 p-1 bg-[#141828] rounded-full border border-white/10 overflow-x-auto">
               <button
                 type="button"
                 onClick={() => setTimeFilter('all')}
                 className={`px-4 sm:px-5 py-2 rounded-full text-xs font-mono uppercase tracking-wider transition-all cursor-pointer whitespace-nowrap font-medium ${
                   timeFilter === 'all'
-                    ? 'bg-black text-white font-semibold shadow-xs'
-                    : 'text-gray-600 hover:text-black'
+                    ? 'bg-gradient-to-r from-[#FF5C00] to-[#FF7A1A] text-white font-bold shadow-md'
+                    : 'text-slate-400 hover:text-white'
                 }`}
               >
                 All Events ({events.length})
@@ -286,8 +288,8 @@ export default function EventsView() {
                 onClick={() => setTimeFilter('upcoming')}
                 className={`px-4 sm:px-5 py-2 rounded-full text-xs font-mono uppercase tracking-wider transition-all cursor-pointer whitespace-nowrap font-medium ${
                   timeFilter === 'upcoming'
-                    ? 'bg-black text-white font-semibold shadow-xs'
-                    : 'text-gray-600 hover:text-black'
+                    ? 'bg-gradient-to-r from-[#FF5C00] to-[#FF7A1A] text-white font-bold shadow-md'
+                    : 'text-slate-400 hover:text-white'
                 }`}
               >
                 Upcoming ({events.filter(e => !parseEventDate(e.event_date).isPast).length})
@@ -297,8 +299,8 @@ export default function EventsView() {
                 onClick={() => setTimeFilter('past')}
                 className={`px-4 sm:px-5 py-2 rounded-full text-xs font-mono uppercase tracking-wider transition-all cursor-pointer whitespace-nowrap font-medium ${
                   timeFilter === 'past'
-                    ? 'bg-black text-white font-semibold shadow-xs'
-                    : 'text-gray-600 hover:text-black'
+                    ? 'bg-gradient-to-r from-[#FF5C00] to-[#FF7A1A] text-white font-bold shadow-md'
+                    : 'text-slate-400 hover:text-white'
                 }`}
               >
                 Past Archives ({events.filter(e => parseEventDate(e.event_date).isPast).length})
@@ -307,19 +309,19 @@ export default function EventsView() {
 
             {/* Search Input */}
             <div className="relative min-w-[280px]">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-gray-400" />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-slate-500" />
               <input
                 type="text"
                 placeholder="Search by topic, keyword, venue..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full rounded-full bg-white border border-gray-200 pl-11 pr-4 py-2.5 text-xs text-black placeholder-gray-400 focus:outline-none focus:border-black transition-all shadow-xs"
+                className="w-full rounded-full bg-[#141828] border border-white/10 pl-11 pr-4 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#FF5C00] transition-all shadow-inner"
               />
               {searchQuery && (
                 <button
                   type="button"
                   onClick={() => setSearchQuery('')}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-black text-xs font-mono"
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white text-xs font-mono cursor-pointer"
                 >
                   Clear
                 </button>
@@ -329,14 +331,14 @@ export default function EventsView() {
 
           {isLoading ? (
             <div className="py-24 text-center">
-              <div className="inline-block size-8 animate-spin rounded-full border-2 border-black border-t-transparent mb-4" />
-              <p className="text-xs font-mono uppercase tracking-wider text-gray-400">Loading events...</p>
+              <div className="inline-block size-8 animate-spin rounded-full border-2 border-[#FF5C00] border-t-transparent mb-4" />
+              <p className="text-xs font-mono uppercase tracking-wider text-slate-400">Loading events...</p>
             </div>
           ) : filteredEvents.length === 0 ? (
-            <div className="rounded-3xl border border-gray-200 bg-[#FBFBFB] p-12 text-center max-w-md mx-auto shadow-xs">
-              <Calendar className="size-10 text-gray-400 mx-auto mb-3" />
-              <h3 className="text-lg font-bold text-black">No Matching Events Found</h3>
-              <p className="text-xs text-gray-600 mt-2 leading-relaxed font-normal">
+            <div className="rounded-3xl border border-white/[0.08] bg-[#0E121E] p-12 text-center max-w-md mx-auto shadow-xl">
+              <Calendar className="size-10 text-slate-500 mx-auto mb-3" />
+              <h3 className="text-lg font-bold text-white font-display">No Matching Events Found</h3>
+              <p className="text-xs text-slate-400 mt-2 leading-relaxed font-normal">
                 {searchQuery
                   ? `No events match "${searchQuery}". Try a different keyword or reset filters.`
                   : 'There are currently no events matching this filter category.'}
@@ -345,7 +347,7 @@ export default function EventsView() {
                 <button
                   type="button"
                   onClick={() => setSearchQuery('')}
-                  className="mt-6 px-5 py-2.5 rounded-full bg-black text-white text-xs font-mono font-semibold uppercase tracking-wider hover:bg-gray-800 cursor-pointer shadow-xs"
+                  className="mt-6 px-5 py-2.5 rounded-full bg-gradient-to-r from-[#FF5C00] to-[#FF7A1A] text-white text-xs font-mono font-semibold uppercase tracking-wider hover:shadow-[0_0_20px_rgba(255,92,0,0.4)] cursor-pointer"
                 >
                   Reset Search
                 </button>
@@ -360,10 +362,10 @@ export default function EventsView() {
                 return (
                   <div
                     key={event.id}
-                    className="rounded-3xl border border-gray-200 bg-[#FBFBFB] hover:border-black hover:shadow-md transition-all duration-300 overflow-hidden flex flex-col justify-between group shadow-xs"
+                    className="rounded-3xl border border-white/[0.08] bg-[#0E121E] hover:border-[#FF5C00]/40 hover:shadow-[0_0_30px_rgba(255,92,0,0.1)] transition-all duration-300 overflow-hidden flex flex-col justify-between group shadow-xl"
                   >
                     {/* Banner Media */}
-                    <div className="relative h-48 w-full overflow-hidden bg-white border-b border-gray-200">
+                    <div className="relative h-48 w-full overflow-hidden bg-[#141828] border-b border-white/[0.08]">
                       <img
                         src={event.banner_url || 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=800&h=450'}
                         alt={event.title}
@@ -372,19 +374,19 @@ export default function EventsView() {
                       />
 
                       {/* Date Badge */}
-                      <div className="absolute top-3 left-3 rounded-2xl border border-gray-200 bg-white/95 backdrop-blur-xs px-3 py-2 flex flex-col items-center min-w-[50px] shadow-xs">
-                        <span className="text-[10px] font-mono font-bold text-gray-500 uppercase">{dateMeta.month}</span>
-                        <span className="text-lg font-bold text-black leading-none mt-0.5">{dateMeta.day}</span>
+                      <div className="absolute top-3 left-3 rounded-2xl border border-white/10 bg-[#0E121E]/95 backdrop-blur-md px-3 py-2 flex flex-col items-center min-w-[50px] shadow-lg">
+                        <span className="text-[10px] font-mono font-bold text-[#FF7A1A] uppercase">{dateMeta.month}</span>
+                        <span className="text-lg font-bold text-white leading-none mt-0.5">{dateMeta.day}</span>
                       </div>
 
                       {/* Status Pill */}
                       <div className="absolute top-3 right-3">
                         {isPast ? (
-                          <span className="px-3 py-1 rounded-full text-[10px] font-mono uppercase bg-white/95 text-gray-600 border border-gray-200 font-semibold shadow-xs">
+                          <span className="px-3 py-1 rounded-full text-[10px] font-mono uppercase bg-[#141828]/95 text-slate-400 border border-white/10 font-semibold backdrop-blur-md">
                             Past Event
                           </span>
                         ) : (
-                          <span className="px-3 py-1 rounded-full text-[10px] font-mono uppercase font-bold bg-white/95 text-black border border-gray-200 shadow-xs">
+                          <span className="px-3 py-1 rounded-full text-[10px] font-mono uppercase font-bold bg-[#FF5C00]/20 text-[#FF7A1A] border border-[#FF5C00]/40 shadow-sm backdrop-blur-md">
                             RSVP Open
                           </span>
                         )}
@@ -394,29 +396,29 @@ export default function EventsView() {
                     {/* Card Content */}
                     <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
                       <div className="space-y-3">
-                        <div className="flex flex-wrap items-center gap-3 text-xs font-mono text-gray-600 font-medium">
-                          <span className="flex items-center gap-1 text-black font-semibold">
-                            <Clock className="size-3 text-gray-500 shrink-0" />
+                        <div className="flex flex-wrap items-center gap-3 text-xs font-mono text-slate-400 font-medium">
+                          <span className="flex items-center gap-1 text-white font-semibold">
+                            <Clock className="size-3 text-[#FF5C00] shrink-0" />
                             <span className="truncate max-w-[130px]">{dateMeta.full}</span>
                           </span>
                           <span className="flex items-center gap-1">
-                            <MapPin className="size-3 text-gray-500 shrink-0" />
+                            <MapPin className="size-3 text-slate-500 shrink-0" />
                             <span className="truncate max-w-[130px]">{event.venue || 'Hybrid Portal'}</span>
                           </span>
                         </div>
 
-                        <h3 className="text-lg sm:text-xl font-bold text-black group-hover:text-gray-700 transition-colors line-clamp-1 tracking-tight">
+                        <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-[#FF7A1A] transition-colors line-clamp-1 tracking-tight font-display">
                           {event.title}
                         </h3>
 
-                        <p className="text-xs sm:text-sm text-gray-700 leading-relaxed font-normal line-clamp-2">
+                        <p className="text-xs sm:text-sm text-slate-400 leading-relaxed font-normal line-clamp-2">
                           {event.description}
                         </p>
 
                         {event.form_fields && event.form_fields.length > 0 && (
                           <div className="pt-1">
-                            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-gray-200 text-[10px] font-mono uppercase text-gray-700 font-medium shadow-xs">
-                              <FileText className="size-3 text-gray-400 shrink-0" />
+                            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-[10px] font-mono uppercase text-slate-300 font-medium">
+                              <FileText className="size-3 text-[#FF5C00] shrink-0" />
                               <span>{event.form_fields.length} Custom Field{event.form_fields.length === 1 ? '' : 's'}</span>
                             </span>
                           </div>
@@ -424,14 +426,14 @@ export default function EventsView() {
                       </div>
 
                       {/* Card Action Bar */}
-                      <div className="pt-4 border-t border-gray-200 flex items-center justify-between gap-2">
+                      <div className="pt-4 border-t border-white/[0.08] flex items-center justify-between gap-2">
                         <a
                           href={getGoogleCalendarUrl(event)}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="px-3 py-1.5 rounded-full border border-gray-200 bg-white text-[11px] font-mono text-gray-700 font-medium hover:text-black hover:border-black transition-all flex items-center gap-1 cursor-pointer shadow-xs"
+                          className="px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.04] text-[11px] font-mono text-slate-300 font-medium hover:text-white hover:border-[#FF5C00] transition-all flex items-center gap-1 cursor-pointer"
                         >
-                          <Calendar className="size-3 text-gray-400" />
+                          <Calendar className="size-3 text-[#FF5C00]" />
                           <span>Google Cal</span>
                         </a>
 
@@ -443,10 +445,10 @@ export default function EventsView() {
                             setFormErrors({});
                             setSuccessMessage(null);
                           }}
-                          className={`px-5 py-2 rounded-full font-mono text-xs uppercase tracking-wider flex items-center gap-1.5 transition-all cursor-pointer font-semibold shadow-xs ${
+                          className={`px-5 py-2 rounded-full font-mono text-xs uppercase tracking-wider flex items-center gap-1.5 transition-all cursor-pointer font-bold ${
                             isPast
-                              ? 'bg-gray-200 text-gray-800 hover:bg-gray-300'
-                              : 'bg-black text-white hover:bg-gray-800'
+                              ? 'bg-white/10 text-slate-300 hover:bg-white/15'
+                              : 'bg-gradient-to-r from-[#FF5C00] via-[#FF6C00] to-[#FF8526] hover:shadow-[0_0_20px_rgba(255,92,0,0.5)] text-white border border-[#FFA566]/30'
                           }`}
                         >
                           <Ticket className="size-3.5" />
@@ -465,24 +467,24 @@ export default function EventsView() {
       {/* RSVP Registration Modal */}
       <AnimatePresence>
         {selectedEventForRsvp && (
-          <div className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 sm:p-6">
+          <div className="fixed inset-0 z-50 overflow-y-auto bg-black/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-6">
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 15 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 15 }}
               transition={{ duration: 0.22, ease: 'easeOut' }}
-              className="relative border border-gray-200 bg-white w-full max-w-lg sm:max-w-xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] rounded-3xl"
+              className="relative border border-white/[0.12] bg-[#0E121E] w-full max-w-lg sm:max-w-xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] rounded-3xl"
             >
               {/* Modal Header */}
-              <div className="p-6 border-b border-gray-200 bg-[#FBFBFB] flex items-start justify-between gap-4">
+              <div className="p-6 border-b border-white/[0.08] bg-[#141828] flex items-start justify-between gap-4">
                 <div className="space-y-1">
-                  <span className="font-mono text-[10px] uppercase tracking-wider text-gray-500 block">
+                  <span className="font-mono text-[10px] uppercase tracking-wider text-[#FF7A1A] block font-bold">
                     Seat Reservation Pass
                   </span>
-                  <h3 className="text-xl font-normal text-black leading-snug">
+                  <h3 className="text-xl font-normal text-white leading-snug font-display">
                     {selectedEventForRsvp.title}
                   </h3>
-                  <div className="flex flex-wrap items-center gap-3 text-xs font-mono text-gray-500 pt-1">
+                  <div className="flex flex-wrap items-center gap-3 text-xs font-mono text-slate-400 pt-1">
                     <span>{parseEventDate(selectedEventForRsvp.event_date).full}</span>
                     <span>&bull;</span>
                     <span>{selectedEventForRsvp.venue}</span>
@@ -491,7 +493,7 @@ export default function EventsView() {
 
                 <button
                   onClick={() => setSelectedEventForRsvp(null)}
-                  className="size-8 rounded-full bg-white border border-gray-200 text-gray-500 hover:text-black hover:border-black flex items-center justify-center transition-all cursor-pointer shrink-0"
+                  className="size-8 rounded-full bg-white/[0.05] border border-white/10 text-slate-400 hover:text-white hover:border-[#FF5C00] flex items-center justify-center transition-all cursor-pointer shrink-0"
                 >
                   <X className="size-4" />
                 </button>
@@ -501,46 +503,46 @@ export default function EventsView() {
               <div className="flex-1 overflow-y-auto p-6 space-y-4">
                 {successMessage ? (
                   <div className="py-6 space-y-6 text-center">
-                    <div className="mx-auto size-14 rounded-full bg-[#FBFBFB] border border-gray-200 flex items-center justify-center text-black">
+                    <div className="mx-auto size-14 rounded-full bg-[#FF5C00]/10 border border-[#FF5C00]/30 flex items-center justify-center text-[#FF5C00]">
                       <CheckCircle2 className="size-7" />
                     </div>
 
                     <div className="space-y-2">
-                      <h4 className="text-2xl font-normal text-black">
+                      <h4 className="text-2xl font-normal text-white font-display">
                         Seat Reserved Successfully
                       </h4>
-                      <p className="text-sm text-gray-600 max-w-md mx-auto leading-relaxed font-normal">
+                      <p className="text-sm text-slate-400 max-w-md mx-auto leading-relaxed font-normal">
                         {successMessage}
                       </p>
                     </div>
 
                     {/* Pass Details */}
-                    <div className="bg-[#FBFBFB] border border-gray-200 rounded-3xl p-6 text-left space-y-3 max-w-md mx-auto">
-                      <div className="flex items-center justify-between border-b border-gray-200 pb-3">
-                        <span className="text-xs font-mono text-gray-400 uppercase tracking-widest">Digital Pass</span>
-                        <span className="text-xs font-mono px-3 py-1 bg-black text-white rounded-full font-semibold">
+                    <div className="bg-[#141828] border border-white/[0.08] rounded-3xl p-6 text-left space-y-3 max-w-md mx-auto">
+                      <div className="flex items-center justify-between border-b border-white/[0.08] pb-3">
+                        <span className="text-xs font-mono text-slate-400 uppercase tracking-widest">Digital Pass</span>
+                        <span className="text-xs font-mono px-3 py-1 bg-gradient-to-r from-[#FF5C00] to-[#FF7A1A] text-white rounded-full font-bold">
                           CONFIRMED
                         </span>
                       </div>
 
                       <div>
-                        <p className="text-[10px] text-gray-400 uppercase font-mono">Event</p>
-                        <p className="text-sm font-semibold text-black">{selectedEventForRsvp.title}</p>
+                        <p className="text-[10px] text-slate-400 uppercase font-mono">Event</p>
+                        <p className="text-sm font-semibold text-white">{selectedEventForRsvp.title}</p>
                       </div>
 
                       <div className="grid grid-cols-2 gap-3 pt-1">
                         <div>
-                          <p className="text-[10px] text-gray-400 uppercase font-mono">Attendee</p>
-                          <p className="text-xs font-semibold text-black truncate">{rsvpPayload.applicant_name}</p>
+                          <p className="text-[10px] text-slate-400 uppercase font-mono">Attendee</p>
+                          <p className="text-xs font-semibold text-white truncate">{rsvpPayload.applicant_name}</p>
                         </div>
                         <div>
-                          <p className="text-[10px] text-gray-400 uppercase font-mono">Date</p>
-                          <p className="text-xs font-semibold text-black truncate">{parseEventDate(selectedEventForRsvp.event_date).full}</p>
+                          <p className="text-[10px] text-slate-400 uppercase font-mono">Date</p>
+                          <p className="text-xs font-semibold text-white truncate">{parseEventDate(selectedEventForRsvp.event_date).full}</p>
                         </div>
                       </div>
 
-                      <div className="pt-3 border-t border-gray-200 text-xs font-mono text-gray-600 flex items-center gap-1.5">
-                        <Mail className="size-3.5 text-gray-400 shrink-0" />
+                      <div className="pt-3 border-t border-white/[0.08] text-xs font-mono text-slate-400 flex items-center gap-1.5">
+                        <Mail className="size-3.5 text-[#FF5C00] shrink-0" />
                         <span className="truncate">Sent to: {rsvpPayload.applicant_email}</span>
                       </div>
                     </div>
@@ -550,13 +552,13 @@ export default function EventsView() {
                         href={getGoogleCalendarUrl(selectedEventForRsvp)}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="px-6 py-2.5 rounded-full border border-gray-200 text-xs font-mono uppercase tracking-wider text-black hover:border-black transition-all"
+                        className="px-6 py-2.5 rounded-full border border-white/10 text-xs font-mono uppercase tracking-wider text-slate-300 hover:text-white hover:border-[#FF5C00] bg-white/[0.04] transition-all"
                       >
                         Add to Calendar
                       </a>
                       <button
                         onClick={() => setSelectedEventForRsvp(null)}
-                        className="px-6 py-2.5 bg-black text-white rounded-full text-xs font-mono uppercase tracking-wider hover:bg-gray-800 transition-all cursor-pointer"
+                        className="px-6 py-2.5 bg-gradient-to-r from-[#FF5C00] to-[#FF7A1A] text-white rounded-full text-xs font-mono uppercase tracking-wider font-bold hover:shadow-[0_0_20px_rgba(255,92,0,0.5)] transition-all cursor-pointer"
                       >
                         Done / Close
                       </button>
@@ -565,60 +567,60 @@ export default function EventsView() {
                 ) : (
                   <form onSubmit={handleRsvpSubmit} className="space-y-4">
                     {formErrors.global && (
-                      <div className="p-4 bg-red-50 border border-red-200 rounded-2xl text-red-700 text-xs flex items-center gap-2">
-                        <AlertCircle className="size-4 text-red-500 shrink-0" />
+                      <div className="p-4 bg-rose-950/40 border border-rose-500/30 rounded-2xl text-rose-300 text-xs flex items-center gap-2">
+                        <AlertCircle className="size-4 text-rose-400 shrink-0" />
                         <span>{formErrors.global}</span>
                       </div>
                     )}
 
                     <div className="space-y-4">
                       <div>
-                        <label className="block text-xs font-mono uppercase tracking-wider text-gray-600 mb-1.5 font-semibold">
+                        <label className="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-1.5 font-semibold">
                           Attendee Full Name *
                         </label>
                         <div className="relative">
-                          <User className="size-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
+                          <User className="size-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" />
                           <input
                             type="text"
                             required
                             value={rsvpPayload.applicant_name}
                             onChange={(e) => setRsvpPayload({ ...rsvpPayload, applicant_name: e.target.value })}
                             placeholder="Your Full Name"
-                            className="w-full text-xs bg-[#FBFBFB] border border-gray-200 rounded-2xl pl-10 pr-4 py-3 text-black placeholder-gray-400 focus:outline-none focus:border-black transition-all"
+                            className="w-full text-xs bg-[#141828] border border-white/10 rounded-2xl pl-10 pr-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-[#FF5C00] transition-all"
                           />
                         </div>
                         {formErrors.applicant_name && (
-                          <span className="text-[10px] text-red-500 mt-1 block font-mono">{formErrors.applicant_name}</span>
+                          <span className="text-[10px] text-rose-400 mt-1 block font-mono">{formErrors.applicant_name}</span>
                         )}
                       </div>
 
                       <div>
-                        <label className="block text-xs font-mono uppercase tracking-wider text-gray-600 mb-1.5 font-semibold">
+                        <label className="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-1.5 font-semibold">
                           Work / Primary Email Address *
                         </label>
                         <div className="relative">
-                          <Mail className="size-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
+                          <Mail className="size-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" />
                           <input
                             type="email"
                             required
                             value={rsvpPayload.applicant_email}
                             onChange={(e) => setRsvpPayload({ ...rsvpPayload, applicant_email: e.target.value })}
                             placeholder="you@company.com"
-                            className="w-full text-xs bg-[#FBFBFB] border border-gray-200 rounded-2xl pl-10 pr-4 py-3 text-black placeholder-gray-400 focus:outline-none focus:border-black transition-all"
+                            className="w-full text-xs bg-[#141828] border border-white/10 rounded-2xl pl-10 pr-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-[#FF5C00] transition-all"
                           />
                         </div>
                         {formErrors.applicant_email && (
-                          <span className="text-[10px] text-red-500 mt-1 block font-mono">{formErrors.applicant_email}</span>
+                          <span className="text-[10px] text-rose-400 mt-1 block font-mono">{formErrors.applicant_email}</span>
                         )}
                       </div>
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-xs font-mono uppercase tracking-wider text-gray-600 mb-1.5 font-semibold">
+                          <label className="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-1.5 font-semibold">
                             Phone (Optional)
                           </label>
                           <div className="relative">
-                            <Phone className="size-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
+                            <Phone className="size-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" />
                             <input
                               type="tel"
                               value={rsvpPayload.form_data['phone'] || ''}
@@ -627,17 +629,17 @@ export default function EventsView() {
                                 form_data: { ...prev.form_data, phone: e.target.value }
                               }))}
                               placeholder="+1 (555) 019-2834"
-                              className="w-full text-xs bg-[#FBFBFB] border border-gray-200 rounded-2xl pl-10 pr-4 py-3 text-black placeholder-gray-400 focus:outline-none focus:border-black transition-all"
+                              className="w-full text-xs bg-[#141828] border border-white/10 rounded-2xl pl-10 pr-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-[#FF5C00] transition-all"
                             />
                           </div>
                         </div>
 
                         <div>
-                          <label className="block text-xs font-mono uppercase tracking-wider text-gray-600 mb-1.5 font-semibold">
+                          <label className="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-1.5 font-semibold">
                             Company (Optional)
                           </label>
                           <div className="relative">
-                            <Building2 className="size-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
+                            <Building2 className="size-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" />
                             <input
                               type="text"
                               value={rsvpPayload.form_data['organization'] || ''}
@@ -646,7 +648,7 @@ export default function EventsView() {
                                 form_data: { ...prev.form_data, organization: e.target.value }
                               }))}
                               placeholder="Acme Corp"
-                              className="w-full text-xs bg-[#FBFBFB] border border-gray-200 rounded-2xl pl-10 pr-4 py-3 text-black placeholder-gray-400 focus:outline-none focus:border-black transition-all"
+                              className="w-full text-xs bg-[#141828] border border-white/10 rounded-2xl pl-10 pr-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-[#FF5C00] transition-all"
                             />
                           </div>
                         </div>
@@ -655,12 +657,12 @@ export default function EventsView() {
 
                     {/* Dynamic Fields */}
                     {selectedEventForRsvp.form_fields && selectedEventForRsvp.form_fields.length > 0 && (
-                      <div className="pt-4 border-t border-gray-200 space-y-3">
-                        <span className="font-mono text-xs uppercase tracking-wider text-gray-500 block">
+                      <div className="pt-4 border-t border-white/[0.08] space-y-3">
+                        <span className="font-mono text-xs uppercase tracking-wider text-[#FF7A1A] block font-semibold">
                           Event Requirements ({selectedEventForRsvp.form_fields.length})
                         </span>
 
-                        <div className="space-y-3 bg-[#FBFBFB] p-4 rounded-3xl border border-gray-200">
+                        <div className="space-y-3 bg-[#141828] p-4 rounded-3xl border border-white/[0.08]">
                           {selectedEventForRsvp.form_fields.map((field: any) => (
                             <div key={field.id} className="space-y-1">
                               <DynamicFormField
@@ -682,7 +684,7 @@ export default function EventsView() {
                                     return { ...prev, form_data: nextFormData };
                                   });
                                 }}
-                                darkTheme={false}
+                                darkTheme={true}
                               />
                             </div>
                           ))}
@@ -690,24 +692,24 @@ export default function EventsView() {
                       </div>
                     )}
 
-                    <div className="pt-2 flex items-center gap-2 text-xs text-gray-500 font-mono">
-                      <ShieldCheck className="size-4 text-black shrink-0" />
+                    <div className="pt-2 flex items-center gap-2 text-xs text-slate-400 font-mono">
+                      <ShieldCheck className="size-4 text-[#FF5C00] shrink-0" />
                       <span>Instant confirmation pass delivered directly to your inbox.</span>
                     </div>
 
                     {/* Footer Actions */}
-                    <div className="pt-4 border-t border-gray-200 flex items-center justify-end gap-3">
+                    <div className="pt-4 border-t border-white/[0.08] flex items-center justify-end gap-3">
                       <button
                         type="button"
                         onClick={() => setSelectedEventForRsvp(null)}
-                        className="px-5 py-2.5 rounded-full border border-gray-200 text-xs font-mono uppercase tracking-wider text-gray-600 hover:text-black hover:border-black transition-all cursor-pointer"
+                        className="px-5 py-2.5 rounded-full border border-white/10 text-xs font-mono uppercase tracking-wider text-slate-400 hover:text-white hover:border-[#FF5C00] transition-all cursor-pointer"
                       >
                         Cancel
                       </button>
                       <button
                         type="submit"
                         disabled={isSubmitting || !!uploadingFieldId}
-                        className="px-7 py-3 rounded-full bg-black text-white text-xs font-mono uppercase tracking-wider disabled:opacity-50 flex items-center gap-2 cursor-pointer hover:bg-gray-800 transition-all"
+                        className="px-7 py-3 rounded-full bg-gradient-to-r from-[#FF5C00] via-[#FF6C00] to-[#FF8526] text-white text-xs font-mono uppercase tracking-wider disabled:opacity-50 flex items-center gap-2 cursor-pointer hover:shadow-[0_0_20px_rgba(255,92,0,0.5)] transition-all font-bold border border-[#FFA566]/30"
                       >
                         {isSubmitting ? (
                           <>

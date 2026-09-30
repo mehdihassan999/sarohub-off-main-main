@@ -170,30 +170,31 @@ export default function FeaturedProjects({ projects: incomingProjects }: Project
   const totalCount = filteredProjects.length;
 
   return (
-    <section id="selected-client-work" className="py-12 lg:py-16 bg-white border-b border-gray-200">
+    <section id="selected-client-work" className="py-14 lg:py-20 bg-[#08090E] border-b border-white/[0.08]">
       <div className="max-w-7xl mx-auto px-6">
         
-        {/* NexStudio Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8 pb-6 border-b border-gray-200">
+        {/* Section Header */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8 pb-6 border-b border-white/[0.08]">
           <div>
-            <span className="font-mono text-xs uppercase tracking-widest text-gray-500 mb-2 block">
+            <span className="font-mono text-xs uppercase tracking-widest text-[#FF5C00] mb-2 block flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#FF5C00] animate-pulse" />
               Portfolio &amp; Case Studies
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal -tracking-[1.8px] text-black">
-              Selected Client <span className="italic">Work</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal -tracking-[1.8px] text-white">
+              Selected Client <span className="italic text-[#FF5C00]">Work</span>
             </h2>
           </div>
 
           {/* View Mode Toggle and Carousel Arrows */}
           <div className="flex items-center gap-3 shrink-0">
-            <div className="flex items-center p-1 rounded-full bg-gray-100 text-xs font-mono uppercase">
+            <div className="flex items-center p-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono uppercase">
               <button
                 type="button"
                 onClick={() => setViewMode('grid')}
                 className={`flex items-center gap-1.5 px-4 py-2 rounded-full transition-all cursor-pointer ${
                   viewMode === 'grid'
-                    ? 'bg-black text-white'
-                    : 'text-gray-700 hover:text-black'
+                    ? 'bg-gradient-to-r from-[#FF5C00] to-[#FF7A1A] text-white font-bold shadow-[0_0_15px_rgba(255,92,0,0.4)]'
+                    : 'text-slate-300 hover:text-white'
                 }`}
               >
                 <LayoutGrid className="size-3.5" />
@@ -204,8 +205,8 @@ export default function FeaturedProjects({ projects: incomingProjects }: Project
                 onClick={() => setViewMode('carousel')}
                 className={`flex items-center gap-1.5 px-4 py-2 rounded-full transition-all cursor-pointer ${
                   viewMode === 'carousel'
-                    ? 'bg-black text-white'
-                    : 'text-gray-700 hover:text-black'
+                    ? 'bg-gradient-to-r from-[#FF5C00] to-[#FF7A1A] text-white font-bold shadow-[0_0_15px_rgba(255,92,0,0.4)]'
+                    : 'text-slate-300 hover:text-white'
                 }`}
               >
                 <Layers className="size-3.5" />
@@ -219,8 +220,8 @@ export default function FeaturedProjects({ projects: incomingProjects }: Project
                   type="button"
                   onClick={() => handleScroll('left')}
                   disabled={!canScrollLeft}
-                  className={`size-10 rounded-full border border-gray-200 flex items-center justify-center transition-all ${
-                    canScrollLeft ? 'bg-white hover:bg-black hover:text-white cursor-pointer shadow-xs' : 'opacity-30 cursor-not-allowed'
+                  className={`size-10 rounded-full border border-white/15 flex items-center justify-center transition-all ${
+                    canScrollLeft ? 'bg-black/80 hover:bg-[#FF5C00] text-white cursor-pointer shadow-lg' : 'opacity-30 cursor-not-allowed text-slate-500'
                   }`}
                 >
                   <ChevronLeft className="size-4" />
@@ -229,8 +230,8 @@ export default function FeaturedProjects({ projects: incomingProjects }: Project
                   type="button"
                   onClick={() => handleScroll('right')}
                   disabled={!canScrollRight}
-                  className={`size-10 rounded-full border border-gray-200 flex items-center justify-center transition-all ${
-                    canScrollRight ? 'bg-white hover:bg-black hover:text-white cursor-pointer shadow-xs' : 'opacity-30 cursor-not-allowed'
+                  className={`size-10 rounded-full border border-white/15 flex items-center justify-center transition-all ${
+                    canScrollRight ? 'bg-black/80 hover:bg-[#FF5C00] text-white cursor-pointer shadow-lg' : 'opacity-30 cursor-not-allowed text-slate-500'
                   }`}
                 >
                   <ChevronRight className="size-4" />
@@ -247,10 +248,10 @@ export default function FeaturedProjects({ projects: incomingProjects }: Project
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-4 py-2 rounded-full text-xs font-mono uppercase tracking-wider transition-all cursor-pointer font-medium ${
+                className={`px-4 py-2 rounded-full text-xs font-mono uppercase tracking-wider transition-all cursor-pointer font-medium border ${
                   activeCategory === cat
-                    ? 'bg-black text-white shadow-xs'
-                    : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
+                    ? 'bg-gradient-to-r from-[#FF5C00] to-[#FF7A1A] border-[#FFA566]/30 text-white font-bold shadow-[0_0_15px_rgba(255,92,0,0.4)]'
+                    : 'bg-white/[0.04] text-slate-300 hover:bg-white/[0.08] border-white/10'
                 }`}
               >
                 {cat}
@@ -261,7 +262,7 @@ export default function FeaturedProjects({ projects: incomingProjects }: Project
 
         {/* Projects Layout */}
         {filteredProjects.length === 0 ? (
-          <div className="text-center py-20 bg-[#FBFBFB] rounded-3xl border border-gray-200 font-mono text-xs text-gray-500 uppercase">
+          <div className="text-center py-20 bg-[#0E121E] rounded-3xl border border-white/[0.08] font-mono text-xs text-slate-400 uppercase">
             No projects registered in this vertical yet.
           </div>
         ) : viewMode === 'grid' ? (

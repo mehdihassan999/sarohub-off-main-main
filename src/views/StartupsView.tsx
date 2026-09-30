@@ -85,28 +85,30 @@ export default function StartupsView() {
   ];
 
   return (
-    <div className="relative min-h-screen bg-white">
+    <div className="relative min-h-screen bg-[#08090E] text-white">
       <SEOHead
         title="Startups & MVP Engineering | From Idea to MVP | SaroHub Technologies"
         description="We partner with startup founders to turn ideas into scalable MVPs. Full-stack development, UI/UX, SaaS architecture, and launch strategy."
       />
 
-      {/* Hero Header - NexStudio Style */}
-      <div className="py-20 lg:py-28 border-b border-gray-200 text-center bg-white">
-        <div className="max-w-7xl mx-auto px-6">
+      {/* Hero Header */}
+      <div className="py-20 lg:py-28 border-b border-white/[0.08] text-center bg-[#0A0D15] relative overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-[#FF5C00]/8 blur-[120px] pointer-events-none -z-10" />
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="mb-6 flex justify-center">
             <Breadcrumbs items={[{ label: 'Startups', path: '/startups' }]} />
           </div>
 
-          <span className="font-mono text-xs uppercase tracking-widest text-gray-500 mb-4 block">
+          <span className="font-mono text-xs uppercase tracking-widest text-[#FF5C00] mb-4 block flex items-center justify-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#FF5C00] animate-pulse" />
             Startup Engineering &amp; MVP Sprints
           </span>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-normal -tracking-[2px] text-black mb-6 leading-tight">
-            From Idea to <span className="italic">Production MVP</span>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-normal -tracking-[2px] text-white mb-6 leading-tight font-display">
+            From Idea to <span className="italic text-[#FF5C00]">Production MVP</span>
           </h1>
 
-          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed font-normal mb-10">
+          <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed font-normal mb-10">
             We partner with visionary founders to build production-ready digital products. We bring product strategy, robust engineering, and venture-building experience to turn your vision into a scalable reality.
           </p>
 
@@ -114,7 +116,7 @@ export default function StartupsView() {
             <Link
               to="/contact?type=startup"
               id="startups-hero-cta"
-              className="px-8 py-4 bg-black hover:bg-gray-800 text-white font-mono text-xs uppercase tracking-wider rounded-full transition-all flex items-center justify-center gap-2"
+              className="px-8 py-4 bg-gradient-to-r from-[#FF5C00] via-[#FF6C00] to-[#FF8526] hover:shadow-[0_0_24px_rgba(255,92,0,0.5)] text-white font-mono text-xs uppercase tracking-wider rounded-full transition-all flex items-center justify-center gap-2 font-bold border border-[#FFA566]/30 cursor-pointer"
             >
               <RollText>BUILD YOUR MVP</RollText>
               <DiagonalArrow size={16} />
@@ -122,7 +124,7 @@ export default function StartupsView() {
 
             <Link
               to="/ventures"
-              className="px-8 py-4 border border-gray-200 hover:border-black text-black font-mono text-xs uppercase tracking-wider rounded-full transition-all"
+              className="px-8 py-4 border border-white/15 bg-white/[0.05] hover:bg-white/[0.1] hover:border-[#FF5C00]/50 text-white font-mono text-xs uppercase tracking-wider rounded-full transition-all font-semibold"
             >
               Explore In-House Ventures
             </Link>
@@ -131,15 +133,15 @@ export default function StartupsView() {
       </div>
 
       {/* The 6-Stage Process */}
-      <div className="max-w-7xl mx-auto px-6 py-20 lg:py-28 border-b border-gray-200">
+      <div className="max-w-7xl mx-auto px-6 py-20 lg:py-28 border-b border-white/[0.08]">
         <div className="max-w-3xl mb-16">
-          <span className="font-mono text-xs uppercase tracking-widest text-gray-500 mb-3 block">
+          <span className="font-mono text-xs uppercase tracking-widest text-[#FF5C00] mb-3 block font-semibold">
             The Startup Lifecycle
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal -tracking-[1.5px] text-black mb-4">
-            How We Take You From <span className="italic">Concept to Market</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal -tracking-[1.5px] text-white mb-4">
+            How We Take You From <span className="italic text-[#FF5C00]">Concept to Market</span>
           </h2>
-          <p className="text-gray-600 text-base font-normal leading-relaxed">
+          <p className="text-slate-300 text-base font-normal leading-relaxed">
             Building an MVP is not about cutting corners—it is about rigorous prioritization. Our 6-stage framework gets you to market swiftly while preserving clean architecture for future scale.
           </p>
         </div>
@@ -150,23 +152,23 @@ export default function StartupsView() {
             return (
               <div
                 key={step.phase}
-                className="p-8 rounded-3xl border border-gray-200 bg-[#FBFBFB] hover:border-black transition-all duration-300 flex flex-col justify-between group"
+                className="p-8 rounded-3xl border border-white/[0.08] bg-[#0E121E] hover:border-[#FF5C00]/40 hover:shadow-[0_12px_35px_rgba(0,0,0,0.7),0_0_20px_rgba(255,92,0,0.15)] transition-all duration-300 flex flex-col justify-between group shadow-lg"
               >
                 <div>
                   <div className="flex items-center justify-between mb-6">
-                    <div className="size-12 rounded-2xl border border-gray-200 bg-white flex items-center justify-center text-black">
+                    <div className="size-12 rounded-2xl border border-white/10 bg-[#141A2E] flex items-center justify-center text-[#FF5C00] shadow-xs">
                       <Icon className="size-5 stroke-[1.8]" />
                     </div>
-                    <span className="text-2xl font-mono font-normal text-gray-400">
+                    <span className="text-2xl font-mono font-bold text-[#FF5C00]/70">
                       {step.phase}
                     </span>
                   </div>
 
-                  <h3 className="text-xl font-normal -tracking-[0.5px] text-black mb-2">
+                  <h3 className="text-xl font-normal -tracking-[0.5px] text-white mb-2">
                     {step.title}
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-gray-600 leading-relaxed font-normal">
+                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
                     {step.description}
                   </p>
                 </div>
@@ -177,15 +179,15 @@ export default function StartupsView() {
       </div>
 
       {/* Services for Startups */}
-      <div className="max-w-7xl mx-auto px-6 py-20 lg:py-28 border-b border-gray-200">
+      <div className="max-w-7xl mx-auto px-6 py-20 lg:py-28 border-b border-white/[0.08]">
         <div className="max-w-3xl mb-16">
-          <span className="font-mono text-xs uppercase tracking-widest text-gray-500 mb-3 block">
+          <span className="font-mono text-xs uppercase tracking-widest text-[#FF5C00] mb-3 block font-semibold">
             Startup Capabilities
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal -tracking-[1.5px] text-black mb-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal -tracking-[1.5px] text-white mb-4">
             Services Built for High-Growth Founders
           </h2>
-          <p className="text-gray-600 text-base font-normal leading-relaxed">
+          <p className="text-slate-300 text-base font-normal leading-relaxed">
             Everything your early-stage company needs under one roof. No juggling separate freelancers, designers, and DevOps engineers.
           </p>
         </div>
@@ -194,13 +196,13 @@ export default function StartupsView() {
           {startupServices.map((srv, idx) => (
             <div
               key={idx}
-              className="p-7 rounded-3xl border border-gray-200 bg-[#FBFBFB] hover:border-black transition-all duration-200"
+              className="p-7 rounded-3xl border border-white/[0.08] bg-[#0E121E] hover:border-[#FF5C00]/40 transition-all duration-200 shadow-md"
             >
-              <div className="size-2 rounded-full bg-black mb-5" />
-              <h3 className="text-lg font-normal text-black mb-2">
+              <div className="size-2 rounded-full bg-[#FF5C00] mb-5 shadow-[0_0_8px_#FF5C00]" />
+              <h3 className="text-lg font-normal text-white mb-2">
                 {srv.title}
               </h3>
-              <p className="text-xs text-gray-600 leading-relaxed font-normal">
+              <p className="text-xs text-slate-300 leading-relaxed font-normal">
                 {srv.desc}
               </p>
             </div>
@@ -210,16 +212,16 @@ export default function StartupsView() {
 
       {/* Why Founders Choose SaroHub */}
       <div className="max-w-7xl mx-auto px-6 py-20 lg:py-28">
-        <div className="rounded-3xl border border-gray-200 bg-[#FBFBFB] p-8 sm:p-14 lg:p-16">
+        <div className="rounded-3xl border border-white/[0.08] bg-[#0E121E] p-8 sm:p-14 lg:p-16 shadow-2xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-7 space-y-6">
-              <span className="font-mono text-xs uppercase tracking-widest text-gray-500 mb-2 block">
+              <span className="font-mono text-xs uppercase tracking-widest text-[#FF5C00] mb-2 block font-semibold">
                 The Founder Advantage
               </span>
-              <h2 className="text-3xl sm:text-4xl font-normal -tracking-[1px] text-black">
+              <h2 className="text-3xl sm:text-4xl font-normal -tracking-[1px] text-white">
                 We Build Ventures Ourselves
               </h2>
-              <p className="text-sm sm:text-base text-gray-600 leading-relaxed font-normal">
+              <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
                 Unlike outsourced dev shops that only charge for hours, SaroHub is an active venture builder. We develop and scale our own commercial software products. That means we treat your unit economics, customer acquisition friction, and cloud burn with the same seriousness we apply to our own ventures.
               </p>
 
@@ -230,26 +232,26 @@ export default function StartupsView() {
                   'Pragmatic AI features that provide real market differentiation',
                   'Flexible sprint arrangements designed around your runway'
                 ].map((point, i) => (
-                  <div key={i} className="flex items-center gap-3 text-xs sm:text-sm text-gray-700 font-normal">
-                    <CheckCircle2 className="size-4 text-black shrink-0" />
+                  <div key={i} className="flex items-center gap-3 text-xs sm:text-sm text-slate-200 font-normal">
+                    <CheckCircle2 className="size-4 text-[#FF5C00] shrink-0" />
                     <span>{point}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="lg:col-span-5 p-8 sm:p-10 rounded-3xl border border-gray-200 bg-white text-center space-y-6 shadow-sm">
-              <Sparkles className="size-10 text-black mx-auto" />
-              <h3 className="text-2xl font-normal -tracking-[0.5px] text-black">
+            <div className="lg:col-span-5 p-8 sm:p-10 rounded-3xl border border-white/[0.08] bg-[#141A2E] text-center space-y-6 shadow-xl">
+              <Sparkles className="size-10 text-[#FF5C00] mx-auto animate-pulse" />
+              <h3 className="text-2xl font-normal -tracking-[0.5px] text-white">
                 Ready to Turn Your Idea Into Reality?
               </h3>
-              <p className="text-xs sm:text-sm text-gray-600 font-normal leading-relaxed">
+              <p className="text-xs sm:text-sm text-slate-300 font-normal leading-relaxed">
                 Book a confidential 30-minute discovery session with our senior technical leadership.
               </p>
               <Link
                 to="/contact?type=startup"
                 id="startups-box-cta"
-                className="inline-flex items-center justify-center gap-2 w-full py-4 px-6 rounded-full bg-black text-white hover:bg-gray-800 font-mono text-xs uppercase tracking-wider transition-all"
+                className="inline-flex items-center justify-center gap-2 w-full py-4 px-6 rounded-full bg-gradient-to-r from-[#FF5C00] via-[#FF6C00] to-[#FF8526] hover:shadow-[0_0_24px_rgba(255,92,0,0.5)] text-white font-mono text-xs uppercase tracking-wider transition-all font-bold border border-[#FFA566]/30 cursor-pointer"
               >
                 <RollText>BUILD YOUR MVP</RollText>
                 <DiagonalArrow size={16} />

@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,400..800;1,400..800&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-mono: "Anonymous Pro", ui-monospace, SFMono-Regular, monospace;
+  --font-sans: "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", "Anonymous Pro", ui-monospace, SFMono-Regular, monospace;
 }
 
 html {
@@ -11,33 +11,39 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  background-color: #08090E;
+  color: #CBD5E1;
 }
 
 body {
   font-size: 1rem;
   line-height: 1.6;
+  background-color: #08090E;
+  color: #CBD5E1;
+  overflow-x: hidden;
 }
 
-/* NexStudio custom scrollbar */
+/* Vaboulus custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #08090E;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #000000;
+  background: #1B2032;
   border-radius: 9999px;
+  border: 2px solid #08090E;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #333333;
+  background: #FF5C00;
 }
 
-/* NexStudio infinite scroll marquee */
+/* Vaboulus infinite scroll marquee */
 @keyframes infinite-scroll {
   0% { transform: translateX(0); }
   to { transform: translateX(-50%); }
@@ -53,35 +59,45 @@ body {
 
 /* Modern clean card styles */
 .glass {
-  background: #ffffff !important;
-  border: 1px solid #e5e7eb !important;
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.04) !important;
+  background: rgba(14, 18, 30, 0.85) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.5) !important;
 }
 
 .glass-accent {
-  background: #f9fafb !important;
-  border: 1px solid #000000 !important;
+  background: #131828 !important;
+  border: 1px solid #FF5C00 !important;
 }
 
-/* Form element premium styling */
+/* Form element premium styling for Vaboulus theme */
 input, textarea, select {
-  background: #ffffff !important;
-  border: 1px solid #e5e7eb !important;
-  color: #000000 !important;
-  border-radius: 0.5rem !important;
+  background: #0E121E !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: #FFFFFF !important;
+  border-radius: 0.625rem !important;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 input:focus, textarea:focus, select:focus {
-  border-color: #000000 !important;
-  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1) !important;
+  border-color: #FF5C00 !important;
+  box-shadow: 0 0 0 2px rgba(255, 92, 0, 0.25) !important;
   outline: none !important;
 }
 
-/* Grid backgrounds & custom animations */
-.grid-bg {
-  background-image: radial-gradient(#e5e7eb 1.2px, transparent 1.2px);
-  background-size: 24px 24px;
+input::placeholder, textarea::placeholder {
+  color: #64748B !important;
+}
+
+/* Vaboulus Grid background */
+.grid-bg, .vaboulus-grid-bg {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1.2px, transparent 1.2px);
+  background-size: 28px 28px;
+}
+
+.vaboulus-ambient-glow {
+  background: radial-gradient(circle at 50% 0%, rgba(255, 92, 0, 0.14) 0%, rgba(255, 92, 0, 0.04) 40%, transparent 75%);
 }
 
 .premium-card-hover {
@@ -89,8 +105,8 @@ input:focus, textarea:focus, select:focus {
 }
 .premium-card-hover:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.08) !important;
-  border-color: #000000 !important;
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.7), 0 0 24px -4px rgba(255, 92, 0, 0.2) !important;
+  border-color: rgba(255, 92, 0, 0.45) !important;
 }
 
 @keyframes marquee {
@@ -107,148 +123,255 @@ input:focus, textarea:focus, select:focus {
 }
 
 /* ==========================================
-   NEXSTUDIO THEME CONFIGURATION
+   VABOULUS THEME CONFIGURATION (DEFAULT)
    ========================================== */
 
 :root {
-  --bg-app: #ffffff;
-  --bg-card: #ffffff;
-  --bg-card-hover: #f9fafb;
-  --text-main: #000000;
-  --text-body: #374151;
-  --text-muted: #6b7280;
-  --border-app: #e5e7eb;
-  --border-focus: #000000;
-  --input-bg: #ffffff;
-  --input-border: #e5e7eb;
-  --input-text: #000000;
-  --shadow-color: rgba(0, 0, 0, 0.05);
-  --grid-dot-color: #e5e7eb;
+  --bg-app: #08090E;
+  --bg-card: #0E121E;
+  --bg-card-hover: #131828;
+  --text-main: #FFFFFF;
+  --text-body: #94A3B8;
+  --text-muted: #64748B;
+  --border-app: rgba(255, 255, 255, 0.08);
+  --border-focus: #FF5C00;
+  --input-bg: #0E121E;
+  --input-border: rgba(255, 255, 255, 0.12);
+  --input-text: #FFFFFF;
+  --shadow-color: rgba(0, 0, 0, 0.7);
+  --grid-dot-color: rgba(255, 255, 255, 0.05);
+  --accent-orange: #FF5C00;
+  --accent-orange-hover: #FF731A;
+  --accent-orange-glow: rgba(255, 92, 0, 0.38);
 }
 
-.theme-stripe {
-  --bg-app: #f6f9fc;
-  --bg-card: #ffffff;
-  --bg-card-hover: #f8fafc;
-  --text-main: #0a2540;
-  --text-body: #425466;
-  --text-muted: #697386;
-  --border-app: rgba(10, 37, 64, 0.08);
-  --border-focus: #635bff;
-  --input-bg: #ffffff;
-  --input-border: rgba(10, 37, 64, 0.16);
-  --input-text: #0a2540;
-  --shadow-color: rgba(10, 37, 64, 0.04);
-  --grid-dot-color: #e3e8ee;
+/* Vaboulus Component Utility Classes */
+.vaboulus-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #FF5C00 0%, #FF6C00 50%, #FF8526 100%) !important;
+  color: #FFFFFF !important;
+  font-weight: 600;
+  border-radius: 9999px !important;
+  border: 1px solid rgba(255, 165, 102, 0.35) !important;
+  box-shadow: 0 0 24px rgba(255, 92, 0, 0.38) !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-.theme-obsidian {
-  --bg-app: #020205;
-  --bg-card: #090911;
-  --bg-card-hover: #0f0f1c;
-  --text-main: #ffffff;
-  --text-body: #94a3b8;
-  --text-muted: #526075;
-  --border-app: rgba(255, 255, 255, 0.06);
-  --border-focus: #3b82f6;
-  --input-bg: #05050a;
-  --input-border: rgba(255, 255, 255, 0.1);
-  --input-text: #ffffff;
-  --shadow-color: rgba(0, 0, 0, 0.8);
-  --grid-dot-color: rgba(255, 255, 255, 0.025);
+.vaboulus-btn-primary:hover {
+  background: linear-gradient(135deg, #FF680F 0%, #FF7814 50%, #FF9038 100%) !important;
+  box-shadow: 0 0 36px rgba(255, 92, 0, 0.65) !important;
+  transform: scale(1.02);
 }
 
-.theme-nordic {
-  --bg-app: #0a0d10;
-  --bg-card: #13191e;
-  --bg-card-hover: #1b232a;
-  --text-main: #f2f6f3;
-  --text-body: #a1b3a6;
-  --text-muted: #708476;
-  --border-app: rgba(16, 185, 129, 0.1);
-  --border-focus: #10b981;
-  --input-bg: #11171c;
-  --input-border: rgba(16, 185, 129, 0.15);
-  --input-text: #f2f6f3;
-  --shadow-color: rgba(0, 0, 0, 0.4);
-  --grid-dot-color: rgba(16, 185, 129, 0.05);
+.vaboulus-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: #FFFFFF !important;
+  font-weight: 500;
+  border-radius: 9999px !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-.theme-alabaster {
-  --bg-app: #faf8f5;
-  --bg-card: #ffffff;
-  --bg-card-hover: #f5f1eb;
-  --text-main: #1c1917;
-  --text-body: #44403c;
-  --text-muted: #78716c;
-  --border-app: rgba(120, 113, 108, 0.15);
-  --border-focus: #c2410c;
-  --input-bg: #ffffff;
-  --input-border: rgba(120, 113, 108, 0.25);
-  --input-text: #1c1917;
-  --shadow-color: rgba(120, 110, 90, 0.05);
-  --grid-dot-color: #e7e2da;
+.vaboulus-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 92, 0, 0.5) !important;
+  color: #FFFFFF !important;
+  transform: scale(1.02);
 }
 
-/* Theme enforcement layers to force styling on all components */
-.theme-stripe, .theme-obsidian, .theme-nordic, .theme-alabaster {
-  background-color: var(--bg-app) !important;
-  color: var(--text-body) !important;
+.vaboulus-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.875rem;
+  border-radius: 9999px;
+  background: rgba(255, 92, 0, 0.1);
+  border: 1px solid rgba(255, 92, 0, 0.25);
+  color: #FF7A1A;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
 }
 
-/* Ensure background color of card elements gets mapped correctly */
-.theme-stripe .bg-white, .theme-obsidian .bg-white, .theme-nordic .bg-white, .theme-alabaster .bg-white,
-.theme-stripe .bg-\[\#FBFBFB\], .theme-obsidian .bg-\[\#FBFBFB\], .theme-nordic .bg-\[\#FBFBFB\], .theme-alabaster .bg-\[\#FBFBFB\],
-.theme-stripe .bg-\[\#fbfbfb\], .theme-obsidian .bg-\[\#fbfbfb\], .theme-nordic .bg-\[\#fbfbfb\], .theme-alabaster .bg-\[\#fbfbfb\] {
-  background-color: var(--bg-card) !important;
+.vaboulus-card {
+  background-color: #0E121E !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 1.5rem !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45) !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-.theme-stripe .bg-slate-50, .theme-obsidian .bg-slate-50, .theme-nordic .bg-slate-50, .theme-alabaster .bg-slate-50,
-.theme-stripe .bg-slate-100, .theme-obsidian .bg-slate-100, .theme-nordic .bg-slate-100, .theme-alabaster .bg-slate-100,
-.theme-stripe .bg-slate-100\/50, .theme-obsidian .bg-slate-100\/50, .theme-nordic .bg-slate-100\/50, .theme-alabaster .bg-slate-100\/50,
-.theme-stripe .bg-gray-50, .theme-obsidian .bg-gray-50, .theme-nordic .bg-gray-50, .theme-alabaster .bg-gray-50 {
-  background-color: var(--bg-app) !important;
+.vaboulus-card:hover {
+  border-color: rgba(255, 92, 0, 0.4) !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7), 0 0 25px rgba(255, 92, 0, 0.15) !important;
+  transform: translateY(-3px);
 }
 
-/* Overriding typography utility classes for perfect contrast */
-.theme-stripe .text-black, .theme-obsidian .text-black, .theme-nordic .text-black, .theme-alabaster .text-black,
-.theme-stripe .text-slate-900, .theme-obsidian .text-slate-900, .theme-nordic .text-slate-900, .theme-alabaster .text-slate-900,
-.theme-stripe .text-slate-800, .theme-obsidian .text-slate-800, .theme-nordic .text-slate-800, .theme-alabaster .text-slate-800,
-.theme-stripe .text-slate-950, .theme-obsidian .text-slate-950, .theme-nordic .text-slate-950, .theme-alabaster .text-slate-950,
-.theme-stripe .text-gray-900, .theme-obsidian .text-gray-900, .theme-nordic .text-gray-900, .theme-alabaster .text-gray-900,
-.theme-stripe .text-gray-800, .theme-obsidian .text-gray-800, .theme-nordic .text-gray-800, .theme-alabaster .text-gray-800,
-.theme-stripe .text-slate-900\/90, .theme-obsidian .text-slate-900\/90, .theme-nordic .text-slate-900\/90, .theme-alabaster .text-slate-900\/90 {
-  color: var(--text-main) !important;
+.vaboulus-text-gradient {
+  background: linear-gradient(135deg, #FFFFFF 0%, #E2E8F0 60%, #94A3B8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.theme-stripe .text-slate-600, .theme-obsidian .text-slate-600, .theme-nordic .text-slate-600, .theme-alabaster .text-slate-600,
-.theme-stripe .text-slate-700, .theme-obsidian .text-slate-700, .theme-nordic .text-slate-700, .theme-alabaster .text-slate-700,
-.theme-stripe .text-slate-500, .theme-obsidian .text-slate-500, .theme-nordic .text-slate-500, .theme-alabaster .text-slate-500,
-.theme-stripe .text-gray-600, .theme-obsidian .text-gray-600, .theme-nordic .text-gray-600, .theme-alabaster .text-gray-600,
-.theme-stripe .text-gray-700, .theme-obsidian .text-gray-700, .theme-nordic .text-gray-700, .theme-alabaster .text-gray-700 {
-  color: var(--text-body) !important;
+.vaboulus-orange-gradient {
+  background: linear-gradient(135deg, #FF5C00 0%, #FF7814 50%, #FFA043 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.theme-stripe .text-slate-400, .theme-obsidian .text-slate-400, .theme-nordic .text-slate-400, .theme-alabaster .text-slate-400,
-.theme-stripe .text-gray-400, .theme-obsidian .text-gray-400, .theme-nordic .text-gray-400, .theme-alabaster .text-gray-400,
-.theme-stripe .text-gray-500, .theme-obsidian .text-gray-500, .theme-nordic .text-gray-500, .theme-alabaster .text-gray-500,
-.theme-stripe .text-slate-500\/80, .theme-obsidian .text-slate-500\/80, .theme-nordic .text-slate-500\/80, .theme-alabaster .text-slate-500\/80 {
-  color: var(--text-muted) !important;
+/* Universal Public Theme Enforcement:
+   Automatically adapts all public pages and components to Vaboulus Dark + Orange
+   EXCEPT elements inside .admin-panel-root which remain preserved. */
+body, #root, .vaboulus-theme {
+  background-color: #08090E !important;
+  color: #94A3B8 !important;
 }
 
-/* Force borders to match current styling rules */
-.theme-stripe .border-slate-200, .theme-obsidian .border-slate-200, .theme-nordic .border-slate-200, .theme-alabaster .border-slate-200,
-.theme-stripe .border-slate-200\/80, .theme-obsidian .border-slate-200\/80, .theme-nordic .border-slate-200\/80, .theme-alabaster .border-slate-200\/80,
-.theme-stripe .border-slate-100, .theme-obsidian .border-slate-100, .theme-nordic .border-slate-100, .theme-alabaster .border-slate-100,
-.theme-stripe .border-gray-100, .theme-obsidian .border-gray-100, .theme-nordic .border-gray-100, .theme-alabaster .border-gray-100,
-.theme-stripe .border-gray-200, .theme-obsidian .border-gray-200, .theme-nordic .border-gray-200, .theme-alabaster .border-gray-200 {
-  border-color: var(--border-app) !important;
+/* Adapt light background utility classes on public pages */
+:not(.admin-panel-root):not(.light-modal) > .bg-white,
+:not(.admin-panel-root) .bg-white:not(.admin-panel-root *):not(.light-modal *),
+:not(.admin-panel-root) .bg-\[\#FBFBFB\]:not(.admin-panel-root *):not(.light-modal *),
+:not(.admin-panel-root) .bg-\[\#fbfbfb\]:not(.admin-panel-root *):not(.light-modal *),
+:not(.admin-panel-root) .bg-slate-50:not(.admin-panel-root *):not(.light-modal *),
+:not(.admin-panel-root) .bg-slate-100:not(.admin-panel-root *):not(.light-modal *) {
+  background-color: #0E121E !important;
 }
 
-/* Form layouts inside themed sections */
-.theme-stripe form, .theme-obsidian form, .theme-nordic form, .theme-alabaster form {
-  background-color: var(--bg-card) !important;
-  border-color: var(--border-app) !important;
+:not(.admin-panel-root) .bg-gray-50:not(.admin-panel-root *):not(.light-modal *),
+:not(.admin-panel-root) .bg-gray-100:not(.admin-panel-root *):not(.light-modal *) {
+  background-color: #131828 !important;
+}
+
+:not(.admin-panel-root) .bg-black:not(.admin-panel-root *):not(.light-modal *) {
+  background-color: #0B0E17 !important;
+}
+
+/* Typography contrast mapping on public pages */
+:not(.admin-panel-root) .text-black:not(.admin-panel-root *):not(.light-modal *),
+:not(.admin-panel-root) .text-slate-900:not(.admin-panel-root *):not(.light-modal *),
+:not(.admin-panel-root) .text-slate-800:not(.admin-panel-root *):not(.light-modal *),
+:not(.admin-panel-root) .text-gray-900:not(.admin-panel-root *):not(.light-modal *),
+:not(.admin-panel-root) .text-gray-800:not(.admin-panel-root *):not(.light-modal *) {
+  color: #FFFFFF !important;
+}
+
+:not(.admin-panel-root) .text-gray-700:not(.admin-panel-root *):not(.light-modal *),
+:not(.admin-panel-root) .text-slate-700:not(.admin-panel-root *):not(.light-modal *),
+:not(.admin-panel-root) .text-slate-600:not(.admin-panel-root *):not(.light-modal *),
+:not(.admin-panel-root) .text-gray-600:not(.admin-panel-root *):not(.light-modal *) {
+  color: #E2E8F0 !important;
+}
+
+:not(.admin-panel-root) .text-gray-500:not(.admin-panel-root *):not(.light-modal *),
+:not(.admin-panel-root) .text-slate-500:not(.admin-panel-root *):not(.light-modal *),
+:not(.admin-panel-root) .text-gray-400:not(.admin-panel-root *):not(.light-modal *),
+:not(.admin-panel-root) .text-slate-400:not(.admin-panel-root *):not(.light-modal *) {
+  color: #CBD5E1 !important;
+}
+
+/* Border overrides on public pages */
+:not(.admin-panel-root) .border-gray-200:not(.admin-panel-root *):not(.light-modal *),
+:not(.admin-panel-root) .border-gray-100:not(.admin-panel-root *):not(.light-modal *),
+:not(.admin-panel-root) .border-slate-200:not(.admin-panel-root *):not(.light-modal *),
+:not(.admin-panel-root) .border-slate-100:not(.admin-panel-root *):not(.light-modal *) {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Public Primary Buttons: Transform black buttons into Vaboulus Electric Orange */
+a[id^="hero-primary"], a[id^="view-all"], a[id^="cta-book"], a[id^="startups-hero-cta"], a[id^="startups-box-cta"], a[id^="tech-cta"],
+button[id^="btn-hero-audit-cta"], button[id^="btn-open-audit-banner"],
+button[type="submit"]:not(.admin-panel-root *):not(.light-modal *),
+.public-btn-orange,
+header a[href="/contact"].rounded-full.bg-black {
+  background: linear-gradient(135deg, #FF5C00 0%, #FF6C00 50%, #FF8526 100%) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 0 24px rgba(255, 92, 0, 0.38) !important;
+  border: 1px solid rgba(255, 165, 102, 0.3) !important;
+  font-weight: 600 !important;
+}
+
+a[id^="hero-primary"]:hover, a[id^="view-all"]:hover, a[id^="cta-book"]:hover, a[id^="startups-hero-cta"]:hover, a[id^="startups-box-cta"]:hover, a[id^="tech-cta"]:hover,
+button[id^="btn-hero-audit-cta"]:hover, button[id^="btn-open-audit-banner"]:hover,
+button[type="submit"]:not(.admin-panel-root *):not(.light-modal *):hover,
+.public-btn-orange:hover,
+header a[href="/contact"].rounded-full.bg-black:hover {
+  box-shadow: 0 0 36px rgba(255, 92, 0, 0.65) !important;
+  transform: translateY(-1px) scale(1.02);
+}
+
+/* Public Secondary Buttons */
+:not(header) a[id^="hero-secondary"], 
+:not(header) a[id^="cta-calculate"], 
+#hero-secondary-cta,
+#cta-calculate-scope,
+:not(header) a[href="#engagement-models"], 
+:not(header) a[href="#capabilities"] {
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+
+:not(header) a[id^="hero-secondary"]:hover, 
+:not(header) a[id^="cta-calculate"]:hover, 
+#hero-secondary-cta:hover,
+#cta-calculate-scope:hover,
+:not(header) a[href="#engagement-models"]:hover, 
+:not(header) a[href="#capabilities"]:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 92, 0, 0.5) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 0 15px rgba(255, 92, 0, 0.25) !important;
+}
+
+/* Header style for Vaboulus */
+header {
+  background-color: rgba(8, 9, 14, 0.85) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+}
+
+header nav ul li > a, 
+header nav ul li > button {
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: #CBD5E1 !important;
+}
+
+header nav ul li > a:hover, 
+header nav ul li > button:hover {
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: #FFFFFF !important;
+}
+
+header a, header button {
+  color: #CBD5E1 !important;
+}
+
+header a:hover, header button:hover {
+  color: #FFFFFF !important;
+}
+
+header a[href="/contact"].rounded-full {
+  color: #FFFFFF !important;
+}
+
+/* Footer layout for Vaboulus */
+footer {
+  background-color: #06070B !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
 }
 
 /* Light Modal Override — prevents dark theme CSS from leaking into white popups/modals */

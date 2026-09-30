@@ -138,22 +138,26 @@ export default function SelectedWorkSection({ projects = [] }: SelectedWorkSecti
   return (
     <section 
       id="selected-work" 
-      className="py-12 lg:py-16 bg-[#FBFBFB] border-b border-gray-200 overflow-hidden"
+      className="py-14 lg:py-20 bg-[#08090E] border-b border-white/[0.08] overflow-hidden relative"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="max-w-7xl mx-auto px-6">
+      {/* Ambient glow */}
+      <div className="absolute top-1/3 left-10 w-96 h-96 bg-[#FF5C00]/5 blur-[130px] pointer-events-none -z-10" />
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-8 gap-6 pb-6 border-b border-gray-200">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-10 gap-6 pb-6 border-b border-white/[0.08]">
           <div>
-            <span className="font-mono text-xs text-gray-500 uppercase tracking-widest block mb-2">
+            <span className="font-mono text-xs text-[#FF5C00] uppercase tracking-widest block mb-2 flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#FF5C00]" />
               Portfolio &amp; Client Deployments
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal -tracking-[1.8px] text-black mb-2">
-              Selected <span className="italic">Work</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal -tracking-[1.8px] text-white mb-2">
+              Selected <span className="italic text-[#FF5C00]">Work</span>
             </h2>
-            <p className="text-sm sm:text-base text-gray-700 font-normal">
+            <p className="text-sm sm:text-base text-slate-400 font-normal">
               Real projects. Real problems. Technology built to solve them.
             </p>
           </div>
@@ -161,7 +165,7 @@ export default function SelectedWorkSection({ projects = [] }: SelectedWorkSecti
           <div className="flex items-center gap-4">
             <Link
               to="/work"
-              className="group px-7 py-3.5 inline-flex gap-2.5 items-center bg-black text-sm font-semibold -tracking-[0.2px] text-white rounded-full hover:bg-gray-800 transition-all duration-300 shrink-0 shadow-xs"
+              className="group px-7 py-3.5 inline-flex gap-2.5 items-center bg-gradient-to-r from-[#FF5C00] via-[#FF6C00] to-[#FF8526] text-sm font-semibold text-white rounded-full shadow-[0_0_24px_rgba(255,92,0,0.38)] hover:shadow-[0_0_36px_rgba(255,92,0,0.65)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 shrink-0 border border-[#FFA566]/30"
             >
               <RollText>VIEW ALL WORK</RollText>
               <DiagonalArrow size={18} />
@@ -174,8 +178,8 @@ export default function SelectedWorkSection({ projects = [] }: SelectedWorkSecti
         {/* ======================================================== */}
         <div className="relative" ref={containerRef}>
           
-          {/* Main Showcase Slide with Smooth Apple-style cross-transition */}
-          <div className="relative min-h-[440px] sm:min-h-[480px] lg:min-h-[520px] rounded-3xl border border-gray-200 bg-white overflow-hidden shadow-xs flex flex-col justify-between">
+          {/* Main Showcase Slide with Smooth Vaboulus dark glass card */}
+          <div className="relative min-h-[440px] sm:min-h-[480px] lg:min-h-[520px] rounded-3xl border border-white/[0.08] bg-[#0E121E] overflow-hidden shadow-2xl flex flex-col justify-between">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeProject?.id || currentIndex}
@@ -191,30 +195,30 @@ export default function SelectedWorkSection({ projects = [] }: SelectedWorkSecti
                     {/* Category & Status Badges */}
                     <div className="flex flex-wrap items-center gap-2 mb-4">
                       {activeProject.client_name && (
-                        <span className="px-3 py-1 rounded-full text-[11px] font-mono uppercase tracking-wider bg-blue-50 border border-blue-200 text-blue-800 font-semibold">
+                        <span className="px-3 py-1 rounded-full text-[11px] font-mono uppercase tracking-wider bg-[#FF5C00]/10 border border-[#FF5C00]/25 text-[#FF7A1A] font-semibold">
                           Client: {activeProject.client_name}
                         </span>
                       )}
-                      <span className="px-3 py-1 rounded-full text-[11px] font-mono uppercase tracking-wider bg-black text-white font-semibold">
+                      <span className="px-3 py-1 rounded-full text-[11px] font-mono uppercase tracking-wider bg-white/10 text-white font-semibold border border-white/10">
                         {activeProject.industry || activeProject.category || activeProject.project_type || 'Software System'}
                       </span>
-                      <span className="px-3 py-1 rounded-full text-[11px] font-mono uppercase tracking-wider bg-[#FBFBFB] border border-gray-200 text-gray-700 font-semibold">
+                      <span className="px-3 py-1 rounded-full text-[11px] font-mono uppercase tracking-wider bg-white/[0.04] border border-white/10 text-slate-300 font-semibold">
                         {activeProject.status || 'Delivered'}
                       </span>
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold -tracking-[1px] text-black mb-3 leading-tight">
+                    <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold -tracking-[1px] text-white mb-3 leading-tight">
                       <Link 
                         to={`/work/${activeProject.slug || activeProject.id}`}
-                        className="hover:text-gray-600 transition-colors"
+                        className="hover:text-[#FF5C00] transition-colors"
                       >
                         {activeProject.title}
                       </Link>
                     </h3>
 
                     {/* Problem Solved / Project Summary */}
-                    <p className="text-sm sm:text-base text-gray-700 font-normal leading-relaxed mb-5">
+                    <p className="text-sm sm:text-base text-slate-400 font-normal leading-relaxed mb-5">
                       {activeProject.short_description || activeProject.what_we_solved || (typeof activeProject.overview === 'string' ? activeProject.overview : activeProject.overview?.what_sarohub_built) || activeProject.description}
                     </p>
 
@@ -225,7 +229,7 @@ export default function SelectedWorkSection({ projects = [] }: SelectedWorkSecti
                       return arr.length > 0 ? (
                         <div className="flex flex-wrap gap-1.5 mb-6">
                           {arr.slice(0, 5).map((tech: string, i: number) => (
-                            <span key={i} className="text-[11px] font-mono font-medium px-2.5 py-0.5 rounded-md bg-[#FBFBFB] border border-gray-200 text-gray-800">
+                            <span key={i} className="text-[11px] font-mono font-medium px-2.5 py-0.5 rounded-md bg-white/[0.04] border border-white/10 text-slate-300">
                               {tech.trim()}
                             </span>
                           ))}
@@ -235,10 +239,10 @@ export default function SelectedWorkSection({ projects = [] }: SelectedWorkSecti
                   </div>
 
                   {/* CTA Link */}
-                  <div className="pt-4 border-t border-gray-100 flex items-center justify-between">
+                  <div className="pt-4 border-t border-white/[0.08] flex items-center justify-between">
                     <Link
                       to={`/work/${activeProject.slug || activeProject.id}`}
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-black text-white hover:bg-gray-800 text-xs font-mono uppercase tracking-wider transition-all shadow-xs font-semibold"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-[#FF5C00] to-[#FF7A1A] text-white hover:shadow-[0_0_20px_rgba(255,92,0,0.4)] text-xs font-mono uppercase tracking-wider transition-all font-semibold border border-[#FFA566]/30"
                     >
                       <span>Explore Case Study</span>
                       <ArrowRight className="size-3.5" />
@@ -249,7 +253,7 @@ export default function SelectedWorkSection({ projects = [] }: SelectedWorkSecti
                         href={activeProject.live_url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs font-mono text-gray-500 hover:text-black uppercase tracking-wider transition-colors"
+                        className="inline-flex items-center gap-1.5 text-xs font-mono text-slate-400 hover:text-[#FF5C00] uppercase tracking-wider transition-colors"
                       >
                         <span>Live Preview</span>
                         <ExternalLink className="size-3" />
@@ -259,25 +263,25 @@ export default function SelectedWorkSection({ projects = [] }: SelectedWorkSecti
                 </div>
 
                 {/* Right Device / App Preview Canvas */}
-                <div className="lg:col-span-7 bg-[#F5F5F7] p-6 sm:p-10 lg:p-12 flex items-center justify-center relative overflow-hidden border-t lg:border-t-0 lg:border-l border-gray-200">
+                <div className="lg:col-span-7 bg-[#0A0D15] p-6 sm:p-10 lg:p-12 flex items-center justify-center relative overflow-hidden border-t lg:border-t-0 lg:border-l border-white/[0.08]">
                   <div className="w-full max-w-2xl relative group">
                     {/* iPhone / Display Bezel Frame */}
-                    <div className="rounded-2xl sm:rounded-3xl overflow-hidden bg-white border border-gray-300 shadow-xl transition-transform duration-500 group-hover:scale-[1.02]">
+                    <div className="rounded-2xl sm:rounded-3xl overflow-hidden bg-[#121624] border border-white/[0.12] shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]">
                       {/* Browser / Device Header Bar */}
-                      <div className="px-4 py-3 bg-[#EAEAEA] border-b border-gray-300 flex items-center justify-between">
+                      <div className="px-4 py-3 bg-[#181D2E] border-b border-white/[0.08] flex items-center justify-between">
                         <div className="flex items-center gap-1.5">
-                          <span className="size-2.5 rounded-full bg-rose-400"></span>
-                          <span className="size-2.5 rounded-full bg-amber-400"></span>
-                          <span className="size-2.5 rounded-full bg-emerald-400"></span>
+                          <span className="size-2.5 rounded-full bg-rose-500/80"></span>
+                          <span className="size-2.5 rounded-full bg-amber-500/80"></span>
+                          <span className="size-2.5 rounded-full bg-emerald-500/80"></span>
                         </div>
-                        <span className="font-mono text-[10px] text-gray-500 truncate max-w-[200px]">
+                        <span className="font-mono text-[10px] text-slate-400 truncate max-w-[200px]">
                           sarohub.com/work/{activeProject.slug || activeProject.id}
                         </span>
                         <div className="size-2.5"></div>
                       </div>
 
                       {/* Screen Image */}
-                      <div className="relative aspect-[16/10] bg-gray-100 overflow-hidden">
+                      <div className="relative aspect-[16/10] bg-[#0E121E] overflow-hidden">
                         <img
                           src={activeProject.thumbnail_url || activeProject.image || '/assets/hero-platform-preview.svg'}
                           alt={activeProject.title}
@@ -298,20 +302,20 @@ export default function SelectedWorkSection({ projects = [] }: SelectedWorkSecti
           {/* ======================================================== */}
           <div className="mt-8 flex flex-col items-center gap-4">
             
-            {/* Centered Apple-style Floating Dock with Project Category Icons */}
-            <div className="w-full max-w-4xl mx-auto p-2 sm:p-2.5 rounded-3xl sm:rounded-full bg-white/95 backdrop-blur-md border border-gray-200 shadow-xl flex items-center justify-between gap-2 overflow-x-auto scrollbar-none">
+            {/* Centered Floating Dock with Project Category Icons */}
+            <div className="w-full max-w-4xl mx-auto p-2 sm:p-2.5 rounded-3xl sm:rounded-full bg-[#0E121E]/95 backdrop-blur-xl border border-white/[0.12] shadow-2xl flex items-center justify-between gap-2 overflow-x-auto scrollbar-none">
               
               {/* Previous Slide Button */}
               <button
                 type="button"
                 onClick={prevSlide}
                 aria-label="Previous project"
-                className="size-9 rounded-full bg-gray-100 hover:bg-black hover:text-white flex items-center justify-center text-gray-700 transition-all cursor-pointer shrink-0 shadow-2xs"
+                className="size-9 rounded-full bg-white/[0.06] hover:bg-[#FF5C00] hover:text-white flex items-center justify-center text-slate-300 transition-all cursor-pointer shrink-0 border border-white/[0.08]"
               >
                 <ChevronLeft className="size-4" />
               </button>
 
-              {/* Apple-style Project Icon Switcher Tabs */}
+              {/* Project Icon Switcher Tabs */}
               <div className="flex items-center gap-1.5 sm:gap-2 flex-1 justify-center overflow-x-auto py-1 scrollbar-none px-1">
                 {allProjects.map((proj, idx) => {
                   const isActive = idx === currentIndex;
@@ -326,25 +330,25 @@ export default function SelectedWorkSection({ projects = [] }: SelectedWorkSecti
                       title={`${proj.title} • ${proj.industry || 'Deployment'}`}
                       className={`group relative flex items-center gap-2 px-3 py-2 rounded-full transition-all duration-300 cursor-pointer shrink-0 ${
                         isActive
-                          ? 'bg-black text-white shadow-md ring-2 ring-black/10'
-                          : 'text-gray-600 hover:text-black hover:bg-gray-100/90'
+                          ? 'bg-gradient-to-r from-[#FF5C00] to-[#FF7A1A] text-white shadow-[0_0_18px_rgba(255,92,0,0.4)] border border-[#FFA566]/30'
+                          : 'text-slate-400 hover:text-white hover:bg-white/[0.06]'
                       }`}
                     >
                       <div className={`size-6 rounded-full flex items-center justify-center transition-colors ${
-                        isActive ? 'bg-white/20 text-white' : 'text-gray-600 group-hover:text-black'
+                        isActive ? 'bg-white/20 text-white' : 'text-slate-400 group-hover:text-white'
                       }`}>
                         <IconComp className="size-3.5" />
                       </div>
 
                       <span className={`text-xs whitespace-nowrap transition-colors hidden sm:inline-block ${
-                        isActive ? 'font-bold text-white' : 'font-medium text-gray-700'
+                        isActive ? 'font-bold text-white' : 'font-medium text-slate-300'
                       }`}>
                         {shortName}
                       </span>
 
                       {/* Active indicator dot on mobile */}
                       {isActive && (
-                        <span className="size-1.5 rounded-full bg-blue-400 sm:hidden animate-pulse" />
+                        <span className="size-1.5 rounded-full bg-white sm:hidden animate-pulse" />
                       )}
                     </button>
                   );
@@ -357,7 +361,7 @@ export default function SelectedWorkSection({ projects = [] }: SelectedWorkSecti
                   type="button"
                   onClick={() => setIsPlaying(!isPlaying)}
                   aria-label={isPlaying ? 'Pause slideshow' : 'Resume slideshow'}
-                  className="size-9 rounded-full bg-gray-100 hover:bg-black hover:text-white flex items-center justify-center text-gray-700 transition-all cursor-pointer shadow-2xs"
+                  className="size-9 rounded-full bg-white/[0.06] hover:bg-[#FF5C00] hover:text-white flex items-center justify-center text-slate-300 transition-all cursor-pointer border border-white/[0.08]"
                   title={isPlaying ? 'Pause slideshow' : 'Resume slideshow'}
                 >
                   {isPlaying ? <Pause className="size-3.5" /> : <Play className="size-3.5 ml-0.5" />}
@@ -367,7 +371,7 @@ export default function SelectedWorkSection({ projects = [] }: SelectedWorkSecti
                   type="button"
                   onClick={nextSlide}
                   aria-label="Next project"
-                  className="size-9 rounded-full bg-gray-100 hover:bg-black hover:text-white flex items-center justify-center text-gray-700 transition-all cursor-pointer shadow-2xs"
+                  className="size-9 rounded-full bg-white/[0.06] hover:bg-[#FF5C00] hover:text-white flex items-center justify-center text-slate-300 transition-all cursor-pointer border border-white/[0.08]"
                 >
                   <ChevronRight className="size-4" />
                 </button>
@@ -376,14 +380,14 @@ export default function SelectedWorkSection({ projects = [] }: SelectedWorkSecti
             </div>
 
             {/* Apple-style Progress Counter & Positioning */}
-            <div className="flex items-center justify-center gap-2 sm:gap-3 font-mono text-xs text-gray-500">
-              <span className="text-black font-bold">
+            <div className="flex items-center justify-center gap-2 sm:gap-3 font-mono text-xs text-slate-400">
+              <span className="text-[#FF5C00] font-bold">
                 {String(currentIndex + 1).padStart(2, '0')}
               </span>
-              <span className="text-gray-300">/</span>
+              <span className="text-white/20">/</span>
               <span>{String(total).padStart(2, '0')} Projects</span>
-              <span className="text-gray-300">•</span>
-              <span className="text-gray-700 font-sans font-medium text-xs sm:text-sm truncate max-w-[260px] sm:max-w-none">
+              <span className="text-white/20">•</span>
+              <span className="text-slate-300 font-sans font-medium text-xs sm:text-sm truncate max-w-[260px] sm:max-w-none">
                 {activeProject.title} ({activeProject.industry || 'Deployment'})
               </span>
             </div>
@@ -391,7 +395,7 @@ export default function SelectedWorkSection({ projects = [] }: SelectedWorkSecti
           </div>
 
           {/* ======================================================== */}
-          {/* HORIZONTAL IPHONE MINI THUMBNAIL TRACK WITH ICONS */}
+          {/* HORIZONTAL MINI THUMBNAIL TRACK WITH ICONS */}
           {/* ======================================================== */}
           <div className="mt-8 flex gap-4 overflow-x-auto pb-4 pt-2 scrollbar-none snap-x snap-mandatory">
             {allProjects.map((p, idx) => {
@@ -404,11 +408,11 @@ export default function SelectedWorkSection({ projects = [] }: SelectedWorkSecti
                   onClick={() => goToSlide(idx)}
                   className={`text-left p-3.5 rounded-2xl border transition-all duration-300 shrink-0 w-64 sm:w-72 snap-start cursor-pointer flex items-center gap-3 relative overflow-hidden ${
                     isSelected
-                      ? 'bg-white border-black shadow-lg ring-1 ring-black'
-                      : 'bg-white/80 border-gray-200 hover:border-gray-400 hover:bg-white shadow-2xs'
+                      ? 'bg-[#141828] border-[#FF5C00]/60 shadow-[0_0_20px_rgba(255,92,0,0.2)]'
+                      : 'bg-[#0E121E]/90 border-white/[0.08] hover:border-white/20 hover:bg-[#121624]'
                   }`}
                 >
-                  <div className="size-14 rounded-xl overflow-hidden bg-gray-100 border border-gray-200 shrink-0 relative">
+                  <div className="size-14 rounded-xl overflow-hidden bg-[#181D2E] border border-white/10 shrink-0 relative">
                     <img 
                       src={p.thumbnail_url || p.image || '/assets/hero-platform-preview.svg'} 
                       alt={p.title} 
@@ -416,18 +420,18 @@ export default function SelectedWorkSection({ projects = [] }: SelectedWorkSecti
                       loading="lazy" 
                       referrerPolicy="no-referrer"
                     />
-                    <div className="absolute bottom-1 right-1 size-5 rounded-md bg-black/80 backdrop-blur-xs text-white flex items-center justify-center shadow-xs">
-                      <IconComp className="size-3" />
+                    <div className="absolute bottom-1 right-1 size-5 rounded-md bg-[#08090E]/90 backdrop-blur-xs text-white flex items-center justify-center border border-white/10 shadow-xs">
+                      <IconComp className="size-3 text-[#FF5C00]" />
                     </div>
                   </div>
                   <div className="min-w-0 flex-1">
-                    <div className="flex items-center gap-1.5 font-mono text-[9px] text-gray-500 uppercase tracking-wider truncate">
+                    <div className="flex items-center gap-1.5 font-mono text-[9px] text-[#FF7A1A] uppercase tracking-wider truncate">
                       <span>{p.industry || 'Case Study'}</span>
                     </div>
-                    <div className="text-xs font-semibold text-black truncate mt-0.5">
+                    <div className="text-xs font-semibold text-white truncate mt-0.5">
                       {p.title}
                     </div>
-                    <div className="text-[10px] text-gray-500 truncate mt-0.5">
+                    <div className="text-[10px] text-slate-400 truncate mt-0.5">
                       {p.status || 'Delivered'}
                     </div>
                   </div>

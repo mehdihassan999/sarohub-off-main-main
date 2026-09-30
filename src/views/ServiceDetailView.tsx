@@ -316,7 +316,7 @@ export default function ServiceDetailView() {
   ], [activeService.title, activeService.overview, activeService.category, activeService.faqs]);
 
   return (
-    <div className="min-h-screen bg-white text-black">
+    <div className="min-h-screen bg-[#08090E] text-white">
       <SEOHead
         title={activeService.metaTitle}
         description={activeService.metaDescription}
@@ -327,8 +327,8 @@ export default function ServiceDetailView() {
       />
 
       {/* Breadcrumb Bar */}
-      <div className="border-b border-gray-200 bg-[#FBFBFB]">
-        <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+      <div className="border-b border-white/[0.08] bg-[#0A0D15]">
+        <div className="max-w-7xl mx-auto px-6 py-3.5 flex items-center justify-between">
           <Breadcrumbs
             items={[
               { name: 'Home', url: '/' },
@@ -336,34 +336,36 @@ export default function ServiceDetailView() {
               { name: activeService.shortTitle, url: `/services/${activeService.slug}`, isCurrent: true }
             ]}
           />
-          <span className="hidden sm:inline font-mono text-[11px] uppercase tracking-wider text-gray-500">
+          <span className="hidden sm:inline font-mono text-[11px] uppercase tracking-wider text-slate-300">
             Active Enterprise Blueprint
           </span>
         </div>
       </div>
 
       {/* Hero Section */}
-      <section className="py-20 lg:py-28 bg-[#FBFBFB] border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="py-20 lg:py-28 bg-[#0A0D15] border-b border-white/[0.08] relative overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-[#FF5C00]/8 blur-[120px] pointer-events-none -z-10" />
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             
             <div className="lg:col-span-7 space-y-6">
-              <span className="font-mono text-xs uppercase tracking-widest text-gray-500 block">
+              <span className="font-mono text-xs uppercase tracking-widest text-[#FF5C00] block flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#FF5C00] animate-pulse" />
                 {activeService.category}
               </span>
               
-              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-normal -tracking-[2.5px] text-black leading-tight">
+              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-normal -tracking-[2.5px] text-white leading-tight font-display">
                 {activeService.heroHeadline}
               </h1>
               
-              <p className="text-base sm:text-xl text-gray-600 leading-relaxed font-normal">
+              <p className="text-base sm:text-xl text-slate-300 leading-relaxed font-normal">
                 {activeService.heroSubheadline}
               </p>
 
               <div className="pt-2 flex flex-wrap items-center gap-4">
                 <Link
                   to={`/contact?service=${encodeURIComponent(activeService.title)}`}
-                  className="group px-7 py-3.5 inline-flex gap-2.5 items-center bg-black text-sm font-medium -tracking-[0.2px] leading-5 text-white rounded-full hover:bg-gray-800 transition-all duration-300"
+                  className="group px-8 py-4 inline-flex gap-2.5 items-center bg-gradient-to-r from-[#FF5C00] via-[#FF6C00] to-[#FF8526] text-sm font-semibold -tracking-[0.2px] leading-5 text-white rounded-full hover:shadow-[0_0_24px_rgba(255,92,0,0.5)] transition-all duration-300 border border-[#FFA566]/30 font-bold"
                 >
                   <RollText>REQUEST TECHNICAL SCOPING</RollText>
                   <DiagonalArrow size={18} />
@@ -371,20 +373,20 @@ export default function ServiceDetailView() {
                 
                 <a
                   href="#capabilities"
-                  className="px-6 py-3.5 rounded-full border border-gray-300 text-xs font-mono uppercase tracking-wider text-black hover:bg-black hover:text-white transition-all"
+                  className="px-6 py-4 rounded-full border border-white/15 bg-white/[0.05] hover:bg-white/[0.1] hover:border-[#FF5C00]/50 text-xs font-mono uppercase tracking-wider text-white transition-all font-semibold"
                 >
                   Explore Capabilities
                 </a>
               </div>
 
               {/* Metrics Strip */}
-              <div className="grid grid-cols-3 gap-4 pt-8 border-t border-gray-200">
+              <div className="grid grid-cols-3 gap-4 pt-8 border-t border-white/[0.08]">
                 {activeService.businessBenefits.map((b, i) => (
-                  <div key={i} className="p-4 rounded-2xl bg-white border border-gray-200">
-                    <span className="block text-2xl sm:text-3xl font-normal text-black mb-1">
+                  <div key={i} className="p-4 rounded-2xl bg-[#0E121E] border border-white/[0.08] shadow-md">
+                    <span className="block text-2xl sm:text-3xl font-normal text-white mb-1">
                       {b.metric}
                     </span>
-                    <span className="block text-xs font-mono uppercase text-gray-500 line-clamp-1">
+                    <span className="block text-xs font-mono uppercase text-[#FF7A1A] line-clamp-1 font-bold">
                       {b.label}
                     </span>
                   </div>
@@ -394,17 +396,17 @@ export default function ServiceDetailView() {
 
             {/* Banner Image */}
             <div className="lg:col-span-5">
-              <div className="rounded-3xl overflow-hidden border border-gray-200 bg-white shadow-xs">
+              <div className="rounded-3xl overflow-hidden border border-white/[0.08] bg-[#0E121E] shadow-2xl">
                 <img
                   src={activeService.bannerImage}
                   alt={`${activeService.title} architectural blueprint`}
                   className="w-full h-80 sm:h-96 object-cover"
                 />
-                <div className="p-6 border-t border-gray-100">
-                  <span className="font-mono text-xs uppercase tracking-widest text-gray-400 block mb-1">
+                <div className="p-6 border-t border-white/[0.08]">
+                  <span className="font-mono text-xs uppercase tracking-widest text-[#FF5C00] block mb-1 font-bold">
                     Enterprise Engineering SLA
                   </span>
-                  <p className="text-sm text-gray-600 font-normal">
+                  <p className="text-sm text-slate-300 font-normal">
                     Production-grade software engineering, secure tenant data isolation, and verified operational benchmarks.
                   </p>
                 </div>
@@ -416,29 +418,29 @@ export default function ServiceDetailView() {
       </section>
 
       {/* Service Overview & Problem Solving */}
-      <section className="py-20 lg:py-28 bg-white border-b border-gray-200">
+      <section className="py-20 lg:py-28 bg-[#08090E] border-b border-white/[0.08]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             
             <div className="lg:col-span-6 space-y-6">
-              <span className="font-mono text-xs uppercase tracking-widest text-gray-500 block">
+              <span className="font-mono text-xs uppercase tracking-widest text-[#FF5C00] block font-semibold">
                 Overview &amp; Context
               </span>
-              <h2 className="text-3xl sm:text-4xl font-normal -tracking-[1.92px] text-black">
-                What is <span className="italic">{activeService.title}?</span>
+              <h2 className="text-3xl sm:text-4xl font-normal -tracking-[1.92px] text-white">
+                What is <span className="italic text-[#FF5C00]">{activeService.title}?</span>
               </h2>
-              <p className="text-base sm:text-lg text-gray-600 leading-relaxed font-normal">
+              <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
                 {activeService.overview}
               </p>
 
               <div className="pt-4">
-                <h3 className="font-mono text-xs uppercase tracking-wider text-black font-semibold mb-4">
+                <h3 className="font-mono text-xs uppercase tracking-wider text-white font-bold mb-4">
                   Target Organizations &amp; Use Cases
                 </h3>
                 <ul className="space-y-3">
                   {activeService.targetAudience.map((audience, i) => (
-                    <li key={i} className="flex items-start gap-3 text-sm text-gray-700 font-normal">
-                      <Check className="size-4 text-black shrink-0 mt-0.5" />
+                    <li key={i} className="flex items-start gap-3 text-sm text-slate-300 font-normal">
+                      <Check className="size-4 text-[#FF5C00] shrink-0 mt-0.5" />
                       <span>{audience}</span>
                     </li>
                   ))}
@@ -446,21 +448,21 @@ export default function ServiceDetailView() {
               </div>
             </div>
 
-            <div className="lg:col-span-6 p-8 sm:p-10 rounded-3xl border border-gray-200 bg-[#FBFBFB]">
-              <span className="font-mono text-xs uppercase tracking-widest text-gray-500 block mb-2">
+            <div className="lg:col-span-6 p-8 sm:p-10 rounded-3xl border border-white/[0.08] bg-[#0E121E] shadow-xl">
+              <span className="font-mono text-xs uppercase tracking-widest text-[#FF5C00] block mb-2 font-semibold">
                 Operational Friction
               </span>
-              <h3 className="text-2xl font-normal text-black mb-6">
+              <h3 className="text-2xl font-normal text-white mb-6">
                 Bottlenecks We Eliminate
               </h3>
               
               <div className="space-y-4">
                 {activeService.problemsSolved.map((problem, i) => (
-                  <div key={i} className="flex items-start gap-4 p-4 rounded-2xl bg-white border border-gray-200">
-                    <span className="font-mono text-sm font-semibold text-black shrink-0">
+                  <div key={i} className="flex items-start gap-4 p-4 rounded-2xl bg-[#141A2E] border border-white/[0.08]">
+                    <span className="font-mono text-sm font-bold text-[#FF5C00] shrink-0">
                       0{i + 1}
                     </span>
-                    <p className="text-sm text-gray-600 leading-relaxed font-normal">
+                    <p className="text-sm text-slate-300 leading-relaxed font-normal">
                       {problem}
                     </p>
                   </div>
@@ -473,16 +475,16 @@ export default function ServiceDetailView() {
       </section>
 
       {/* Core Capabilities */}
-      <section id="capabilities" className="py-20 lg:py-28 bg-[#FBFBFB] border-b border-gray-200">
+      <section id="capabilities" className="py-20 lg:py-28 bg-[#0A0D15] border-b border-white/[0.08]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="max-w-3xl mb-16">
-            <span className="font-mono text-xs uppercase tracking-widest text-gray-500 mb-3 block">
+            <span className="font-mono text-xs uppercase tracking-widest text-[#FF5C00] mb-3 block font-semibold">
               Engineering Matrix
             </span>
-            <h2 className="text-4xl sm:text-5xl font-normal -tracking-[1.92px] text-black mb-4">
-              Technical Capabilities &amp; <span className="italic">Architecture</span>
+            <h2 className="text-4xl sm:text-5xl font-normal -tracking-[1.92px] text-white mb-4">
+              Technical Capabilities &amp; <span className="italic text-[#FF5C00]">Architecture</span>
             </h2>
-            <p className="text-base sm:text-lg text-gray-600 font-normal">
+            <p className="text-base sm:text-lg text-slate-300 font-normal">
               Modular, scalable components engineered to integrate into your existing tech stack with zero disruption.
             </p>
           </div>
@@ -491,16 +493,16 @@ export default function ServiceDetailView() {
             {activeService.capabilities.map((cap, i) => (
               <div
                 key={i}
-                className="p-7 rounded-3xl bg-white border border-gray-200 hover:border-black transition-all flex flex-col justify-between group"
+                className="p-7 rounded-3xl bg-[#0E121E] border border-white/[0.08] hover:border-[#FF5C00]/40 transition-all flex flex-col justify-between group shadow-lg"
               >
                 <div>
-                  <div className="size-12 rounded-2xl bg-[#FBFBFB] border border-gray-200 flex items-center justify-center text-black mb-6 group-hover:scale-105 transition-transform">
+                  <div className="size-12 rounded-2xl bg-[#141A2E] border border-white/10 flex items-center justify-center text-[#FF5C00] mb-6 group-hover:scale-105 transition-transform shadow-xs">
                     <Zap className="size-5" />
                   </div>
-                  <h3 className="text-xl font-normal text-black mb-2">
+                  <h3 className="text-xl font-normal text-white mb-2">
                     {cap.title}
                   </h3>
-                  <p className="text-sm text-gray-600 leading-relaxed font-normal">
+                  <p className="text-sm text-slate-300 leading-relaxed font-normal">
                     {cap.description}
                   </p>
                 </div>
@@ -511,14 +513,14 @@ export default function ServiceDetailView() {
       </section>
 
       {/* Technologies We Use */}
-      <section className="py-16 bg-white border-b border-gray-200">
+      <section className="py-16 bg-[#08090E] border-b border-white/[0.08]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div>
-              <h3 className="text-xl font-normal text-black">
+              <h3 className="text-xl font-normal text-white">
                 Technologies &amp; Frameworks Deployed
               </h3>
-              <p className="text-xs font-mono uppercase text-gray-500 mt-1">
+              <p className="text-xs font-mono uppercase text-slate-400 mt-1">
                 Modern, reliable software engineering stacks prioritizing security &amp; speed
               </p>
             </div>
@@ -527,7 +529,7 @@ export default function ServiceDetailView() {
               {activeService.technologies.map((tech, i) => (
                 <span
                   key={i}
-                  className="px-4 py-2 rounded-full text-xs font-mono uppercase bg-[#FBFBFB] border border-gray-200 text-black font-semibold"
+                  className="px-4 py-2 rounded-full text-xs font-mono uppercase bg-[#0E121E] border border-white/10 text-slate-200 font-semibold shadow-xs"
                 >
                   {tech}
                 </span>
@@ -538,21 +540,21 @@ export default function ServiceDetailView() {
       </section>
 
       {/* Previous Work / Delivered Projects */}
-      <section id="delivered-case-studies" className="py-20 lg:py-28 bg-[#FBFBFB] border-b border-gray-200">
+      <section id="delivered-case-studies" className="py-20 lg:py-28 bg-[#0A0D15] border-b border-white/[0.08]">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 pb-8 border-b border-gray-200">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 pb-8 border-b border-white/[0.08]">
             <div>
-              <span className="font-mono text-xs uppercase tracking-widest text-gray-500 mb-3 block">
+              <span className="font-mono text-xs uppercase tracking-widest text-[#FF5C00] mb-3 block font-semibold">
                 Track Record &bull; Delivered Solutions
               </span>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal -tracking-[1.92px] text-black">
-                Previous {activeService.shortTitle} <span className="italic">Case Studies</span>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal -tracking-[1.92px] text-white">
+                Previous {activeService.shortTitle} <span className="italic text-[#FF5C00]">Case Studies</span>
               </h2>
             </div>
             
             <Link
               to="/work"
-              className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-black hover:text-gray-600 font-semibold"
+              className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-slate-300 hover:text-[#FF5C00] font-semibold transition-colors"
             >
               <span>View All Work &rarr;</span>
             </Link>
@@ -567,14 +569,14 @@ export default function ServiceDetailView() {
       </section>
 
       {/* 5-Step Process */}
-      <section className="py-20 lg:py-28 bg-white border-b border-gray-200">
+      <section className="py-20 lg:py-28 bg-[#08090E] border-b border-white/[0.08]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="font-mono text-xs uppercase tracking-widest text-gray-500 mb-3 block">
+            <span className="font-mono text-xs uppercase tracking-widest text-[#FF5C00] mb-3 block font-semibold">
               Delivery Methodology
             </span>
-            <h2 className="text-4xl sm:text-5xl font-normal -tracking-[1.92px] text-black">
-              Our 5-Stage Engineering <span className="italic">Lifecycle</span>
+            <h2 className="text-4xl sm:text-5xl font-normal -tracking-[1.92px] text-white">
+              Our 5-Stage Engineering <span className="italic text-[#FF5C00]">Lifecycle</span>
             </h2>
           </div>
 
@@ -582,16 +584,16 @@ export default function ServiceDetailView() {
             {activeService.processSteps.map((step, i) => (
               <div
                 key={i}
-                className="p-6 rounded-3xl bg-[#FBFBFB] border border-gray-200 hover:border-black transition-all flex flex-col justify-between"
+                className="p-6 rounded-3xl bg-[#0E121E] border border-white/[0.08] hover:border-[#FF5C00]/40 transition-all flex flex-col justify-between shadow-lg"
               >
                 <div>
-                  <span className="font-mono text-3xl italic text-gray-400 block mb-4">
+                  <span className="font-mono text-3xl italic text-[#FF5C00] block mb-4 font-bold">
                     {step.step}
                   </span>
-                  <h3 className="text-base font-normal text-black mb-2">
+                  <h3 className="text-base font-normal text-white mb-2">
                     {step.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-gray-600 leading-relaxed font-normal">
+                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
                     {step.description}
                   </p>
                 </div>
@@ -602,16 +604,16 @@ export default function ServiceDetailView() {
       </section>
 
       {/* Frequently Asked Questions */}
-      <section className="py-20 lg:py-28 bg-[#FBFBFB] border-b border-gray-200">
+      <section className="py-20 lg:py-28 bg-[#0A0D15] border-b border-white/[0.08]">
         <div className="max-w-4xl mx-auto px-6">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="font-mono text-xs uppercase tracking-widest text-gray-500 mb-3 block">
+            <span className="font-mono text-xs uppercase tracking-widest text-[#FF5C00] mb-3 block font-semibold">
               Technical FAQ
             </span>
-            <h2 className="text-4xl sm:text-5xl font-normal -tracking-[1.92px] text-black mb-4">
-              Frequently Asked <span className="italic">Questions</span>
+            <h2 className="text-4xl sm:text-5xl font-normal -tracking-[1.92px] text-white mb-4">
+              Frequently Asked <span className="italic text-[#FF5C00]">Questions</span>
             </h2>
-            <p className="text-base text-gray-600 font-normal">
+            <p className="text-base text-slate-300 font-normal">
               Transparent answers covering architecture, device hardware, data privacy, and production SLAs.
             </p>
           </div>
@@ -622,23 +624,23 @@ export default function ServiceDetailView() {
               return (
                 <div
                   key={i}
-                  className="rounded-3xl border border-gray-200 bg-white hover:border-black transition-all overflow-hidden"
+                  className="rounded-3xl border border-white/[0.08] bg-[#0E121E] hover:border-[#FF5C00]/40 transition-all overflow-hidden shadow-md"
                 >
                   <button
                     type="button"
                     onClick={() => toggleFaq(i)}
                     className="w-full p-6 sm:p-7 text-left flex items-center justify-between gap-6 cursor-pointer"
                   >
-                    <span className="text-lg sm:text-xl font-normal text-black leading-snug">
+                    <span className="text-lg sm:text-xl font-normal text-white leading-snug">
                       {faq.question}
                     </span>
-                    <span className="size-9 rounded-full bg-gray-100 flex items-center justify-center shrink-0 transition-colors">
-                      {isOpen ? <Minus className="size-4 text-black" /> : <Plus className="size-4 text-black" />}
+                    <span className="size-9 rounded-full bg-[#141A2E] border border-white/10 flex items-center justify-center shrink-0 transition-colors">
+                      {isOpen ? <Minus className="size-4 text-[#FF5C00]" /> : <Plus className="size-4 text-white" />}
                     </span>
                   </button>
                   
                   {isOpen && (
-                    <div className="px-6 pb-6 sm:px-7 sm:pb-7 pt-1 text-sm sm:text-base text-gray-600 leading-relaxed font-normal border-t border-gray-100">
+                    <div className="px-6 pb-6 sm:px-7 sm:pb-7 pt-1 text-sm sm:text-base text-slate-300 leading-relaxed font-normal border-t border-white/[0.08]">
                       {faq.answer}
                     </div>
                   )}
@@ -650,19 +652,20 @@ export default function ServiceDetailView() {
       </section>
 
       {/* Conversion CTA Footer */}
-      <section className="py-20 lg:py-28 bg-white text-center">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-normal -tracking-[1.92px] text-black mb-4">
-            Ready to Architect Your <span className="italic">{activeService.shortTitle}</span> Solution?
+      <section className="py-20 lg:py-28 bg-[#08090E] text-center border-t border-white/[0.08] relative overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-[#FF5C00]/8 blur-[120px] pointer-events-none -z-10" />
+        <div className="max-w-4xl mx-auto px-6 relative z-10">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-normal -tracking-[1.92px] text-white mb-4">
+            Ready to Architect Your <span className="italic text-[#FF5C00]">{activeService.shortTitle}</span> Solution?
           </h2>
-          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed font-normal mb-8">
+          <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed font-normal mb-8">
             Schedule an architectural scoping consultation with our engineering directors. We analyze your requirements and deliver a comprehensive technical roadmap.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link
               to={`/contact?service=${encodeURIComponent(activeService.title)}`}
-              className="group px-8 py-4 inline-flex gap-2.5 items-center bg-black text-sm font-medium -tracking-[0.2px] leading-5 text-white rounded-full hover:bg-gray-800 transition-all duration-300"
+              className="group px-8 py-4 inline-flex gap-2.5 items-center bg-gradient-to-r from-[#FF5C00] via-[#FF6C00] to-[#FF8526] text-sm font-semibold -tracking-[0.2px] leading-5 text-white rounded-full hover:shadow-[0_0_24px_rgba(255,92,0,0.5)] transition-all duration-300 border border-[#FFA566]/30 font-bold"
             >
               <RollText>SCHEDULE SCOPING SESSION</RollText>
               <DiagonalArrow size={18} />
@@ -670,7 +673,7 @@ export default function ServiceDetailView() {
             
             <a
               href="mailto:info@sarohub.com"
-              className="px-8 py-4 rounded-full border border-gray-200 text-xs font-mono uppercase tracking-wider text-black hover:bg-black hover:text-white transition-all"
+              className="px-8 py-4 rounded-full border border-white/15 bg-white/[0.05] hover:bg-white/[0.1] hover:border-[#FF5C00]/50 text-xs font-mono uppercase tracking-wider text-white transition-all font-semibold"
             >
               info@sarohub.com
             </a>

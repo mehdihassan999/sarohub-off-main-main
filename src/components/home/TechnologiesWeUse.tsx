@@ -20,18 +20,19 @@ export default function TechnologiesWeUse() {
   ];
 
   return (
-    <section id="technologies" className="py-12 lg:py-16 bg-[#FBFBFB] border-b border-gray-200">
+    <section id="technologies" className="py-14 lg:py-20 bg-[#08090E] border-b border-white/[0.08] relative">
       <div className="max-w-7xl mx-auto px-6">
         
-        {/* NexStudio Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
-          <span className="font-mono text-xs uppercase tracking-widest text-gray-500 mb-2 block">
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
+          <span className="font-mono text-xs uppercase tracking-widest text-[#FF5C00] mb-2 block flex items-center justify-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#FF5C00] animate-pulse" />
             Engineering Infrastructure
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal -tracking-[1.8px] text-black mb-3">
-            Technologies We <span className="italic">Build With</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal -tracking-[1.8px] text-white mb-3">
+            Technologies We <span className="italic text-[#FF5C00]">Build With</span>
           </h2>
-          <p className="text-sm sm:text-base text-gray-700 leading-relaxed font-normal">
+          <p className="text-sm sm:text-base text-slate-400 leading-relaxed font-normal">
             We engineer software solutions using proven, high-performance open-source platforms and enterprise frameworks.
           </p>
         </div>
@@ -49,17 +50,17 @@ export default function TechnologiesWeUse() {
                 viewport={{ once: true }}
                 whileHover={{ y: -4 }}
                 transition={{ duration: 0.3, delay: idx * 0.04 }}
-                className="p-6 rounded-3xl border border-gray-200 bg-white hover:border-black hover:shadow-md transition-all duration-300 flex flex-col items-center text-center justify-between group shadow-xs"
+                className="p-6 rounded-3xl border border-white/[0.08] bg-[#0E121E] hover:border-[#FF5C00]/40 hover:shadow-[0_12px_35px_rgba(0,0,0,0.7),0_0_20px_rgba(255,92,0,0.15)] transition-all duration-300 flex flex-col items-center text-center justify-between group shadow-lg"
               >
-                <div className="size-12 rounded-2xl bg-[#FBFBFB] border border-gray-200 text-black flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-xs">
+                <div className="size-12 rounded-2xl bg-gradient-to-br from-[#FF5C00]/20 to-[#FF5C00]/5 border border-[#FF5C00]/30 text-[#FF6C00] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-[0_0_15px_rgba(255,92,0,0.2)]">
                   <Icon className="size-5 stroke-[1.8]" />
                 </div>
                 
                 <div>
-                  <h3 className="text-base font-bold text-black mb-1 group-hover:text-gray-700 transition-colors">
+                  <h3 className="text-base font-bold text-white mb-1 group-hover:text-[#FF7A1A] transition-colors">
                     {tech.name}
                   </h3>
-                  <p className="text-[11px] font-mono text-gray-600 font-medium leading-normal">
+                  <p className="text-[11px] font-mono text-slate-400 font-medium leading-normal">
                     {tech.desc}
                   </p>
                 </div>

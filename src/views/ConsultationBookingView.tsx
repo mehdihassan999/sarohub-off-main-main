@@ -334,7 +334,7 @@ export default function ConsultationBookingView({ settings = {} }: ConsultationB
   ];
 
   return (
-    <div className="min-h-screen bg-white text-black">
+    <div className="min-h-screen bg-[#08090E] text-white">
       <SEOHead 
         title={`Direct Consultation Booking | ${companyName}`}
         description="Schedule a high-impact technical discovery consultation with SaroHub engineering leadership. Confidential discussion under mutual NDA."
@@ -342,30 +342,32 @@ export default function ConsultationBookingView({ settings = {} }: ConsultationB
       />
 
       {/* Top Breadcrumb Bar */}
-      <div className="border-b border-gray-200 bg-[#FBFBFB]">
-        <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+      <div className="border-b border-white/[0.08] bg-[#0A0D15]">
+        <div className="max-w-7xl mx-auto px-6 py-3.5 flex items-center justify-between">
           <Breadcrumbs
             items={[
               { name: 'Home', url: '/' },
               { name: 'Book Consultation', url: '/book', isCurrent: true }
             ]}
           />
-          <span className="hidden sm:inline font-mono text-[11px] uppercase tracking-wider text-gray-500">
+          <span className="hidden sm:inline font-mono text-[11px] uppercase tracking-wider text-slate-400">
             Engineering Desk
           </span>
         </div>
       </div>
 
       {/* Hero Section */}
-      <section className="py-20 lg:py-28 bg-[#FBFBFB] border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-6 text-center max-w-3xl">
-          <span className="font-mono text-xs uppercase tracking-widest text-gray-500 mb-4 block">
+      <section className="py-20 lg:py-28 bg-[#0A0D15] border-b border-white/[0.08] relative overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-[#FF5C00]/8 blur-[120px] pointer-events-none -z-10" />
+        <div className="max-w-7xl mx-auto px-6 text-center max-w-3xl relative z-10">
+          <span className="font-mono text-xs uppercase tracking-widest text-[#FF5C00] mb-4 block flex items-center justify-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#FF5C00] animate-pulse" />
             Direct Access to Senior Solutions Architects
           </span>
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-normal -tracking-[2.5px] text-black leading-tight mb-6">
-            Schedule a Technical <span className="italic">Discovery</span>
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-normal -tracking-[2.5px] text-white leading-tight mb-6 font-display">
+            Schedule a Technical <span className="italic text-[#FF5C00]">Discovery</span>
           </h1>
-          <p className="text-lg sm:text-xl text-gray-600 font-normal leading-relaxed">
+          <p className="text-lg sm:text-xl text-slate-400 font-normal leading-relaxed">
             Directly connect with engineering leadership. We analyze your technical requirements, cloud topology, deliverable milestones, and budget estimates under mutual NDA.
           </p>
         </div>
@@ -380,54 +382,54 @@ export default function ConsultationBookingView({ settings = {} }: ConsultationB
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.96 }}
-              className="max-w-2xl mx-auto rounded-3xl border border-gray-200 bg-white p-8 sm:p-12 shadow-2xl text-center space-y-6"
+              className="max-w-2xl mx-auto rounded-3xl border border-white/[0.12] bg-[#0E121E] p-8 sm:p-12 shadow-2xl text-center space-y-6"
             >
-              <div className="size-16 rounded-full bg-[#FBFBFB] border border-gray-200 flex items-center justify-center mx-auto text-black">
+              <div className="size-16 rounded-full bg-[#FF5C00]/10 border border-[#FF5C00]/30 flex items-center justify-center mx-auto text-[#FF5C00]">
                 <CheckCircle2 className="size-8" />
               </div>
 
               <div className="space-y-2">
-                <span className="text-xs font-mono uppercase tracking-wider text-gray-500 block">
+                <span className="text-xs font-mono uppercase tracking-wider text-[#FF7A1A] block font-bold">
                   Discovery Session Reserved
                 </span>
-                <h2 className="text-3xl sm:text-4xl font-normal text-black">Technical Consultation Confirmed</h2>
-                <p className="text-sm text-gray-600 font-normal">
-                  Confirmation and calendar invites have been dispatched to <strong className="text-black">{confirmedBooking.client_email}</strong>.
+                <h2 className="text-3xl sm:text-4xl font-bold font-display text-white">Technical Consultation Confirmed</h2>
+                <p className="text-sm text-slate-400 font-normal">
+                  Confirmation and calendar invites have been dispatched to <strong className="text-white">{confirmedBooking.client_email}</strong>.
                 </p>
               </div>
 
               {/* Boarding Pass */}
-              <div className="rounded-3xl border border-gray-200 bg-[#FBFBFB] p-6 text-left space-y-3">
-                <div className="flex justify-between items-center border-b border-gray-200 pb-3">
+              <div className="rounded-3xl border border-white/[0.08] bg-[#141828] p-6 text-left space-y-3">
+                <div className="flex justify-between items-center border-b border-white/[0.08] pb-3">
                   <div>
-                    <span className="text-[10px] font-mono uppercase text-gray-400 block">Client</span>
-                    <span className="font-semibold text-sm text-black">{confirmedBooking.client_name} {confirmedBooking.company_name ? `(${confirmedBooking.company_name})` : ''}</span>
+                    <span className="text-[10px] font-mono uppercase text-slate-400 block">Client</span>
+                    <span className="font-semibold text-sm text-white">{confirmedBooking.client_name} {confirmedBooking.company_name ? `(${confirmedBooking.company_name})` : ''}</span>
                   </div>
-                  <span className="px-3 py-1 rounded-full bg-black text-white text-[10px] font-mono uppercase font-semibold">
+                  <span className="px-3 py-1 rounded-full bg-[#FF5C00]/10 border border-[#FF5C00]/30 text-[#FF7A1A] text-[10px] font-mono uppercase font-bold">
                     Confirmed
                   </span>
                 </div>
 
-                <div className="grid grid-cols-2 gap-3 border-b border-gray-200 pb-3">
+                <div className="grid grid-cols-2 gap-3 border-b border-white/[0.08] pb-3">
                   <div>
-                    <span className="text-[10px] font-mono uppercase text-gray-400 block">Date & Time</span>
-                    <span className="font-semibold text-black">{confirmedBooking.scheduled_date}</span>
-                    <p className="text-xs text-gray-600 font-mono">{confirmedBooking.scheduled_time}</p>
+                    <span className="text-[10px] font-mono uppercase text-slate-400 block">Date & Time</span>
+                    <span className="font-semibold text-white">{confirmedBooking.scheduled_date}</span>
+                    <p className="text-xs text-slate-400 font-mono">{confirmedBooking.scheduled_time}</p>
                   </div>
                   <div>
-                    <span className="text-[10px] font-mono uppercase text-gray-400 block">Platform</span>
-                    <span className="font-semibold text-black">{confirmedBooking.meeting_platform}</span>
-                    <p className="text-xs text-gray-600 font-mono">{confirmedBooking.timezone || 'PKT'}</p>
+                    <span className="text-[10px] font-mono uppercase text-slate-400 block">Platform</span>
+                    <span className="font-semibold text-white">{confirmedBooking.meeting_platform}</span>
+                    <p className="text-xs text-slate-400 font-mono">{confirmedBooking.timezone || 'PKT'}</p>
                   </div>
                 </div>
 
                 <div className="pt-1">
-                  <span className="text-[10px] font-mono uppercase text-gray-400 block mb-1">Direct Meeting Link</span>
+                  <span className="text-[10px] font-mono uppercase text-slate-400 block mb-1">Direct Meeting Link</span>
                   <a 
                     href={confirmedBooking.meeting_link} 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="text-black underline font-mono text-xs break-all"
+                    className="text-[#FF7A1A] hover:underline font-mono text-xs break-all"
                   >
                     {confirmedBooking.meeting_link}
                   </a>
@@ -441,7 +443,7 @@ export default function ConsultationBookingView({ settings = {} }: ConsultationB
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full flex items-center justify-center gap-2 py-3.5 px-6 rounded-full bg-black text-white font-mono text-xs uppercase tracking-wider hover:bg-gray-800 transition-all"
+                  className="w-full flex items-center justify-center gap-2 py-4 px-6 rounded-full bg-gradient-to-r from-[#FF5C00] via-[#FF6C00] to-[#FF8526] hover:shadow-[0_0_24px_rgba(255,92,0,0.5)] text-white font-mono text-xs uppercase tracking-wider font-bold transition-all border border-[#FFA566]/30"
                 >
                   <MessageCircle className="size-4" />
                   <span>Direct WhatsApp Desk: {whatsappNumber}</span>
@@ -452,9 +454,9 @@ export default function ConsultationBookingView({ settings = {} }: ConsultationB
                     href={googleCalUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full flex items-center justify-center gap-2 py-3 px-6 rounded-full border border-gray-200 text-black font-mono text-xs uppercase tracking-wider hover:border-black transition-all"
+                    className="w-full flex items-center justify-center gap-2 py-3 px-6 rounded-full border border-white/10 text-white font-mono text-xs uppercase tracking-wider hover:border-[#FF5C00] bg-white/[0.04] hover:bg-white/[0.08] transition-all"
                   >
-                    <Calendar className="size-4" />
+                    <Calendar className="size-4 text-[#FF5C00]" />
                     <span>Add to Google Calendar</span>
                     <ExternalLink className="size-3.5" />
                   </a>
@@ -463,16 +465,16 @@ export default function ConsultationBookingView({ settings = {} }: ConsultationB
                 {icsData && (
                   <button
                     onClick={handleDownloadIcs}
-                    className="w-full flex items-center justify-center gap-2 py-3 px-6 rounded-full border border-gray-200 text-gray-700 font-mono text-xs uppercase tracking-wider hover:border-black transition-all cursor-pointer"
+                    className="w-full flex items-center justify-center gap-2 py-3 px-6 rounded-full border border-white/10 text-slate-300 font-mono text-xs uppercase tracking-wider hover:border-[#FF5C00] hover:text-white bg-white/[0.04] transition-all cursor-pointer"
                   >
-                    <Download className="size-4" />
+                    <Download className="size-4 text-[#FF5C00]" />
                     <span>Download iCal (.ics)</span>
                   </button>
                 )}
 
                 <button
                   onClick={() => setConfirmedBooking(null)}
-                  className="w-full text-center text-xs font-mono uppercase text-gray-500 hover:text-black pt-2 cursor-pointer"
+                  className="w-full text-center text-xs font-mono uppercase text-slate-400 hover:text-[#FF5C00] pt-2 cursor-pointer transition-colors"
                 >
                   &larr; Book another session
                 </button>
@@ -484,12 +486,12 @@ export default function ConsultationBookingView({ settings = {} }: ConsultationB
               <div className="lg:col-span-7 space-y-8">
                 
                 {/* Step 1: Select Track */}
-                <div className="rounded-3xl border border-gray-200 bg-[#FBFBFB] p-7">
+                <div className="rounded-3xl border border-white/[0.08] bg-[#0E121E] p-7 shadow-xl">
                   <div className="flex items-center gap-3 mb-6">
-                    <span className="size-7 rounded-full bg-black text-white text-xs font-mono font-bold flex items-center justify-center">
+                    <span className="size-7 rounded-full bg-[#FF5C00] text-white text-xs font-mono font-bold flex items-center justify-center shadow-[0_0_10px_rgba(255,92,0,0.5)]">
                       1
                     </span>
-                    <h2 className="text-xl font-normal text-black">Select Consultation Track</h2>
+                    <h2 className="text-xl font-bold font-display text-white">Select Consultation Track</h2>
                   </div>
 
                   <div className="grid grid-cols-1 gap-4">
@@ -503,34 +505,34 @@ export default function ConsultationBookingView({ settings = {} }: ConsultationB
                           onClick={() => setSelectedType(track.title)}
                           className={`p-6 rounded-3xl border cursor-pointer transition-all ${
                             isSelected
-                              ? 'border-black bg-white shadow-xs ring-1 ring-black'
-                              : 'border-gray-200 bg-white hover:border-gray-400'
+                              ? 'border-[#FF5C00] bg-[#141828] shadow-[0_0_20px_rgba(255,92,0,0.15)] ring-1 ring-[#FF5C00]/50'
+                              : 'border-white/[0.08] bg-[#141828]/60 hover:border-white/20'
                           }`}
                         >
                           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
                             <div className="flex items-center gap-3">
                               <div className={`size-10 rounded-2xl flex items-center justify-center ${
-                                isSelected ? 'bg-black text-white' : 'bg-[#FBFBFB] border border-gray-200 text-black'
+                                isSelected ? 'bg-[#FF5C00] text-white shadow-md' : 'bg-white/[0.04] border border-white/10 text-[#FF5C00]'
                               }`}>
                                 <Icon className="size-5" />
                               </div>
                               <div>
-                                <h3 className="text-base font-normal text-black">
+                                <h3 className="text-base font-bold text-white">
                                   {track.title}
                                 </h3>
-                                <span className="text-xs font-mono text-gray-500">{track.duration}</span>
+                                <span className="text-xs font-mono text-slate-400">{track.duration}</span>
                               </div>
                             </div>
 
-                            <span className="text-[10px] font-mono uppercase tracking-wider px-3 py-1 rounded-full bg-[#FBFBFB] border border-gray-200 text-gray-600">
+                            <span className="text-[10px] font-mono uppercase tracking-wider px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-[#FF7A1A] font-semibold">
                               {track.badge}
                             </span>
                           </div>
 
-                          <div className="mt-3 pt-3 border-t border-gray-100 flex flex-wrap items-center gap-2">
+                          <div className="mt-3 pt-3 border-t border-white/[0.08] flex flex-wrap items-center gap-2">
                             {track.deliverables.map((item, idx) => (
-                              <span key={idx} className="text-[10px] font-mono px-2.5 py-1 rounded-full bg-[#FBFBFB] border border-gray-200 text-gray-600 flex items-center gap-1">
-                                <Check className="size-3 text-black" />
+                              <span key={idx} className="text-[10px] font-mono px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-slate-300 flex items-center gap-1">
+                                <Check className="size-3 text-[#FF5C00]" />
                                 <span>{item}</span>
                               </span>
                             ))}
@@ -542,13 +544,13 @@ export default function ConsultationBookingView({ settings = {} }: ConsultationB
                 </div>
 
                 {/* Step 2: Date Selector */}
-                <div className="rounded-3xl border border-gray-200 bg-[#FBFBFB] p-7">
+                <div className="rounded-3xl border border-white/[0.08] bg-[#0E121E] p-7 shadow-xl">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
                     <div className="flex items-center gap-3">
-                      <span className="size-7 rounded-full bg-black text-white text-xs font-mono font-bold flex items-center justify-center">
+                      <span className="size-7 rounded-full bg-[#FF5C00] text-white text-xs font-mono font-bold flex items-center justify-center shadow-[0_0_10px_rgba(255,92,0,0.5)]">
                         2
                       </span>
-                      <h2 className="text-xl font-normal text-black">Select Date</h2>
+                      <h2 className="text-xl font-bold font-display text-white">Select Date</h2>
                     </div>
                     
                     <div className="flex items-center gap-2">
@@ -556,18 +558,18 @@ export default function ConsultationBookingView({ settings = {} }: ConsultationB
                         type="button"
                         disabled={weekOffset === 0}
                         onClick={() => setWeekOffset(prev => Math.max(0, prev - 1))}
-                        className="size-8 rounded-full border border-gray-200 bg-white text-gray-600 hover:text-black disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center transition-colors"
+                        className="size-8 rounded-full border border-white/10 bg-white/[0.04] text-slate-300 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center transition-colors"
                       >
                         <ChevronLeft className="size-4" />
                       </button>
-                      <span className="text-xs font-mono text-gray-500">
+                      <span className="text-xs font-mono text-slate-400">
                         Week {weekOffset + 1}
                       </span>
                       <button
                         type="button"
                         disabled={weekOffset >= 3}
                         onClick={() => setWeekOffset(prev => Math.min(3, prev + 1))}
-                        className="size-8 rounded-full border border-gray-200 bg-white text-gray-600 hover:text-black disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center transition-colors"
+                        className="size-8 rounded-full border border-white/10 bg-white/[0.04] text-slate-300 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center transition-colors"
                       >
                         <ChevronRight className="size-4" />
                       </button>
@@ -584,8 +586,8 @@ export default function ConsultationBookingView({ settings = {} }: ConsultationB
                           onClick={() => setSelectedDate(day.dateStr)}
                           className={`p-3 rounded-2xl border text-center transition-all cursor-pointer ${
                             isSelected
-                              ? 'border-black bg-black text-white'
-                              : 'border-gray-200 bg-white hover:border-black text-black'
+                              ? 'border-[#FF5C00] bg-gradient-to-r from-[#FF5C00] to-[#FF7A1A] text-white shadow-md font-bold'
+                              : 'border-white/10 bg-[#141828] hover:border-white/25 text-slate-300'
                           }`}
                         >
                           <span className="text-[10px] font-mono uppercase block">{day.dayName}</span>
@@ -596,8 +598,8 @@ export default function ConsultationBookingView({ settings = {} }: ConsultationB
                     })}
                   </div>
 
-                  <div className="flex items-center justify-between pt-4 border-t border-gray-200">
-                    <span className="text-xs font-mono text-gray-500">Picked: {selectedDateFormatted}</span>
+                  <div className="flex items-center justify-between pt-4 border-t border-white/[0.08]">
+                    <span className="text-xs font-mono text-slate-400">Picked: <strong className="text-white">{selectedDateFormatted}</strong></span>
                     <input
                       type="date"
                       min={todayISO}
@@ -608,27 +610,27 @@ export default function ConsultationBookingView({ settings = {} }: ConsultationB
                           setSelectedDate(e.target.value);
                         }
                       }}
-                      className="px-3 py-1.5 rounded-full border border-gray-200 bg-white text-xs font-mono text-black focus:outline-none cursor-pointer"
+                      className="px-3.5 py-1.5 rounded-full border border-white/10 bg-[#141828] text-xs font-mono text-white focus:outline-none cursor-pointer"
                     />
                   </div>
                 </div>
 
                 {/* Step 3: Time Slot */}
-                <div className="rounded-3xl border border-gray-200 bg-[#FBFBFB] p-7">
+                <div className="rounded-3xl border border-white/[0.08] bg-[#0E121E] p-7 shadow-xl">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
                     <div className="flex items-center gap-3">
-                      <span className="size-7 rounded-full bg-black text-white text-xs font-mono font-bold flex items-center justify-center">
+                      <span className="size-7 rounded-full bg-[#FF5C00] text-white text-xs font-mono font-bold flex items-center justify-center shadow-[0_0_10px_rgba(255,92,0,0.5)]">
                         3
                       </span>
-                      <h2 className="text-xl font-normal text-black">Select Time Slot</h2>
+                      <h2 className="text-xl font-bold font-display text-white">Select Time Slot</h2>
                     </div>
 
-                    <div className="flex items-center gap-1 p-1 rounded-full bg-white border border-gray-200">
+                    <div className="flex items-center gap-1 p-1 rounded-full bg-[#141828] border border-white/10">
                       <button
                         type="button"
                         onClick={() => setIsCustomTime(false)}
                         className={`px-4 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider transition-all cursor-pointer ${
-                          !isCustomTime ? 'bg-black text-white' : 'text-gray-500 hover:text-black'
+                          !isCustomTime ? 'bg-gradient-to-r from-[#FF5C00] to-[#FF7A1A] text-white font-bold' : 'text-slate-400 hover:text-white'
                         }`}
                       >
                         Slots
@@ -637,7 +639,7 @@ export default function ConsultationBookingView({ settings = {} }: ConsultationB
                         type="button"
                         onClick={() => setIsCustomTime(true)}
                         className={`px-4 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider transition-all cursor-pointer ${
-                          isCustomTime ? 'bg-black text-white' : 'text-gray-500 hover:text-black'
+                          isCustomTime ? 'bg-gradient-to-r from-[#FF5C00] to-[#FF7A1A] text-white font-bold' : 'text-slate-400 hover:text-white'
                         }`}
                       >
                         Custom
@@ -646,13 +648,13 @@ export default function ConsultationBookingView({ settings = {} }: ConsultationB
                   </div>
 
                   {isCustomTime ? (
-                    <div className="p-6 rounded-3xl border border-gray-200 bg-white space-y-4">
-                      <span className="text-xs font-mono uppercase text-gray-500 block">Set Consultation Time (PKT):</span>
+                    <div className="p-6 rounded-3xl border border-white/[0.08] bg-[#141828] space-y-4">
+                      <span className="text-xs font-mono uppercase text-slate-400 block">Set Consultation Time (PKT):</span>
                       <div className="grid grid-cols-3 gap-3">
                         <select
                           value={customHour}
                           onChange={(e) => setCustomHour(e.target.value)}
-                          className="px-3 py-2 rounded-2xl border border-gray-200 bg-[#FBFBFB] text-xs font-mono text-black focus:outline-none"
+                          className="px-3 py-2 rounded-2xl border border-white/10 bg-[#0E121E] text-xs font-mono text-white focus:outline-none"
                         >
                           {['09', '10', '11', '12', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11'].map(h => (
                             <option key={h} value={h}>{h}</option>
@@ -661,7 +663,7 @@ export default function ConsultationBookingView({ settings = {} }: ConsultationB
                         <select
                           value={customMinute}
                           onChange={(e) => setCustomMinute(e.target.value)}
-                          className="px-3 py-2 rounded-2xl border border-gray-200 bg-[#FBFBFB] text-xs font-mono text-black focus:outline-none"
+                          className="px-3 py-2 rounded-2xl border border-white/10 bg-[#0E121E] text-xs font-mono text-white focus:outline-none"
                         >
                           {['00', '15', '30', '45'].map(m => (
                             <option key={m} value={m}>:{m}</option>
@@ -670,7 +672,7 @@ export default function ConsultationBookingView({ settings = {} }: ConsultationB
                         <select
                           value={customPeriod}
                           onChange={(e) => setCustomPeriod(e.target.value)}
-                          className="px-3 py-2 rounded-2xl border border-gray-200 bg-[#FBFBFB] text-xs font-mono text-black focus:outline-none"
+                          className="px-3 py-2 rounded-2xl border border-white/10 bg-[#0E121E] text-xs font-mono text-white focus:outline-none"
                         >
                           <option value="AM">AM</option>
                           <option value="PM">PM</option>
@@ -680,14 +682,14 @@ export default function ConsultationBookingView({ settings = {} }: ConsultationB
                   ) : (
                     <div>
                       {loadingSlots ? (
-                        <div className="py-8 text-center text-xs font-mono text-gray-500 flex items-center justify-center gap-2">
-                          <RefreshCw className="size-4 animate-spin text-black" />
+                        <div className="py-8 text-center text-xs font-mono text-slate-400 flex items-center justify-center gap-2">
+                          <RefreshCw className="size-4 animate-spin text-[#FF5C00]" />
                           <span>Checking slot availability...</span>
                         </div>
                       ) : (
                         <div className="space-y-4">
                           <div>
-                            <span className="text-xs font-mono uppercase text-gray-400 block mb-2">Morning (09:00 AM – 12:00 PM)</span>
+                            <span className="text-xs font-mono uppercase text-slate-400 block mb-2">Morning (09:00 AM – 12:00 PM)</span>
                             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                               {morningSlots.map((slotTime) => {
                                 const isBooked = bookedSlots.includes(slotTime);
@@ -698,12 +700,12 @@ export default function ConsultationBookingView({ settings = {} }: ConsultationB
                                     type="button"
                                     disabled={isBooked}
                                     onClick={() => setSelectedTime(slotTime)}
-                                    className={`py-2 px-3 rounded-2xl border text-xs font-mono transition-all cursor-pointer ${
+                                    className={`py-2.5 px-3 rounded-2xl border text-xs font-mono transition-all cursor-pointer ${
                                       isBooked
-                                        ? 'border-gray-200 bg-gray-100 text-gray-400 line-through cursor-not-allowed'
+                                        ? 'border-white/5 bg-white/[0.02] text-slate-600 line-through cursor-not-allowed'
                                         : isSelected
-                                        ? 'border-black bg-black text-white font-semibold'
-                                        : 'border-gray-200 bg-white hover:border-black text-black'
+                                        ? 'border-[#FF5C00] bg-gradient-to-r from-[#FF5C00] to-[#FF7A1A] text-white font-bold shadow-md'
+                                        : 'border-white/10 bg-[#141828] hover:border-white/20 text-slate-300'
                                     }`}
                                   >
                                     {slotTime.replace(' PKT', '')}
@@ -714,7 +716,7 @@ export default function ConsultationBookingView({ settings = {} }: ConsultationB
                           </div>
 
                           <div>
-                            <span className="text-xs font-mono uppercase text-gray-400 block mb-2">Afternoon (12:00 PM – 05:00 PM)</span>
+                            <span className="text-xs font-mono uppercase text-slate-400 block mb-2">Afternoon (12:00 PM – 05:00 PM)</span>
                             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                               {afternoonSlots.map((slotTime) => {
                                 const isBooked = bookedSlots.includes(slotTime);
@@ -725,12 +727,12 @@ export default function ConsultationBookingView({ settings = {} }: ConsultationB
                                     type="button"
                                     disabled={isBooked}
                                     onClick={() => setSelectedTime(slotTime)}
-                                    className={`py-2 px-3 rounded-2xl border text-xs font-mono transition-all cursor-pointer ${
+                                    className={`py-2.5 px-3 rounded-2xl border text-xs font-mono transition-all cursor-pointer ${
                                       isBooked
-                                        ? 'border-gray-200 bg-gray-100 text-gray-400 line-through cursor-not-allowed'
+                                        ? 'border-white/5 bg-white/[0.02] text-slate-600 line-through cursor-not-allowed'
                                         : isSelected
-                                        ? 'border-black bg-black text-white font-semibold'
-                                        : 'border-gray-200 bg-white hover:border-black text-black'
+                                        ? 'border-[#FF5C00] bg-gradient-to-r from-[#FF5C00] to-[#FF7A1A] text-white font-bold shadow-md'
+                                        : 'border-white/10 bg-[#141828] hover:border-white/20 text-slate-300'
                                     }`}
                                   >
                                     {slotTime.replace(' PKT', '')}
@@ -741,7 +743,7 @@ export default function ConsultationBookingView({ settings = {} }: ConsultationB
                           </div>
 
                           <div>
-                            <span className="text-xs font-mono uppercase text-gray-400 block mb-2">Evening (05:00 PM – 12:00 Midnight)</span>
+                            <span className="text-xs font-mono uppercase text-slate-400 block mb-2">Evening (05:00 PM – 12:00 Midnight)</span>
                             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                               {eveningSlots.map((slotTime) => {
                                 const isBooked = bookedSlots.includes(slotTime);
@@ -752,12 +754,12 @@ export default function ConsultationBookingView({ settings = {} }: ConsultationB
                                     type="button"
                                     disabled={isBooked}
                                     onClick={() => setSelectedTime(slotTime)}
-                                    className={`py-2 px-3 rounded-2xl border text-xs font-mono transition-all cursor-pointer ${
+                                    className={`py-2.5 px-3 rounded-2xl border text-xs font-mono transition-all cursor-pointer ${
                                       isBooked
-                                        ? 'border-gray-200 bg-gray-100 text-gray-400 line-through cursor-not-allowed'
+                                        ? 'border-white/5 bg-white/[0.02] text-slate-600 line-through cursor-not-allowed'
                                         : isSelected
-                                        ? 'border-black bg-black text-white font-semibold'
-                                        : 'border-gray-200 bg-white hover:border-black text-black'
+                                        ? 'border-[#FF5C00] bg-gradient-to-r from-[#FF5C00] to-[#FF7A1A] text-white font-bold shadow-md'
+                                        : 'border-white/10 bg-[#141828] hover:border-white/20 text-slate-300'
                                     }`}
                                   >
                                     {slotTime.replace(' PKT', '')}
@@ -772,27 +774,27 @@ export default function ConsultationBookingView({ settings = {} }: ConsultationB
                   )}
 
                   {isNightHour && (
-                    <div className="mt-4 p-3.5 rounded-2xl bg-red-50 border border-red-200 text-red-700 text-xs flex items-center gap-2">
-                      <AlertTriangle className="size-4 shrink-0 text-red-500" />
+                    <div className="mt-4 p-3.5 rounded-2xl bg-rose-950/40 border border-rose-500/30 text-rose-300 text-xs flex items-center gap-2">
+                      <AlertTriangle className="size-4 shrink-0 text-rose-400" />
                       <span>Consultations cannot be scheduled between 12:00 Midnight and 09:00 AM PKT.</span>
                     </div>
                   )}
 
                   {isSlotBooked && (
-                    <div className="mt-4 p-3.5 rounded-2xl bg-amber-50 border border-amber-200 text-amber-700 text-xs flex items-center gap-2">
-                      <AlertCircle className="size-4 shrink-0 text-amber-500" />
+                    <div className="mt-4 p-3.5 rounded-2xl bg-amber-950/40 border border-amber-500/30 text-amber-300 text-xs flex items-center gap-2">
+                      <AlertCircle className="size-4 shrink-0 text-amber-400" />
                       <span>The slot {selectedTime} has already been reserved. Please pick another.</span>
                     </div>
                   )}
                 </div>
 
                 {/* Step 4: Meeting Platform */}
-                <div className="rounded-3xl border border-gray-200 bg-[#FBFBFB] p-7">
+                <div className="rounded-3xl border border-white/[0.08] bg-[#0E121E] p-7 shadow-xl">
                   <div className="flex items-center gap-3 mb-6">
-                    <span className="size-7 rounded-full bg-black text-white text-xs font-mono font-bold flex items-center justify-center">
+                    <span className="size-7 rounded-full bg-[#FF5C00] text-white text-xs font-mono font-bold flex items-center justify-center shadow-[0_0_10px_rgba(255,92,0,0.5)]">
                       4
                     </span>
-                    <h2 className="text-xl font-normal text-black">Choose Platform</h2>
+                    <h2 className="text-xl font-bold font-display text-white">Choose Platform</h2>
                   </div>
 
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -811,12 +813,12 @@ export default function ConsultationBookingView({ settings = {} }: ConsultationB
                           onClick={() => setPlatform(p.id)}
                           className={`p-4 rounded-2xl border text-center transition-all cursor-pointer ${
                             isSelected
-                              ? 'border-black bg-white ring-1 ring-black'
-                              : 'border-gray-200 bg-white hover:border-gray-400'
+                              ? 'border-[#FF5C00] bg-[#141828] text-white ring-1 ring-[#FF5C00]/50'
+                              : 'border-white/10 bg-[#141828]/60 text-slate-300 hover:border-white/20'
                           }`}
                         >
-                          <Icon className="size-5 mx-auto mb-2 text-black" />
-                          <p className="text-xs font-mono uppercase">{p.label}</p>
+                          <Icon className="size-5 mx-auto mb-2 text-[#FF5C00]" />
+                          <p className="text-xs font-mono uppercase font-semibold">{p.label}</p>
                         </button>
                       );
                     })}
@@ -827,45 +829,45 @@ export default function ConsultationBookingView({ settings = {} }: ConsultationB
 
               {/* Right Column: Ticket Summary & Details */}
               <div className="lg:col-span-5">
-                <div className="rounded-3xl border border-gray-200 bg-[#FBFBFB] p-7 sticky top-24 space-y-6">
+                <div className="rounded-3xl border border-white/[0.08] bg-[#0E121E] p-7 sticky top-24 space-y-6 shadow-2xl">
                   
                   {/* Ticket Header */}
-                  <div className="p-6 rounded-3xl border border-gray-200 bg-white space-y-3">
+                  <div className="p-6 rounded-3xl border border-white/[0.08] bg-[#141828] space-y-3">
                     <div className="flex justify-between items-center">
-                      <span className="text-[10px] font-mono uppercase tracking-wider text-gray-500">
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400">
                         Consultation Pass
                       </span>
-                      <span className="text-[10px] font-mono px-3 py-1 rounded-full bg-black text-white">
+                      <span className="text-[10px] font-mono px-3 py-1 rounded-full bg-[#FF5C00]/15 text-[#FF7A1A] font-bold border border-[#FF5C00]/30">
                         {currentTrackData.duration}
                       </span>
                     </div>
 
-                    <h3 className="text-base font-normal text-black leading-snug">
+                    <h3 className="text-base font-bold text-white leading-snug font-display">
                       {selectedType}
                     </h3>
 
-                    <div className="flex flex-wrap items-center gap-2 text-xs font-mono text-gray-700">
+                    <div className="flex flex-wrap items-center gap-2 text-xs font-mono text-slate-300">
                       <span>{selectedDate}</span>
                       <span>&bull;</span>
-                      <span>{selectedTime}</span>
+                      <span className="text-[#FF7A1A]">{selectedTime}</span>
                     </div>
 
-                    <div className="pt-3 border-t border-gray-100 flex justify-between text-[11px] font-mono text-gray-500">
+                    <div className="pt-3 border-t border-white/[0.08] flex justify-between text-[11px] font-mono text-slate-400">
                       <span>Host: Solutions Lead</span>
-                      <span>{platform}</span>
+                      <span className="text-white">{platform}</span>
                     </div>
                   </div>
 
                   <form onSubmit={handleSubmit} className="space-y-4">
                     {submitError && (
-                      <div className="p-3.5 rounded-2xl bg-red-50 border border-red-200 text-red-700 text-xs flex items-center gap-2">
-                        <AlertCircle className="size-4 shrink-0 text-red-500" />
+                      <div className="p-3.5 rounded-2xl bg-rose-950/40 border border-rose-500/30 text-rose-300 text-xs flex items-center gap-2">
+                        <AlertCircle className="size-4 shrink-0 text-rose-400" />
                         <span>{submitError}</span>
                       </div>
                     )}
 
                     <div>
-                      <label className="block text-xs font-mono uppercase text-gray-600 mb-1">
+                      <label className="block text-xs font-mono uppercase text-slate-400 mb-1.5 font-semibold">
                         Full Name *
                       </label>
                       <input
@@ -874,12 +876,12 @@ export default function ConsultationBookingView({ settings = {} }: ConsultationB
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         placeholder="Your Full Name"
-                        className="w-full px-4 py-2.5 rounded-2xl border border-gray-200 bg-white text-xs text-black placeholder-gray-400 focus:outline-none focus:border-black"
+                        className="w-full px-4 py-3 rounded-2xl border border-white/10 bg-[#141828] text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#FF5C00]"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-mono uppercase text-gray-600 mb-1">
+                      <label className="block text-xs font-mono uppercase text-slate-400 mb-1.5 font-semibold">
                         Work Email *
                       </label>
                       <input
@@ -888,13 +890,13 @@ export default function ConsultationBookingView({ settings = {} }: ConsultationB
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="you@company.com"
-                        className="w-full px-4 py-2.5 rounded-2xl border border-gray-200 bg-white text-xs text-black placeholder-gray-400 focus:outline-none focus:border-black"
+                        className="w-full px-4 py-3 rounded-2xl border border-white/10 bg-[#141828] text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#FF5C00]"
                       />
                     </div>
 
                     <div className="grid grid-cols-2 gap-3">
                       <div>
-                        <label className="block text-xs font-mono uppercase text-gray-600 mb-1">
+                        <label className="block text-xs font-mono uppercase text-slate-400 mb-1.5 font-semibold">
                           Phone
                         </label>
                         <input
@@ -902,12 +904,12 @@ export default function ConsultationBookingView({ settings = {} }: ConsultationB
                           value={phone}
                           onChange={(e) => setPhone(e.target.value)}
                           placeholder="+92 343 0381473"
-                          className="w-full px-4 py-2.5 rounded-2xl border border-gray-200 bg-white text-xs text-black placeholder-gray-400 focus:outline-none focus:border-black"
+                          className="w-full px-4 py-3 rounded-2xl border border-white/10 bg-[#141828] text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#FF5C00] font-mono"
                         />
                       </div>
 
                       <div>
-                        <label className="block text-xs font-mono uppercase text-gray-600 mb-1">
+                        <label className="block text-xs font-mono uppercase text-slate-400 mb-1.5 font-semibold">
                           Company
                         </label>
                         <input
@@ -915,13 +917,13 @@ export default function ConsultationBookingView({ settings = {} }: ConsultationB
                           value={company}
                           onChange={(e) => setCompany(e.target.value)}
                           placeholder="Your Venture"
-                          className="w-full px-4 py-2.5 rounded-2xl border border-gray-200 bg-white text-xs text-black placeholder-gray-400 focus:outline-none focus:border-black"
+                          className="w-full px-4 py-3 rounded-2xl border border-white/10 bg-[#141828] text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#FF5C00]"
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label className="block text-xs font-mono uppercase text-gray-600 mb-1.5">
+                      <label className="block text-xs font-mono uppercase text-slate-400 mb-1.5 font-semibold">
                         Budget Range
                       </label>
                       <div className="flex flex-wrap gap-1.5">
@@ -930,10 +932,10 @@ export default function ConsultationBookingView({ settings = {} }: ConsultationB
                             key={tier}
                             type="button"
                             onClick={() => setBudget(tier)}
-                            className={`px-3 py-1 rounded-full text-xs font-mono uppercase transition-all cursor-pointer ${
+                            className={`px-3 py-1.5 rounded-full text-xs font-mono uppercase transition-all cursor-pointer border ${
                               budget === tier
-                                ? 'bg-black text-white font-semibold'
-                                : 'bg-white border border-gray-200 text-gray-600 hover:text-black'
+                                ? 'bg-gradient-to-r from-[#FF5C00] to-[#FF7A1A] border-[#FFA566]/30 text-white font-bold shadow-md'
+                                : 'bg-[#141828] border-white/10 text-slate-300 hover:border-white/25'
                             }`}
                           >
                             {tier}
@@ -943,7 +945,7 @@ export default function ConsultationBookingView({ settings = {} }: ConsultationB
                     </div>
 
                     <div>
-                      <label className="block text-xs font-mono uppercase text-gray-600 mb-1.5">
+                      <label className="block text-xs font-mono uppercase text-slate-400 mb-1.5 font-semibold">
                         Timeline
                       </label>
                       <div className="flex flex-wrap gap-1.5">
@@ -952,10 +954,10 @@ export default function ConsultationBookingView({ settings = {} }: ConsultationB
                             key={t}
                             type="button"
                             onClick={() => setTimeline(t)}
-                            className={`px-3 py-1 rounded-full text-xs font-mono uppercase transition-all cursor-pointer ${
+                            className={`px-3 py-1.5 rounded-full text-xs font-mono uppercase transition-all cursor-pointer border ${
                               timeline === t
-                                ? 'bg-black text-white font-semibold'
-                                : 'bg-white border border-gray-200 text-gray-600 hover:text-black'
+                                ? 'bg-gradient-to-r from-[#FF5C00] to-[#FF7A1A] border-[#FFA566]/30 text-white font-bold shadow-md'
+                                : 'bg-[#141828] border-white/10 text-slate-300 hover:border-white/25'
                             }`}
                           >
                             {t}
@@ -965,7 +967,7 @@ export default function ConsultationBookingView({ settings = {} }: ConsultationB
                     </div>
 
                     <div>
-                      <label className="block text-xs font-mono uppercase text-gray-600 mb-1">
+                      <label className="block text-xs font-mono uppercase text-slate-400 mb-1.5 font-semibold">
                         Brief &amp; Objectives
                       </label>
                       <textarea
@@ -973,18 +975,18 @@ export default function ConsultationBookingView({ settings = {} }: ConsultationB
                         value={projectSummary}
                         onChange={(e) => setProjectSummary(e.target.value)}
                         placeholder="Brief overview of project scope..."
-                        className="w-full px-4 py-2.5 rounded-2xl border border-gray-200 bg-white text-xs text-black placeholder-gray-400 focus:outline-none focus:border-black"
+                        className="w-full px-4 py-3 rounded-2xl border border-white/10 bg-[#141828] text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#FF5C00] resize-y"
                       />
                     </div>
 
-                    <div className="p-3.5 rounded-2xl border border-gray-200 bg-white flex items-start gap-2.5 cursor-pointer" onClick={() => setNdaAgreed(!ndaAgreed)}>
+                    <div className="p-3.5 rounded-2xl border border-white/10 bg-[#141828] flex items-start gap-2.5 cursor-pointer" onClick={() => setNdaAgreed(!ndaAgreed)}>
                       <input
                         type="checkbox"
                         checked={ndaAgreed}
                         onChange={(e) => setNdaAgreed(e.target.checked)}
-                        className="mt-0.5 rounded border-gray-300 text-black focus:ring-0 cursor-pointer"
+                        className="mt-0.5 rounded border-white/20 text-[#FF5C00] focus:ring-0 cursor-pointer"
                       />
-                      <span className="text-xs text-gray-600 font-normal">
+                      <span className="text-xs text-slate-300 font-normal">
                         Execute Mutual NDA: Protect all disclosures under standard non-disclosure terms.
                       </span>
                     </div>
@@ -992,7 +994,7 @@ export default function ConsultationBookingView({ settings = {} }: ConsultationB
                     <button
                       type="submit"
                       disabled={isSubmitting || isNightHour || isSlotBooked}
-                      className="w-full py-4 rounded-full bg-black text-white font-mono text-xs uppercase tracking-wider disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-800 transition-all flex items-center justify-center gap-2 cursor-pointer"
+                      className="w-full py-4 rounded-full bg-gradient-to-r from-[#FF5C00] via-[#FF6C00] to-[#FF8526] text-white font-mono text-xs uppercase tracking-wider font-bold disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-[0_0_24px_rgba(255,92,0,0.5)] transition-all flex items-center justify-center gap-2 cursor-pointer border border-[#FFA566]/30 shadow-lg"
                     >
                       {isSubmitting ? (
                         <>
@@ -1007,7 +1009,7 @@ export default function ConsultationBookingView({ settings = {} }: ConsultationB
                       )}
                     </button>
 
-                    <div className="text-center text-[10px] text-gray-400 font-mono">
+                    <div className="text-center text-[10px] text-slate-400 font-mono">
                       Direct invite dispatched instantly to your email.
                     </div>
                   </form>

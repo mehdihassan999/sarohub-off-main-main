@@ -64,18 +64,19 @@ export default function WhyChooseUs({ settings = {} }: WhyChooseUsProps) {
   const displayPoints = items.length > 0 ? items : defaultFallbackPoints;
 
   return (
-    <section id="why-choose-us" className="py-12 lg:py-16 bg-white border-b border-gray-200">
+    <section id="why-choose-us" className="py-14 lg:py-20 bg-[#08090E] border-b border-white/[0.08] relative">
       <div className="max-w-7xl mx-auto px-6">
         
-        {/* NexStudio Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-8 lg:mb-10">
-          <span className="font-mono text-xs uppercase tracking-widest text-gray-500 mb-2 block">
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-10 lg:mb-12">
+          <span className="font-mono text-xs uppercase tracking-widest text-[#FF5C00] mb-2 block flex items-center justify-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#FF5C00] animate-pulse" />
             Our Philosophy &amp; Principles
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal -tracking-[1.8px] text-black mb-3">
-            Why <span className="italic">SaroHub?</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal -tracking-[1.8px] text-white mb-3">
+            Why <span className="italic text-[#FF5C00]">SaroHub?</span>
           </h2>
-          <p className="text-sm sm:text-base text-gray-700 leading-relaxed max-w-2xl mx-auto font-normal">
+          <p className="text-sm sm:text-base text-slate-400 leading-relaxed max-w-2xl mx-auto font-normal">
             {sectionSubtitle}
           </p>
         </div>
@@ -93,23 +94,23 @@ export default function WhyChooseUs({ settings = {} }: WhyChooseUsProps) {
                 viewport={{ once: true }}
                 whileHover={{ y: -4 }}
                 transition={{ duration: 0.4, delay: idx * 0.08 }}
-                className="p-6 sm:p-7 rounded-3xl border border-gray-200 bg-[#FBFBFB] hover:border-black hover:shadow-md transition-all duration-300 flex flex-col justify-between group"
+                className="p-6 sm:p-7 rounded-3xl border border-white/[0.08] bg-[#0E121E] hover:border-[#FF5C00]/40 hover:shadow-[0_12px_35px_rgba(0,0,0,0.7),0_0_20px_rgba(255,92,0,0.15)] transition-all duration-300 flex flex-col justify-between group shadow-lg"
               >
                 <div>
-                  <div className="size-12 rounded-2xl bg-black text-white flex items-center justify-center mb-5 group-hover:scale-105 transition-transform duration-300 shadow-xs">
+                  <div className="size-12 rounded-2xl bg-gradient-to-br from-[#FF5C00]/20 to-[#FF5C00]/5 border border-[#FF5C00]/30 text-[#FF6C00] flex items-center justify-center mb-5 group-hover:scale-105 transition-transform duration-300 shadow-[0_0_15px_rgba(255,92,0,0.2)]">
                     <IconComponent className="w-5 h-5 stroke-[1.8]" />
                   </div>
 
-                  <h3 className="text-lg sm:text-xl font-bold text-black mb-2 group-hover:text-gray-700 transition-colors tracking-tight">
+                  <h3 className="text-lg sm:text-xl font-bold text-white mb-2 group-hover:text-[#FF5C00] transition-colors tracking-tight">
                     {point.title}
                   </h3>
 
-                  <p className="text-sm text-gray-700 leading-relaxed font-normal">
+                  <p className="text-sm text-slate-400 leading-relaxed font-normal">
                     {point.shortDescription || point.description}
                   </p>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-gray-200 font-mono text-xs font-semibold text-gray-700">
+                <div className="mt-6 pt-4 border-t border-white/[0.08] font-mono text-xs font-semibold text-[#FF7A1A]">
                   {`0${idx + 1} / PILLAR`}
                 </div>
               </motion.article>

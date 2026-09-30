@@ -103,40 +103,42 @@ export default function VentureDetail() {
   }).filter((item) => Boolean(item.url));
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#08090E] text-white">
       {/* Hero */}
-      <div className="relative border-b border-slate-200 bg-slate-50/60 overflow-hidden">
-        <div className="relative z-10 max-w-5xl mx-auto px-6 pt-6 pb-6 sm:pt-8 sm:pb-8">
-          <div className="mb-4">
+      <div className="relative border-b border-white/[0.08] bg-[#0A0D15] overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-[#FF5C00]/8 blur-[120px] pointer-events-none -z-10" />
+
+        <div className="relative z-10 max-w-5xl mx-auto px-6 pt-8 pb-8 sm:pt-12 sm:pb-12">
+          <div className="mb-6">
             <Link
               to="/ventures"
-              className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold uppercase tracking-wider text-blue-600 hover:text-blue-800 transition-colors"
+              className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[#FF7A1A] hover:text-[#FFA566] transition-colors"
             >
               <ArrowLeft className="h-4 w-4" />
               All Ventures
             </Link>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3 mb-3">
-            <span className="text-xs font-mono font-bold uppercase tracking-widest px-2.5 py-1 rounded bg-slate-200/80 text-slate-700 border border-slate-300">
+          <div className="flex flex-wrap items-center gap-3 mb-4">
+            <span className="text-xs font-mono font-bold uppercase tracking-widest px-2.5 py-1 rounded-md bg-white/[0.06] text-slate-300 border border-white/10">
               {ventureLabel}
             </span>
             <VentureStatus status={venture.status} size="md" />
           </div>
 
-          <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-950 leading-tight">
+          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-normal -tracking-[2px] text-white leading-tight">
             {venture.name}
           </h1>
 
           {venture.tagline && (
-            <p className="mt-2 text-base sm:text-lg font-medium text-slate-700 italic">
+            <p className="mt-3 text-base sm:text-xl font-normal text-slate-300 italic">
               "{venture.tagline}"
             </p>
           )}
 
           {venture.category && (
-            <div className="mt-3">
-              <span className="text-xs font-mono font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-md border border-slate-200 bg-white text-slate-800 shadow-sm inline-block">
+            <div className="mt-4">
+              <span className="text-xs font-mono font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full border border-[#FF5C00]/30 bg-[#FF5C00]/10 text-[#FF7A1A] shadow-sm inline-block">
                 {venture.category}
               </span>
             </div>
@@ -144,13 +146,13 @@ export default function VentureDetail() {
 
           {/* External links */}
           {(venture.websiteUrl || venture.demoUrl) && (
-            <div className="mt-5 flex flex-wrap gap-3">
+            <div className="mt-6 flex flex-wrap gap-3">
               {venture.websiteUrl && (
                 <a
                   href={venture.websiteUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-slate-950 text-white text-xs sm:text-sm font-bold uppercase tracking-wider hover:bg-slate-800 transition-all shadow-md"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-[#FF5C00] via-[#FF6C00] to-[#FF8526] hover:shadow-[0_0_24px_rgba(255,92,0,0.5)] text-white text-xs sm:text-sm font-bold uppercase tracking-wider transition-all border border-[#FFA566]/30"
                 >
                   <Globe className="h-4 w-4" />
                   Visit Website
@@ -161,9 +163,9 @@ export default function VentureDetail() {
                   href={venture.demoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full border-2 border-slate-300 bg-white text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-900 hover:border-slate-900 hover:bg-slate-50 transition-all shadow-sm"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/10 bg-white/[0.04] text-xs sm:text-sm font-bold uppercase tracking-wider text-white hover:border-[#FF5C00] hover:bg-white/[0.08] transition-all shadow-sm"
                 >
-                  <ExternalLink className="h-4 w-4" />
+                  <ExternalLink className="h-4 w-4 text-[#FF5C00]" />
                   Live Demo
                 </a>
               )}
@@ -172,29 +174,29 @@ export default function VentureDetail() {
 
           {/* Featured Cover Banner */}
           {venture.coverImage && (
-            <div className="mt-8 rounded-2xl overflow-hidden border border-slate-200 bg-slate-950 shadow-lg max-h-[460px]">
+            <div className="mt-10 rounded-3xl overflow-hidden border border-white/[0.08] bg-[#0E121E] shadow-2xl max-h-[480px]">
               <img
                 src={venture.coverImage}
                 alt={venture.name}
-                className="w-full h-full object-cover max-h-[460px]"
+                className="w-full h-full object-cover max-h-[480px]"
               />
             </div>
           )}
         </div>
       </div>
 
-      <div className="max-w-5xl mx-auto px-6 pt-6 sm:pt-8 pb-16 space-y-8 sm:space-y-10">
+      <div className="max-w-5xl mx-auto px-6 pt-10 sm:pt-12 pb-20 space-y-10 sm:space-y-12">
 
         {/* Description / About */}
         {venture.description && (
-          <section className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 shadow-sm">
+          <section className="rounded-3xl border border-white/[0.08] bg-[#0E121E] p-6 sm:p-10 shadow-xl">
             <div className="flex items-center gap-2 mb-2">
-              <span className="text-xs font-mono font-bold uppercase tracking-wider text-blue-600">Venture Overview</span>
+              <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#FF7A1A]">Venture Overview</span>
             </div>
-            <h2 className="font-display text-2xl sm:text-3xl font-bold mb-3 text-slate-950">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold mb-4 text-white">
               About {venture.name}
             </h2>
-            <p className="text-base sm:text-lg leading-relaxed whitespace-pre-line text-slate-800 font-normal">
+            <p className="text-base sm:text-lg leading-relaxed whitespace-pre-line text-slate-300 font-normal">
               {venture.description}
             </p>
           </section>
@@ -214,25 +216,25 @@ export default function VentureDetail() {
         {(venture.problem || venture.solution) && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             {venture.problem && (
-              <div className="rounded-2xl border border-rose-200 bg-rose-50/40 p-6 sm:p-7 shadow-sm">
+              <div className="rounded-3xl border border-rose-500/20 bg-rose-950/20 p-6 sm:p-8 shadow-xl">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="h-9 w-9 rounded-lg bg-rose-100 border border-rose-200 flex items-center justify-center text-rose-700">
+                  <div className="h-10 w-10 rounded-xl bg-rose-500/10 border border-rose-500/30 flex items-center justify-center text-rose-400">
                     <Target className="h-5 w-5" />
                   </div>
-                  <h3 className="font-display text-base sm:text-lg font-bold text-slate-950">The Problem</h3>
+                  <h3 className="font-display text-lg sm:text-xl font-bold text-white">The Problem</h3>
                 </div>
-                <p className="text-sm sm:text-base leading-relaxed text-slate-800 font-normal">{venture.problem}</p>
+                <p className="text-sm sm:text-base leading-relaxed text-slate-300 font-normal">{venture.problem}</p>
               </div>
             )}
             {venture.solution && (
-              <div className="rounded-2xl border border-blue-200 bg-blue-50/40 p-6 sm:p-7 shadow-sm">
+              <div className="rounded-3xl border border-[#FF5C00]/25 bg-[#FF5C00]/5 p-6 sm:p-8 shadow-xl">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="h-9 w-9 rounded-lg bg-blue-100 border border-blue-200 flex items-center justify-center text-blue-700">
+                  <div className="h-10 w-10 rounded-xl bg-[#FF5C00]/10 border border-[#FF5C00]/30 flex items-center justify-center text-[#FF7A1A]">
                     <Lightbulb className="h-5 w-5" />
                   </div>
-                  <h3 className="font-display text-base sm:text-lg font-bold text-slate-950">The Solution</h3>
+                  <h3 className="font-display text-lg sm:text-xl font-bold text-white">The Solution</h3>
                 </div>
-                <p className="text-sm sm:text-base leading-relaxed text-slate-800 font-normal">{venture.solution}</p>
+                <p className="text-sm sm:text-base leading-relaxed text-slate-300 font-normal">{venture.solution}</p>
               </div>
             )}
           </div>
@@ -240,15 +242,15 @@ export default function VentureDetail() {
 
         {/* Key Capabilities */}
         {venture.keyCapabilities && venture.keyCapabilities.length > 0 && (
-          <section className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 shadow-sm">
-            <h2 className="font-display text-2xl sm:text-3xl font-bold mb-6 text-slate-950">
+          <section className="rounded-3xl border border-white/[0.08] bg-[#0E121E] p-6 sm:p-10 shadow-xl">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold mb-6 text-white">
               Key Capabilities
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {venture.keyCapabilities.map((cap, i) => (
-                <div key={i} className="flex items-start gap-3 p-4 rounded-xl border border-slate-200 bg-slate-50/50 shadow-xs">
-                  <CheckCircle2 className="h-5 w-5 text-emerald-600 mt-0.5 shrink-0" />
-                  <span className="text-sm sm:text-base font-semibold text-slate-900">{cap}</span>
+                <div key={i} className="flex items-start gap-3 p-4 rounded-2xl border border-white/[0.08] bg-[#141828]">
+                  <CheckCircle2 className="h-5 w-5 text-[#FF5C00] mt-0.5 shrink-0" />
+                  <span className="text-sm sm:text-base font-normal text-slate-200">{cap}</span>
                 </div>
               ))}
             </div>
@@ -257,15 +259,15 @@ export default function VentureDetail() {
 
         {/* Technologies */}
         {venture.technologies && venture.technologies.length > 0 && (
-          <section className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 shadow-sm">
-            <h2 className="font-display text-2xl sm:text-3xl font-bold mb-5 text-slate-950">
+          <section className="rounded-3xl border border-white/[0.08] bg-[#0E121E] p-6 sm:p-10 shadow-xl">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold mb-6 text-white">
               Technology Stack
             </h2>
             <div className="flex flex-wrap gap-2.5">
               {venture.technologies.map((tech, i) => (
                 <span
                   key={i}
-                  className="px-4 py-2 rounded-lg border border-slate-200 bg-slate-50 text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-800 shadow-sm"
+                  className="px-4 py-2 rounded-xl border border-white/10 bg-[#141828] text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-slate-300"
                 >
                   {tech}
                 </span>
@@ -276,21 +278,21 @@ export default function VentureDetail() {
 
         {/* Gallery */}
         {gallery.length > 0 && (
-          <section className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 shadow-sm">
+          <section className="rounded-3xl border border-white/[0.08] bg-[#0E121E] p-6 sm:p-10 shadow-xl">
             <div className="flex items-center justify-between mb-6">
               <div>
-                <span className="text-xs font-mono font-bold uppercase tracking-wider text-blue-600">Platform Showcase</span>
-                <h2 className="font-display text-2xl sm:text-3xl font-bold text-slate-950">Gallery & Screenshots</h2>
+                <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#FF7A1A]">Platform Showcase</span>
+                <h2 className="font-display text-2xl sm:text-3xl font-bold text-white">Gallery &amp; Screenshots</h2>
               </div>
               {gallery.length > 1 && (
-                <span className="text-xs font-mono font-bold px-3 py-1.5 rounded-full border border-slate-200 bg-slate-50 text-slate-700">
+                <span className="text-xs font-mono font-bold px-3 py-1.5 rounded-full border border-white/10 bg-[#141828] text-slate-300">
                   {galleryIdx + 1} / {gallery.length}
                 </span>
               )}
             </div>
 
-            <div className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-xl bg-slate-950">
-              <div className="relative aspect-video sm:h-[440px] w-full overflow-hidden flex items-center justify-center bg-slate-900">
+            <div className="relative rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl bg-[#08090E]">
+              <div className="relative aspect-video sm:h-[460px] w-full overflow-hidden flex items-center justify-center bg-[#08090E]">
                 <img
                   src={gallery[galleryIdx].url}
                   alt={gallery[galleryIdx].caption || `${venture.name} screenshot ${galleryIdx + 1}`}
@@ -299,12 +301,12 @@ export default function VentureDetail() {
 
                 {/* Description / Caption Overlay */}
                 {(gallery[galleryIdx].caption || gallery[galleryIdx].description) && (
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950 via-slate-950/85 to-transparent p-5 pt-10">
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black via-black/85 to-transparent p-5 pt-10">
                     <p className="text-sm sm:text-base font-semibold text-white">
                       {gallery[galleryIdx].caption || gallery[galleryIdx].description}
                     </p>
                     {gallery[galleryIdx].description && gallery[galleryIdx].caption && gallery[galleryIdx].description !== gallery[galleryIdx].caption && (
-                      <p className="text-xs sm:text-sm text-slate-300 mt-1">
+                      <p className="text-xs sm:text-sm text-slate-400 mt-1 font-normal">
                         {gallery[galleryIdx].description}
                       </p>
                     )}
@@ -316,14 +318,14 @@ export default function VentureDetail() {
                 <>
                   <button
                     onClick={() => setGalleryIdx((prev) => (prev - 1 + gallery.length) % gallery.length)}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-slate-900/90 text-white hover:bg-blue-600 transition-all border border-slate-700 shadow-lg cursor-pointer"
+                    className="absolute left-4 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-black/80 text-white hover:bg-[#FF5C00] transition-all border border-white/20 shadow-lg cursor-pointer"
                     aria-label="Previous image"
                   >
                     <ChevronLeft className="h-5 w-5" />
                   </button>
                   <button
                     onClick={() => setGalleryIdx((prev) => (prev + 1) % gallery.length)}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-slate-900/90 text-white hover:bg-blue-600 transition-all border border-slate-700 shadow-lg cursor-pointer"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-black/80 text-white hover:bg-[#FF5C00] transition-all border border-white/20 shadow-lg cursor-pointer"
                     aria-label="Next image"
                   >
                     <ChevronRight className="h-5 w-5" />
@@ -339,13 +341,13 @@ export default function VentureDetail() {
                   <button
                     key={idx}
                     onClick={() => setGalleryIdx(idx)}
-                    className={`relative rounded-xl overflow-hidden border text-left transition-all group cursor-pointer ${galleryIdx === idx ? 'ring-2 ring-blue-600 border-blue-600 shadow-md' : 'opacity-80 hover:opacity-100 border-slate-200'}`}
+                    className={`relative rounded-xl overflow-hidden border text-left transition-all group cursor-pointer ${galleryIdx === idx ? 'ring-2 ring-[#FF5C00] border-[#FF5C00] shadow-md' : 'opacity-80 hover:opacity-100 border-white/10'}`}
                   >
-                    <div className="h-20 bg-slate-900 overflow-hidden">
+                    <div className="h-20 bg-[#141828] overflow-hidden">
                       <img src={item.url} alt={`Thumbnail ${idx + 1}`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                     </div>
                     {item.caption && (
-                      <p className="p-1.5 text-xs truncate font-medium text-slate-800 bg-white border-t border-slate-100">{item.caption}</p>
+                      <p className="p-1.5 text-xs truncate font-medium text-slate-300 bg-[#0E121E] border-t border-white/[0.08]">{item.caption}</p>
                     )}
                   </button>
                 ))}
@@ -355,12 +357,12 @@ export default function VentureDetail() {
         )}
 
         {/* Current Status */}
-        <section className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 shadow-sm">
-          <h2 className="font-display text-xl font-bold mb-4 text-slate-950">Current Status</h2>
+        <section className="rounded-3xl border border-white/[0.08] bg-[#0E121E] p-6 sm:p-10 shadow-xl">
+          <h2 className="font-display text-xl font-bold mb-4 text-white">Current Status</h2>
           <div className="flex flex-wrap items-center gap-4">
             <VentureStatus status={venture.status} size="lg" />
             {venture.launchDate && (
-              <span className="text-sm sm:text-base font-semibold text-slate-700">
+              <span className="text-sm sm:text-base font-semibold text-slate-300">
                 Launch planned: {venture.launchDate}
               </span>
             )}
@@ -368,23 +370,25 @@ export default function VentureDetail() {
         </section>
 
         {/* CTA */}
-        <section className="rounded-2xl border border-blue-100 bg-gradient-to-r from-blue-50/70 via-indigo-50/50 to-blue-50/70 p-8 sm:p-12 text-center shadow-sm">
-          <h2 className="font-display text-2xl sm:text-3xl font-black text-slate-950">
+        <section className="rounded-3xl border border-white/[0.08] bg-[#0E121E] p-8 sm:p-12 text-center shadow-xl relative overflow-hidden">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[250px] bg-[#FF5C00]/8 blur-[100px] pointer-events-none -z-10" />
+
+          <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-normal text-white">
             Interested in {venture.name}?
           </h2>
-          <p className="mt-3 text-sm sm:text-base font-medium text-slate-700 mb-8 max-w-xl mx-auto">
+          <p className="mt-3 text-sm sm:text-base font-normal text-slate-400 mb-8 max-w-xl mx-auto">
             Get in touch to learn more, explore collaboration, or stay updated on our progress.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
               to="/contact"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-slate-950 text-white hover:bg-slate-800 text-xs sm:text-sm font-bold uppercase tracking-wider shadow-md transition-all cursor-pointer"
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-[#FF5C00] via-[#FF6C00] to-[#FF8526] hover:shadow-[0_0_24px_rgba(255,92,0,0.5)] text-white text-xs sm:text-sm font-bold uppercase tracking-wider transition-all border border-[#FFA566]/30 cursor-pointer"
             >
               Start a Conversation
             </Link>
             <Link
               to="/ventures"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border-2 border-slate-300 bg-white text-slate-900 hover:border-slate-900 text-xs sm:text-sm font-bold uppercase tracking-wider transition-all cursor-pointer"
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full border border-white/10 bg-white/[0.04] text-white hover:border-[#FF5C00] hover:bg-white/[0.08] text-xs sm:text-sm font-bold uppercase tracking-wider transition-all cursor-pointer"
             >
               <ArrowLeft className="h-4 w-4" />
               All Ventures

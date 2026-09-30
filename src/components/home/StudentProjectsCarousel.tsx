@@ -102,27 +102,20 @@ export default function StudentProjectsCarousel({ studentProjects }: StudentProj
   return (
     <section
       id="student-projects"
-      className="py-12 lg:py-16 relative overflow-hidden border-b grid-bg"
-      style={{
-        backgroundColor: 'var(--bg-app)',
-        borderColor: 'var(--border-app)'
-      }}
+      className="py-14 lg:py-20 relative overflow-hidden border-b border-white/[0.08] bg-[#08090E]"
     >
       <div className="mx-auto max-w-7xl px-6">
 
         {/* Section Header with Navigation Controls */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 pb-6 border-b border-white/[0.08]">
           <div>
-            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 shadow-sm">
-              <Award className="h-3.5 w-3.5 text-cyan-400" /> SaroHub IT Training Center &amp; Academy
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-[#FF5C00]/10 border border-[#FF5C00]/25 text-[#FF7A1A] mb-3">
+              <Award className="h-3.5 w-3.5 text-[#FF5C00]" /> SaroHub IT Training Center &amp; Academy
             </span>
-            <h2
-              className="font-display text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight mt-3"
-              style={{ color: 'var(--text-main)' }}
-            >
-              Student Projects Showcase
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal -tracking-[1.8px] text-white">
+              Student Projects <span className="italic text-[#FF5C00]">Showcase</span>
             </h2>
-            <p className="mt-2 text-sm sm:text-base font-medium leading-relaxed max-w-xl text-slate-300">
+            <p className="mt-3 text-sm sm:text-base font-normal leading-relaxed max-w-xl text-slate-400">
               Explore web applications, cognitive AI systems, and mobile platforms engineered by students trained at our SaroHub IT Academy.
             </p>
           </div>
@@ -130,7 +123,7 @@ export default function StudentProjectsCarousel({ studentProjects }: StudentProj
           {/* Right side: Category Filters & Carousel Navigation Buttons */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
             {/* Category Filter Pills */}
-            <div className="flex flex-wrap gap-1.5 max-w-xl">
+            <div className="flex flex-wrap gap-2 max-w-xl">
               {derivedCategories.map((cat) => (
                 <button
                   key={cat}
@@ -138,9 +131,9 @@ export default function StudentProjectsCarousel({ studentProjects }: StudentProj
                     setActiveCategory(cat);
                     if (scrollRef.current) scrollRef.current.scrollTo({ left: 0, behavior: 'smooth' });
                   }}
-                  className={`rounded-full px-3.5 py-1.5 text-xs font-bold transition-all duration-200 cursor-pointer border ${activeCategory === cat
-                    ? 'bg-cyan-500 border-cyan-400 text-slate-950 font-black shadow-md shadow-cyan-500/25 scale-105'
-                    : 'bg-white/10 border-white/20 hover:bg-white/20 text-slate-200'
+                  className={`rounded-full px-4 py-1.5 text-xs font-mono uppercase tracking-wider transition-all duration-200 cursor-pointer border ${activeCategory === cat
+                    ? 'bg-gradient-to-r from-[#FF5C00] to-[#FF7A1A] border-[#FFA566]/30 text-white font-bold shadow-[0_0_15px_rgba(255,92,0,0.4)]'
+                    : 'bg-white/[0.04] border-white/10 hover:bg-white/[0.08] text-slate-300'
                     }`}
                 >
                   {cat}
@@ -155,9 +148,9 @@ export default function StudentProjectsCarousel({ studentProjects }: StudentProj
                   onClick={() => handleScroll('left')}
                   disabled={!canScrollLeft}
                   aria-label="Previous slide"
-                  className={`w-10 h-10 rounded-full flex items-center justify-center border transition-all duration-200 ${canScrollLeft
-                    ? 'bg-white/10 hover:bg-cyan-600 border-white/20 text-white shadow-md cursor-pointer hover:scale-105 active:scale-95'
-                    : 'bg-white/5 border-white/5 text-slate-600 cursor-not-allowed opacity-40'
+                  className={`w-11 h-11 rounded-full flex items-center justify-center border transition-all duration-200 ${canScrollLeft
+                    ? 'bg-black/80 hover:bg-[#FF5C00] border-white/15 text-white shadow-lg cursor-pointer hover:scale-105 active:scale-95'
+                    : 'bg-white/[0.02] border-white/5 text-slate-600 cursor-not-allowed opacity-40'
                     }`}
                 >
                   <ChevronLeft className="h-5 w-5" />
@@ -166,9 +159,9 @@ export default function StudentProjectsCarousel({ studentProjects }: StudentProj
                   onClick={() => handleScroll('right')}
                   disabled={!canScrollRight}
                   aria-label="Next slide"
-                  className={`w-10 h-10 rounded-full flex items-center justify-center border transition-all duration-200 ${canScrollRight
-                    ? 'bg-white/10 hover:bg-cyan-600 border-white/20 text-white shadow-md cursor-pointer hover:scale-105 active:scale-95'
-                    : 'bg-white/5 border-white/5 text-slate-600 cursor-not-allowed opacity-40'
+                  className={`w-11 h-11 rounded-full flex items-center justify-center border transition-all duration-200 ${canScrollRight
+                    ? 'bg-black/80 hover:bg-[#FF5C00] border-white/15 text-white shadow-lg cursor-pointer hover:scale-105 active:scale-95'
+                    : 'bg-white/[0.02] border-white/5 text-slate-600 cursor-not-allowed opacity-40'
                     }`}
                 >
                   <ChevronRight className="h-5 w-5" />
@@ -180,14 +173,7 @@ export default function StudentProjectsCarousel({ studentProjects }: StudentProj
 
         {/* Carousel Container */}
         {filteredProjects.length === 0 ? (
-          <div
-            className="text-center py-16 rounded-2xl border font-medium text-sm"
-            style={{
-              backgroundColor: 'var(--bg-card)',
-              borderColor: 'var(--border-app)',
-              color: 'var(--text-muted)'
-            }}
-          >
+          <div className="text-center py-16 rounded-3xl border border-white/[0.08] bg-[#0E121E] font-medium text-sm text-slate-400">
             No student projects found for the selected category.
           </div>
         ) : (
@@ -215,7 +201,7 @@ export default function StudentProjectsCarousel({ studentProjects }: StudentProj
                     initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: Math.min(idx * 0.04, 0.25) }}
-                    className="w-[300px] sm:w-[330px] lg:w-[350px] shrink-0 snap-start rounded-2xl border border-white/10 bg-slate-900/90 backdrop-blur-xl overflow-hidden flex flex-col justify-between shadow-lg hover:shadow-2xl hover:border-cyan-500/50 hover:-translate-y-1 transition-all duration-300 group/card cursor-pointer"
+                    className="w-[300px] sm:w-[330px] lg:w-[350px] shrink-0 snap-start rounded-3xl border border-white/[0.08] bg-[#0E121E] overflow-hidden flex flex-col justify-between shadow-xl hover:shadow-[0_12px_35px_rgba(0,0,0,0.7),0_0_20px_rgba(255,92,0,0.15)] hover:border-[#FF5C00]/40 transition-all duration-300 group/card cursor-pointer"
                     onClick={() => {
                       setSelectedProject(item);
                       setActiveModalImage(0);
@@ -223,26 +209,24 @@ export default function StudentProjectsCarousel({ studentProjects }: StudentProj
                   >
                     <div>
                       {/* Compact Banner Thumbnail Container */}
-                      <div className="h-44 sm:h-48 overflow-hidden relative bg-slate-950 border-b border-white/10">
+                      <div className="h-44 sm:h-48 overflow-hidden relative bg-[#141828] border-b border-white/[0.08]">
                         <img
                           src={cardImages[0] || item.thumbnail_url || 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=800&h=450'}
                           alt={item.title}
                           className="h-full w-full object-cover transition-transform duration-700 group-hover/card:scale-108"
                           referrerPolicy="no-referrer"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#0E121E] via-transparent to-transparent" />
 
                         {/* Top Badges */}
                         <div className="absolute top-3 right-3 left-3 flex justify-between items-center gap-2">
-                          <span
-                            className="rounded-full px-2.5 py-1 text-[10px] font-mono font-bold uppercase tracking-wider bg-slate-900/80 backdrop-blur-md text-cyan-400 border border-cyan-500/30 shadow-sm"
-                          >
+                          <span className="rounded-full px-3 py-1 text-[10px] font-mono font-bold uppercase tracking-wider bg-black/80 backdrop-blur-md text-[#FF7A1A] border border-[#FF5C00]/30 shadow-sm">
                             {item.category || 'IT Academy'}
                           </span>
 
                           {cardImages.length > 1 && (
-                            <span className="rounded-full px-2.5 py-1 text-[10px] font-mono font-semibold bg-slate-900/80 backdrop-blur-md text-white border border-white/15 flex items-center gap-1">
-                              <ImageIcon className="h-3 w-3 text-cyan-400" />
+                            <span className="rounded-full px-2.5 py-1 text-[10px] font-mono font-semibold bg-black/80 backdrop-blur-md text-white border border-white/15 flex items-center gap-1">
+                              <ImageIcon className="h-3 w-3 text-[#FF5C00]" />
                               {cardImages.length}
                             </span>
                           )}
@@ -251,12 +235,12 @@ export default function StudentProjectsCarousel({ studentProjects }: StudentProj
                         {/* Bottom Student Overlay */}
                         <div className="absolute bottom-3 left-3.5 right-3.5 flex justify-between items-end">
                           <div>
-                            <span className="text-xs font-mono text-cyan-300 font-bold uppercase tracking-widest block drop-shadow-md truncate">
+                            <span className="text-xs font-mono text-[#FF7A1A] font-bold uppercase tracking-widest block drop-shadow-md truncate">
                               👨‍💻 {item.student_name}
                             </span>
                           </div>
                           {item.batch_course && (
-                            <span className="text-xs font-mono text-slate-200 font-semibold drop-shadow-md">
+                            <span className="text-xs font-mono text-slate-300 font-semibold drop-shadow-md">
                               {item.batch_course}
                             </span>
                           )}
@@ -265,14 +249,10 @@ export default function StudentProjectsCarousel({ studentProjects }: StudentProj
 
                       {/* Card Content */}
                       <div className="p-5 space-y-2">
-                        <h3
-                          className="font-display text-base sm:text-lg font-bold text-white group-hover/card:text-cyan-400 transition-colors line-clamp-1"
-                        >
+                        <h3 className="font-display text-lg font-bold text-white group-hover/card:text-[#FF7A1A] transition-colors line-clamp-1">
                           {item.title}
                         </h3>
-                        <p
-                          className="text-sm font-normal text-slate-300 leading-relaxed line-clamp-2"
-                        >
+                        <p className="text-sm font-normal text-slate-400 leading-relaxed line-clamp-2">
                           {item.short_description}
                         </p>
                       </div>
@@ -284,21 +264,21 @@ export default function StudentProjectsCarousel({ studentProjects }: StudentProj
                         {techList.slice(0, 3).map((tech: string, i: number) => (
                           <span
                             key={i}
-                            className="rounded-md px-2.5 py-1 text-xs font-mono font-medium tracking-wider bg-slate-800 border border-slate-700 text-slate-200"
+                            className="rounded-lg px-2.5 py-1 text-xs font-mono font-medium tracking-wider bg-white/[0.04] border border-white/10 text-slate-300"
                           >
                             {tech}
                           </span>
                         ))}
                       </div>
 
-                      <div className="flex gap-2 items-center justify-between pt-3 border-t border-white/10">
+                      <div className="flex gap-2 items-center justify-between pt-3 border-t border-white/[0.08]">
                         <button
                           type="button"
-                          className="text-xs sm:text-sm font-bold text-slate-200 group-hover/card:text-cyan-400 flex items-center gap-1.5 cursor-pointer transition-colors group/btn"
+                          className="text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-slate-300 group-hover/card:text-[#FF5C00] flex items-center gap-1.5 cursor-pointer transition-colors group/btn"
                         >
-                          <FolderGit2 className="h-4 w-4 text-cyan-400" />
+                          <FolderGit2 className="h-4 w-4 text-[#FF5C00]" />
                           <span>View Details</span>
-                          <ArrowRight className="h-3.5 w-3.5 text-cyan-400 transition-transform group-hover/btn:translate-x-0.5" />
+                          <ArrowRight className="h-3.5 w-3.5 text-[#FF5C00] transition-transform group-hover/btn:translate-x-0.5" />
                         </button>
 
                         <div className="flex items-center gap-2">
@@ -308,7 +288,7 @@ export default function StudentProjectsCarousel({ studentProjects }: StudentProj
                               target="_blank"
                               rel="noopener noreferrer"
                               onClick={(e) => e.stopPropagation()}
-                              className="text-slate-300 hover:text-white transition-colors bg-white/10 hover:bg-white/20 p-2 rounded-md border border-white/10"
+                              className="text-slate-300 hover:text-white transition-colors bg-white/[0.04] hover:bg-white/[0.1] p-2 rounded-xl border border-white/10"
                               title="GitHub Repository"
                             >
                               <Code className="h-4 w-4" />
@@ -320,7 +300,7 @@ export default function StudentProjectsCarousel({ studentProjects }: StudentProj
                               target="_blank"
                               rel="noopener noreferrer"
                               onClick={(e) => e.stopPropagation()}
-                              className="text-xs font-bold text-cyan-400 hover:text-cyan-300 flex items-center gap-1 cursor-pointer bg-cyan-500/10 hover:bg-cyan-500/20 px-2.5 py-1 rounded-md border border-cyan-500/20 transition-all"
+                              className="text-xs font-mono font-bold text-[#FF7A1A] hover:text-[#FFA566] flex items-center gap-1 cursor-pointer bg-[#FF5C00]/10 hover:bg-[#FF5C00]/20 px-3 py-1.5 rounded-xl border border-[#FF5C00]/30 transition-all"
                             >
                               <span>Live Demo</span>
                               <Globe className="h-3 w-3" />
@@ -343,7 +323,7 @@ export default function StudentProjectsCarousel({ studentProjects }: StudentProj
                     onClick={() => scrollToSlide(i)}
                     aria-label={`Go to slide ${i + 1}`}
                     className={`h-2 rounded-full transition-all duration-300 cursor-pointer border ${activeIndex === i
-                      ? 'w-8 bg-cyan-500 border-cyan-400 shadow-md shadow-cyan-500/50 scale-105'
+                      ? 'w-8 bg-[#FF5C00] border-[#FFA566]/40 shadow-md shadow-[#FF5C00]/50 scale-105'
                       : 'w-2 bg-white/20 border-transparent hover:bg-white/40'
                       }`}
                   />
@@ -363,28 +343,28 @@ export default function StudentProjectsCarousel({ studentProjects }: StudentProj
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedProject(null)}
-              className="fixed inset-0 bg-black/80 backdrop-blur-md"
+              className="fixed inset-0 bg-black/85 backdrop-blur-md"
             />
 
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative w-full max-w-4xl max-h-[90vh] bg-slate-900 border border-slate-700/60 rounded-3xl shadow-2xl overflow-hidden flex flex-col z-10 text-white"
+              className="relative w-full max-w-4xl max-h-[90vh] bg-[#0E121E] border border-white/[0.12] rounded-3xl shadow-2xl overflow-hidden flex flex-col z-10 text-white"
             >
               {/* Modal Header */}
-              <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-slate-900/90 backdrop-blur shrink-0">
+              <div className="flex items-center justify-between px-6 py-4 border-b border-white/[0.08] bg-[#0E121E]/90 backdrop-blur shrink-0">
                 <div className="flex items-center gap-3">
-                  <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-cyan-500/20 border border-cyan-500/30 text-cyan-400 uppercase">
+                  <span className="px-3.5 py-1 rounded-full text-xs font-mono font-bold bg-[#FF5C00]/10 border border-[#FF5C00]/25 text-[#FF7A1A] uppercase">
                     {selectedProject.category || 'Student Project'}
                   </span>
                   <span className="text-xs text-slate-400 font-mono hidden sm:inline-flex items-center gap-1">
-                    <User className="h-3.5 w-3.5 text-cyan-400" /> Student: <strong className="text-white">{selectedProject.student_name}</strong>
+                    <User className="h-3.5 w-3.5 text-[#FF5C00]" /> Student: <strong className="text-white">{selectedProject.student_name}</strong>
                   </span>
                 </div>
                 <button
                   onClick={() => setSelectedProject(null)}
-                  className="p-2 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors cursor-pointer"
+                  className="p-2 rounded-full bg-white/[0.06] hover:bg-white/[0.15] text-slate-300 hover:text-white transition-colors cursor-pointer border border-white/10"
                 >
                   <X className="h-5 w-5" />
                 </button>
@@ -393,16 +373,16 @@ export default function StudentProjectsCarousel({ studentProjects }: StudentProj
               {/* Modal Content */}
               <div className="p-6 sm:p-8 overflow-y-auto space-y-6">
                 <div>
-                  <h3 className="text-2xl sm:text-3xl font-black font-display text-white">
+                  <h3 className="text-2xl sm:text-3xl font-bold font-display text-white">
                     {selectedProject.title}
                   </h3>
                   <div className="flex flex-wrap items-center gap-4 mt-2 text-xs font-mono text-slate-400">
                     <span className="flex items-center gap-1">
-                      <User className="h-3.5 w-3.5 text-cyan-400" /> Student: <strong className="text-white">{selectedProject.student_name}</strong>
+                      <User className="h-3.5 w-3.5 text-[#FF5C00]" /> Student: <strong className="text-white">{selectedProject.student_name}</strong>
                     </span>
                     {selectedProject.batch_course && (
                       <span className="flex items-center gap-1">
-                        <Award className="h-3.5 w-3.5 text-blue-400" /> Course/Batch: <strong className="text-white">{selectedProject.batch_course}</strong>
+                        <Award className="h-3.5 w-3.5 text-[#FF7A1A]" /> Course/Batch: <strong className="text-white">{selectedProject.batch_course}</strong>
                       </span>
                     )}
                   </div>
@@ -414,7 +394,7 @@ export default function StudentProjectsCarousel({ studentProjects }: StudentProj
                   if (gallery.length === 0) return null;
                   return (
                     <div className="space-y-3">
-                      <div className="h-64 sm:h-80 md:h-96 rounded-2xl overflow-hidden bg-slate-950 border border-slate-800 relative group flex items-center justify-center">
+                      <div className="h-64 sm:h-80 md:h-96 rounded-2xl overflow-hidden bg-[#141828] border border-white/[0.08] relative group flex items-center justify-center">
                         <img
                           src={gallery[activeModalImage] || gallery[0]}
                           alt={selectedProject.title}
@@ -427,7 +407,7 @@ export default function StudentProjectsCarousel({ studentProjects }: StudentProj
                             <button
                               key={i}
                               onClick={() => setActiveModalImage(i)}
-                              className={`h-16 w-24 shrink-0 rounded-xl overflow-hidden border-2 transition-all cursor-pointer ${activeModalImage === i ? 'border-cyan-500 scale-105 shadow-md' : 'border-slate-800 opacity-60 hover:opacity-100'}`}
+                              className={`h-16 w-24 shrink-0 rounded-xl overflow-hidden border-2 transition-all cursor-pointer ${activeModalImage === i ? 'border-[#FF5C00] scale-105 shadow-md' : 'border-white/10 opacity-60 hover:opacity-100'}`}
                             >
                               <img src={img} alt="" className="w-full h-full object-cover" />
                             </button>
@@ -440,8 +420,8 @@ export default function StudentProjectsCarousel({ studentProjects }: StudentProj
 
                 {/* Description */}
                 <div>
-                  <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400 mb-2">Project Overview</h4>
-                  <p className="text-sm text-slate-300 leading-relaxed font-medium">
+                  <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-[#FF5C00] mb-2">Project Overview</h4>
+                  <p className="text-sm text-slate-300 leading-relaxed font-normal">
                     {selectedProject.short_description || selectedProject.description}
                   </p>
                 </div>
@@ -454,10 +434,10 @@ export default function StudentProjectsCarousel({ studentProjects }: StudentProj
                   if (techList.length === 0) return null;
                   return (
                     <div>
-                      <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400 mb-2">Technologies Used</h4>
+                      <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-[#FF5C00] mb-2">Technologies Used</h4>
                       <div className="flex flex-wrap gap-2">
                         {techList.map((tech: string, idx: number) => (
-                          <span key={idx} className="px-3 py-1 rounded-lg text-xs font-mono bg-slate-800 border border-slate-700 text-slate-200">
+                          <span key={idx} className="px-3 py-1 rounded-lg text-xs font-mono bg-white/[0.04] border border-white/10 text-slate-200">
                             {tech}
                           </span>
                         ))}
@@ -468,14 +448,14 @@ export default function StudentProjectsCarousel({ studentProjects }: StudentProj
               </div>
 
               {/* Modal Footer */}
-              <div className="px-6 py-4 border-t border-slate-800 bg-slate-900/90 flex justify-between items-center shrink-0">
+              <div className="px-6 py-4 border-t border-white/[0.08] bg-[#0E121E]/90 flex justify-between items-center shrink-0">
                 <div className="flex items-center gap-3">
                   {selectedProject.github_url && (
                     <a
                       href={selectedProject.github_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white text-xs font-bold flex items-center gap-2 transition-all"
+                      className="px-4 py-2 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 text-white text-xs font-mono uppercase tracking-wider font-bold flex items-center gap-2 transition-all"
                     >
                       <Code className="h-4 w-4" />
                       <span>Source Code</span>
@@ -488,7 +468,7 @@ export default function StudentProjectsCarousel({ studentProjects }: StudentProj
                     href={selectedProject.live_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-4 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-bold flex items-center gap-2 shadow-lg shadow-cyan-500/25 transition-all"
+                    className="px-5 py-2.5 rounded-full bg-gradient-to-r from-[#FF5C00] via-[#FF6C00] to-[#FF8526] hover:shadow-[0_0_20px_rgba(255,92,0,0.5)] text-white text-xs font-mono uppercase tracking-wider font-bold flex items-center gap-2 transition-all border border-[#FFA566]/30"
                   >
                     <span>Visit Live Site</span>
                     <ExternalLink className="h-4 w-4" />

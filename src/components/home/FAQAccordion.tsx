@@ -32,17 +32,18 @@ export default function FAQAccordion({ faqs }: FAQProps) {
   };
 
   return (
-    <section id="faqs" className="py-12 lg:py-16 bg-[#FBFBFB] border-b border-gray-200">
+    <section id="faqs" className="py-14 lg:py-20 bg-[#08090E] border-b border-white/[0.08] relative">
       <div className="max-w-4xl mx-auto px-6">
         
-        {/* NexStudio Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-6 pb-6 border-b border-gray-200">
+        {/* Section Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-6 pb-6 border-b border-white/[0.08]">
           <div>
-            <span className="font-mono text-xs uppercase tracking-widest text-gray-500 mb-2 block">
+            <span className="font-mono text-xs uppercase tracking-widest text-[#FF5C00] mb-2 block flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#FF5C00] animate-pulse" />
               Knowledge Hub
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal -tracking-[1.8px] text-black">
-              Frequently Asked <span className="italic">Questions</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal -tracking-[1.8px] text-white">
+              Frequently Asked <span className="italic text-[#FF5C00]">Questions</span>
             </h2>
           </div>
 
@@ -50,7 +51,7 @@ export default function FAQAccordion({ faqs }: FAQProps) {
             <button
               type="button"
               onClick={toggleAll}
-              className="px-4 py-2 rounded-full border border-gray-300 bg-white text-xs font-mono uppercase tracking-wider text-black hover:bg-black hover:text-white transition-all cursor-pointer shrink-0 font-semibold shadow-xs"
+              className="px-4 py-2 rounded-full border border-white/15 bg-white/[0.04] text-xs font-mono uppercase tracking-wider text-slate-300 hover:text-white hover:bg-white/[0.08] hover:border-[#FF5C00]/40 transition-all cursor-pointer shrink-0 font-semibold"
             >
               {allOpen ? 'Collapse All' : 'Expand All'}
             </button>
@@ -58,7 +59,7 @@ export default function FAQAccordion({ faqs }: FAQProps) {
         </div>
 
         {faqs.length === 0 ? (
-          <div className="text-center py-12 bg-white rounded-3xl border border-gray-200 font-mono text-xs text-gray-600 uppercase">
+          <div className="text-center py-12 bg-[#0E121E] rounded-3xl border border-white/[0.08] font-mono text-xs text-slate-400 uppercase">
             No corporate FAQs are registered on the platform.
           </div>
         ) : (
@@ -69,18 +70,24 @@ export default function FAQAccordion({ faqs }: FAQProps) {
               return (
                 <div
                   key={faq.id || idx}
-                  className="rounded-3xl border border-gray-200 bg-white hover:border-black transition-all overflow-hidden shadow-xs"
+                  className={`rounded-3xl border transition-all overflow-hidden shadow-lg ${
+                    isOpen 
+                      ? 'border-[#FF5C00]/50 bg-[#0E121E] shadow-[0_0_25px_rgba(255,92,0,0.12)]' 
+                      : 'border-white/[0.08] bg-[#0E121E]/90 hover:border-white/20 hover:bg-[#121624]'
+                  }`}
                 >
                   <button
                     type="button"
                     onClick={() => toggleIndex(idx)}
                     className="w-full p-6 sm:p-7 text-left flex items-center justify-between gap-6 cursor-pointer"
                   >
-                    <span className="text-base sm:text-lg font-bold text-black leading-snug tracking-tight">
+                    <span className="text-base sm:text-lg font-bold text-white leading-snug tracking-tight">
                       {faq.question}
                     </span>
-                    <span className="size-9 rounded-full bg-gray-100 flex items-center justify-center shrink-0 transition-colors">
-                      {isOpen ? <Minus className="size-4 text-black" /> : <Plus className="size-4 text-black" />}
+                    <span className={`size-9 rounded-full flex items-center justify-center shrink-0 transition-colors ${
+                      isOpen ? 'bg-[#FF5C00] text-white shadow-[0_0_12px_rgba(255,92,0,0.5)]' : 'bg-white/[0.06] text-slate-300'
+                    }`}>
+                      {isOpen ? <Minus className="size-4" /> : <Plus className="size-4" />}
                     </span>
                   </button>
 
@@ -92,7 +99,7 @@ export default function FAQAccordion({ faqs }: FAQProps) {
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.3 }}
                       >
-                        <div className="px-6 pb-6 sm:px-7 sm:pb-7 pt-1 text-sm sm:text-base text-gray-700 leading-relaxed font-normal border-t border-gray-100">
+                        <div className="px-6 pb-6 sm:px-7 sm:pb-7 pt-1 text-sm sm:text-base text-slate-300 leading-relaxed font-normal border-t border-white/[0.08]">
                           {faq.answer}
                         </div>
                       </motion.div>
